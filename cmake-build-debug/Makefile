@@ -150,6 +150,33 @@ Board.cpp.s:
 	$(MAKE) -f CMakeFiles/Othello.dir/build.make CMakeFiles/Othello.dir/Board.cpp.s
 .PHONY : Board.cpp.s
 
+Pawn.o: Pawn.cpp.o
+
+.PHONY : Pawn.o
+
+# target to build an object file
+Pawn.cpp.o:
+	$(MAKE) -f CMakeFiles/Othello.dir/build.make CMakeFiles/Othello.dir/Pawn.cpp.o
+.PHONY : Pawn.cpp.o
+
+Pawn.i: Pawn.cpp.i
+
+.PHONY : Pawn.i
+
+# target to preprocess a source file
+Pawn.cpp.i:
+	$(MAKE) -f CMakeFiles/Othello.dir/build.make CMakeFiles/Othello.dir/Pawn.cpp.i
+.PHONY : Pawn.cpp.i
+
+Pawn.s: Pawn.cpp.s
+
+.PHONY : Pawn.s
+
+# target to generate assembly for a file
+Pawn.cpp.s:
+	$(MAKE) -f CMakeFiles/Othello.dir/build.make CMakeFiles/Othello.dir/Pawn.cpp.s
+.PHONY : Pawn.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -189,6 +216,9 @@ help:
 	@echo "... Board.o"
 	@echo "... Board.i"
 	@echo "... Board.s"
+	@echo "... Pawn.o"
+	@echo "... Pawn.i"
+	@echo "... Pawn.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -7,4 +7,7 @@
 
 #include "bits/stdtr1c++.h"
 
+const unsigned int COL = 10;
+const unsigned int ROW = 10;
+
 #endif //OTHELLO_HEADER_H

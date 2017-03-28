@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/johann/Work/Othello/Board.cpp
+Board.h
+/home/johann/Work/Othello/Board.h
+
+/home/johann/Work/Othello/Board.h
+Header.h
+/home/johann/Work/Othello/Header.h
+Pawn.h
+/home/johann/Work/Othello/Pawn.h
+
+/home/johann/Work/Othello/Header.h
+bits/stdtr1c++.h
+/home/johann/Work/Othello/bits/stdtr1c++.h
+
+/home/johann/Work/Othello/Pawn.cpp
+Pawn.h
+/home/johann/Work/Othello/Pawn.h
+
+/home/johann/Work/Othello/Pawn.h
+Header.h
+/home/johann/Work/Othello/Header.h
+
+/home/johann/Work/Othello/main.cpp
+iostream
+-
+Board.h
+/home/johann/Work/Othello/Board.h
+Header.h
+/home/johann/Work/Othello/Header.h
+

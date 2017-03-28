@@ -8,15 +8,16 @@
 #include "Header.h"
 #include "Pawn.h"
 
-int COL = 8;
-int ROW = 8;
-using matrice = std::vector<std::vector<std::unique_ptr<Pawn>>>;
+
+
+using matrice = std::vector<std::vector<Tile>>;
 
 class Board {
 private:
     matrice othellier;
 public:
     Board();
+    void display();
 
 };
 

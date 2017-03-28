@@ -93,6 +93,9 @@
 		<Unit filename="/home/johann/Work/Othello/Header.h">
 			<Option target="Othello"/>
 		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Pawn.cpp">
+			<Option target="Othello"/>
+		</Unit>
 		<Unit filename="/home/johann/Work/Othello/Pawn.h">
 			<Option target="Othello"/>
 		</Unit>
