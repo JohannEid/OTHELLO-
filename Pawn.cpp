@@ -13,5 +13,13 @@ void Tile::init_tile(const int &ind_lhs, const int &ind_rhs) {
     else if (((ind_rhs == 0) ||(ind_rhs == ROW-1))&& (ind_lhs<= ROW -2 && ind_lhs>=1)) {
         setWidget(ind_lhs + '0' + 16);
     }
+    else if ((ind_rhs == 5 && ind_lhs == 5)||(ind_rhs == 4 && ind_lhs == 6)){
+        setColor(e_color::BLACK);
+        setWidget('O');
+    }
+    else if ((ind_rhs == 4 && ind_lhs == 5)||(ind_rhs == 5 && ind_lhs == 6)){
+        setColor(e_color::WHITE);
+        setWidget('O');
+    }
 
 }

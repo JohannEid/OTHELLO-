@@ -6,6 +6,7 @@
 #define OTHELLO_HEADER_H
 
 #include "bits/stdtr1c++.h"
+#include "rlutil.h"
 
 const unsigned int COL = 10;
 const unsigned int ROW = 10;

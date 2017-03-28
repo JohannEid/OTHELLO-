@@ -17,7 +17,11 @@ Board::Board() {
 void Board::display() {
 for (int i{0}; i < COL; ++i) {
     for (int j{0}; j < ROW; ++j) {
-        std::cout<<othellier[i][j].getWidget();
+        (othellier[i][j].getColor()==e_color::WHITE)?rlutil::setColor(rlutil::WHITE):
+        (othellier[i][j].getColor()==e_color::BLACK)?rlutil::setColor(rlutil::BLACK):
+        rlutil::setColor(rlutil::BLUE);
+
+      std::cout << othellier[i][j].getWidget();
     }
     std::cout<<std::endl;
 }

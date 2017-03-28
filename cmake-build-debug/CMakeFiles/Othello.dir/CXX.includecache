@@ -19,6 +19,8 @@ Pawn.h
 /home/johann/Work/Othello/Header.h
 bits/stdtr1c++.h
 /home/johann/Work/Othello/bits/stdtr1c++.h
+rlutil.h
+/home/johann/Work/Othello/rlutil.h
 
 /home/johann/Work/Othello/Pawn.cpp
 Pawn.h
@@ -35,4 +37,30 @@ Board.h
 /home/johann/Work/Othello/Board.h
 Header.h
 /home/johann/Work/Othello/Header.h
+
+/home/johann/Work/Othello/rlutil.h
+iostream
+-
+string
+-
+cstdio
+-
+stdio.h
+-
+string.h
+-
+windows.h
+-
+conio.h
+-
+termios.h
+-
+unistd.h
+-
+sys/ioctl.h
+-
+sys/types.h
+-
+sys/time.h
+-
 
