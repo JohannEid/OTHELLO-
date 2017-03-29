@@ -90,6 +90,12 @@
 		<Unit filename="/home/johann/Work/Othello/Board.h">
 			<Option target="Othello"/>
 		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Game.cpp">
+			<Option target="Othello"/>
+		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Game.h">
+			<Option target="Othello"/>
+		</Unit>
 		<Unit filename="/home/johann/Work/Othello/Header.h">
 			<Option target="Othello"/>
 		</Unit>
@@ -97,6 +103,12 @@
 			<Option target="Othello"/>
 		</Unit>
 		<Unit filename="/home/johann/Work/Othello/Pawn.h">
+			<Option target="Othello"/>
+		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Player.cpp">
+			<Option target="Othello"/>
+		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Player.h">
 			<Option target="Othello"/>
 		</Unit>
 		<Unit filename="/home/johann/Work/Othello/main.cpp">

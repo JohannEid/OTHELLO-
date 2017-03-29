@@ -6,7 +6,6 @@
 #define OTHELLO_PAWN_H
 
 #include "Header.h"
-#include "Board.h"
 
 enum class e_color {
     WHITE, BLACK, NONE
@@ -33,7 +32,7 @@ public:
         return color;
     }
 
-    void setColor(e_color color) {
+    void setColor(e_color color)  {
         Tile::color = color;
     }
 

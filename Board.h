@@ -14,13 +14,15 @@ using matrice = std::vector<std::vector<Tile>>;
 class Board {
 private:
     matrice othellier;
-    int number_of_turn;
+    int number_of_turn = 0;
 public:
     Board();
 
-    bool is_playable(const int &i, const int &j);
+    bool is_playable(const int &i, const int &j) const;
 
-    void display();
+    void display() const;
+
+    void change_color(int i, int j);
 
     const Tile &getBoard(const int &i, const int &j) const { return othellier[i][j]; }
 
@@ -32,6 +34,9 @@ public:
         number_of_turn++;
     }
 
+    void set_color(const int &i, const int &j, const e_color &to_change) {
+        othellier[i][j].setColor(to_change);
+    }
 };
 
 
