@@ -18,11 +18,11 @@ private:
 public:
     Board();
 
-    bool is_playable(const int &i, const int &j) const;
+    bool is_playable(const int &i, const int &j, const e_color& player_color) const;
 
     void display() const;
 
-    void change_color(int i, int j);
+    void change_color(int i, int j,const e_color& temp_color);
 
     const Tile &getBoard(const int &i, const int &j) const { return othellier[i][j]; }
 

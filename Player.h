@@ -17,6 +17,8 @@ public:
 
     void play_turn(Board &board_to_play);
 
+    bool is_allowed (const Board& board) const;
+
     e_color getColor() const {
         return color;
     }

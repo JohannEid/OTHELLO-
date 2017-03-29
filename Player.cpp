@@ -15,29 +15,35 @@ void Player::play_turn(Board &board_to_play) {
     while (true) {
         try {
 
-
             std::cin >> icoordx;
             std::cin >> icoordy;
 
-            coordx = toupper(icoordx[0]);
+            coordx = (int) toupper(icoordx[0]) - 64;
             coordy = std::stoi(icoordy);
 
-            if ((((int) coordx - 64 <= ROW - 2 && (int) coordx - 64 >= 1)
+            if ((((coordx <= ROW - 2) && coordx >= 1)
                  && (coordy <= COL - 2 && coordy >= 1))
-                && (board_to_play.is_playable(coordx, coordy))) {
+                && (board_to_play.is_playable(coordx, coordy, getColor()))) {
                 board_to_play.set_color(coordx, coordy, getColor());
+                board_to_play.change_color(coordx, coordy, getColor());
                 break;
             } else {
                 throw std::domain_error("Can't choose to perform this action");
             }
-
-
         }
-
         catch (std::exception const &e) {
-            std::cerr << "Erreur" << e.what() << std::endl;
+            std::cerr << "Error" << e.what() << std::endl;
         }
 
     }
 
+}
+
+bool Player::is_allowed(const Board &board) const {
+    for (int i{1}; i < ROW - 2; ++i) {
+        for (int j{1}; j < COL - 2; ++j) {
+             if (board.is_playable(i, j,getColor())) { return true; }
+        }
+    }
+    return false;
 }

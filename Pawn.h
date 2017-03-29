@@ -33,8 +33,12 @@ public:
     }
 
     void setColor(e_color color)  {
+        setWidget('O');
         Tile::color = color;
     }
+
+
+
 
 };
 
