@@ -6,6 +6,7 @@
 #define OTHELLO_PAWN_H
 
 #include "Header.h"
+#include "Board.h"
 
 enum class e_color {
     WHITE, BLACK, NONE
@@ -19,9 +20,7 @@ private:
 public:
     Tile(){}
     Tile(e_color color) : color(color) {}
-
     void init_tile(const int& ind_lhs, const int& ind_rhs);
-
     char getWidget() const {
         return widget;
     }

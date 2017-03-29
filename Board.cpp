@@ -27,3 +27,19 @@ for (int i{0}; i < COL; ++i) {
 }
 
 }
+
+bool Board::is_playable(const int &i, const int &j) {
+    std::list<std::pair<int,int>> check_coordinates{std::make_pair(1,0), std::make_pair(0,1),
+                                                    std::make_pair(-1,0), std::make_pair(0,-1),
+                                                    std::make_pair(1,1), std::make_pair(-1,-1)};
+    if(getBoard(i,j).getColor()==e_color::NONE){ return false;}
+    for(const auto& elem : check_coordinates){
+        if(getBoard(i+elem.first,j+elem.second).getColor() == e_color::WHITE
+           && getNumber_of_turn()%2 == 0){ return true;}
+        else if(getBoard(i+elem.first,j+elem.second).getColor() == e_color::BLACK
+           && getNumber_of_turn()%2 == 1){ return true;}
+    }
+    return false;
+
+}
+
