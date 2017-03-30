@@ -6,10 +6,12 @@
 
 void Game::game_loop() {
 
-        if(getWhite().is_allowed(board)) {turn_play(white);}
-        else{std::cout << "White can't play" << std::endl;};
-        if(getBlack().is_allowed(board)) {turn_play(black);}
-        else{std::cout << "Black can't play" << std::endl;};
+    while (!(!getWhite().is_allowed(board) && !getBlack().is_allowed(board))) {
+        if (getWhite().is_allowed(board)) { turn_play(white); }
+        else { std::cout << "White can't play" << std::endl; };
+        if (getBlack().is_allowed(board)) { turn_play(black); }
+        else { std::cout << "Black can't play" << std::endl; };
+    }
 
 }
 

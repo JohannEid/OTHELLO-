@@ -52,7 +52,7 @@ void Board::change_color(int coordx, int coordy, const e_color &temp_color) {
     std::vector<std::pair<int, int>> temp;
     int initial_posx = coordx;
     int initial_posy = coordy;
-    e_color opposite_color = (temp_color == e_color::WHITE) ? e_color::WHITE : e_color::BLACK;
+    e_color opposite_color = (temp_color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
 
 
     for (const auto &elem: check_coordinates) {
@@ -63,10 +63,9 @@ void Board::change_color(int coordx, int coordy, const e_color &temp_color) {
             temp.push_back(std::make_pair(coordx, coordy));
         }
         std::cout << coordx  << coordy << std::endl;
-        if (getBoard(coordx-1, coordy-1).getColor() == temp_color) {
+        if (getBoard(coordx, coordy).getColor() == temp_color) {
             for (auto &elem_ : temp) {
-                std::cout << "yo"<<std::endl;
-                othellier[elem_.first-1][elem_.second-1].setColor(temp_color);
+                othellier[elem_.first][elem_.second].setColor(temp_color);
             }
             temp.clear();
         } else {
