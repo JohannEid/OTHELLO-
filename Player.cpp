@@ -4,11 +4,12 @@
 
 #include "Player.h"
 
-void Player::play_turn(Board &board_to_play) {
+int Player::play_turn(Board &board_to_play) {
     std::string icoordx{" "};
     std::string icoordy{" "};
     char coordx{' '};
     int coordy{0};
+    int number_of_color_change{0};
 
 
     std::cout << "Please choose a coordinate" << std::endl;
@@ -25,7 +26,7 @@ void Player::play_turn(Board &board_to_play) {
                  && (coordy <= COL - 2 && coordy >= 1))
                 && (board_to_play.is_playable(coordx, coordy, getColor()))) {
                 board_to_play.set_color(coordx, coordy, getColor());
-                board_to_play.change_color(coordx, coordy, getColor());
+                number_of_color_change = board_to_play.change_color(coordx, coordy, getColor());
                 break;
             } else {
                 throw std::domain_error("Can't choose to perform this action");
@@ -36,13 +37,13 @@ void Player::play_turn(Board &board_to_play) {
         }
 
     }
-
+    return number_of_color_change;
 }
 
 bool Player::is_allowed(const Board &board) const {
     for (int i{1}; i < ROW - 2; ++i) {
         for (int j{1}; j < COL - 2; ++j) {
-             if (board.is_playable(i, j,getColor())) { return true; }
+            if (board.is_playable(i, j, getColor())) { return true; }
         }
     }
     return false;

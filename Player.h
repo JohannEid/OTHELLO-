@@ -12,15 +12,24 @@
 class Player {
 private:
     e_color color;
+    int score = 2;
 public:
     Player(e_color color) : color(color) {}
 
-    void play_turn(Board &board_to_play);
+    int play_turn(Board &board_to_play);
 
-    bool is_allowed (const Board& board) const;
+    bool is_allowed(const Board &board) const;
 
     e_color getColor() const {
         return color;
+    }
+
+    int getScore() const {
+        return score;
+    }
+
+    void setScore(int score) {
+        Player::score = score;
     }
 };
 

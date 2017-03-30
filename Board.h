@@ -20,9 +20,9 @@ public:
 
     bool is_playable(const int &i, const int &j, const e_color& player_color) const;
 
-    void display() const;
+    void display(const e_color& color,const int& number_of_color_change = 0) const;
 
-    void change_color(int i, int j,const e_color& temp_color);
+    int change_color(int i, int j,const e_color color);
 
     const Tile &getBoard(const int &i, const int &j) const { return othellier[i][j]; }
 
@@ -34,8 +34,8 @@ public:
         number_of_turn++;
     }
 
-    void set_color(const int &i, const int &j, const e_color &to_change) {
-        othellier[i][j].setColor(to_change);
+    void set_color(const int &i, const int &j, const e_color& color) {
+        othellier[i][j].setColor(color);
     }
 };
 

@@ -17,7 +17,7 @@ private:
 public:
     void game_loop();
 
-    void turn_play(Player &player_to_play);
+    void turn_play(Player &player_to_play, Player& opponent);
 
     bool is_end() const;
 
