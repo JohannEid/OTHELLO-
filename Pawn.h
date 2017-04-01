@@ -16,10 +16,14 @@ class Tile {
 private:
     e_color color = e_color::NONE;
     char widget = '\0';
+    bool target = false;
 public:
-    Tile(){}
+    Tile() {}
+
     Tile(e_color color) : color(color) {}
-    void init_tile(const int& ind_lhs, const int& ind_rhs);
+
+    void init_tile(const int &ind_lhs, const int &ind_rhs);
+
     char getWidget() const {
         return widget;
     }
@@ -32,16 +36,22 @@ public:
         return color;
     }
 
-    void setColor(e_color color)  {
+    void setColor(e_color color) {
         setWidget('O');
         Tile::color = color;
     }
 
+    bool isTarget() const {
+        return target;
+    }
+
+    void setTarget(bool target) {
+        Tile::target = target;
+    }
 
 
 
 };
-
 
 
 #endif //OTHELLO_PAWN_H

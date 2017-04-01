@@ -13,6 +13,15 @@ class Player {
 private:
     e_color color;
     int score = 2;
+
+    void show_targets(Board &to_play) const;
+
+    void player_mvt(Board &board, const int &base_pos_x, const int &base_pos_y);
+
+    void
+    handle_mvt(Board &board,const std::pair<int, int> &move_coord);
+
+
 public:
     Player(e_color color) : color(color) {}
 

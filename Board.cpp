@@ -52,8 +52,6 @@ std::vector<std::pair<int, int>> Board::get_encirclement
                     keep = false;
                     break;
                 } else {
-                    std::cout << coordx << std::endl;
-                    std::cout << coordy << std::endl;
                     temp.push_back(std::make_pair(coordx, coordy));
                 }
             } else { break; }
@@ -64,7 +62,6 @@ std::vector<std::pair<int, int>> Board::get_encirclement
         } else { temp.clear(); }
 
     }
-    std::cout << post_temp.size() << std::endl;
     return post_temp;
 }
 
@@ -76,7 +73,8 @@ void Board::display(const e_color &color, const int &number_of_color_change) con
         for (int j{0}; j < ROW; ++j) {
             (othellier[i][j].getColor() == e_color::WHITE) ? rlutil::setColor(rlutil::WHITE) :
             (othellier[i][j].getColor() == e_color::BLACK) ? rlutil::setColor(rlutil::BLACK) :
-            rlutil::setColor(rlutil::BLUE);
+            (othellier[i][j].isTarget() ) ? rlutil::setColor(rlutil::RED):
+            rlutil::setColor(rlutil::YELLOW);
 
             std::cout << getBoard(i, j).getWidget();
         }
