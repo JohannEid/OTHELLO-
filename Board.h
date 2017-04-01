@@ -18,13 +18,15 @@ private:
 public:
     Board();
 
-    bool is_playable(const int &i, const int &j, const e_color& player_color) const;
+    bool is_playable(int &i, int &j, const e_color &player_color) const;
 
-    void display(const e_color& color,const int& number_of_color_change = 0) const;
+    void display(const e_color &color, const int &number_of_color_change = 0) const;
 
-    int change_color(int i, int j,const e_color color);
+    std::vector<std::pair<int, int>> get_encirclement(int &coordx, int &coordy, const e_color color) const;
 
-    const Tile &getBoard(const int &i, const int &j) const { return othellier[i][j]; }
+    void change_color(const std::vector<std::pair<int, int>> &coord_to_change, const e_color &temp_color);
+
+   const Tile& getBoard( int i,  int j) const { return othellier[i][j]; }
 
     int getNumber_of_turn() const {
         return number_of_turn;
@@ -34,7 +36,7 @@ public:
         number_of_turn++;
     }
 
-    void set_color(const int &i, const int &j, const e_color& color) {
+    void set_color(const int &i, const int &j, const e_color &color) {
         othellier[i][j].setColor(color);
     }
 };
