@@ -19,7 +19,7 @@ public:
 
     void turn_play(Player &player_to_play, Player& opponent);
 
-    bool is_end() const;
+    bool is_end() const {return (!getWhite().is_allowed(board) && !getBlack().is_allowed(board));}
 
     const Board &getBoard() const {
         return board;

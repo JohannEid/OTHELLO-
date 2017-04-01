@@ -16,6 +16,58 @@ Board::Board() {
 
 }
 
+void Board::change_color(const std::vector<std::pair<int, int>> &coord_to_change,
+                         const e_color &temp_color) {
+    for (const auto &elem : coord_to_change) {
+        set_color(elem.first, elem.second, temp_color);
+    }
+}
+
+
+std::vector<std::pair<int, int>> Board::get_encirclement
+        (const int &initial_posx, const int &initial_posy, const e_color &color) const {
+
+    std::vector<std::pair<int, int>> temp;
+    std::vector<std::pair<int, int>> post_temp;
+    int coordx{0};
+    int coordy{0};
+    bool keep{false};
+    e_color temp_color{color};
+    e_color opposite_color = (temp_color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
+
+
+    for (const auto &elem: check_coordinates) {
+        coordx = initial_posx;
+        coordy = initial_posy;
+
+        while (true) {
+            if (((coordx + elem.first <= ROW - 2) && coordx + elem.first >= 1)
+                && (coordy + elem.second <= COL - 2 && coordy + elem.second >= 1)) {
+                coordx += elem.first;
+                coordy += elem.second;
+                if (getBoard(coordx, coordy).getColor() == temp_color) {
+                    keep = true;
+                    break;
+                } else if (getBoard(coordx, coordy).getColor() == e_color::NONE) {
+                    keep = false;
+                    break;
+                } else {
+                    std::cout << coordx << std::endl;
+                    std::cout << coordy << std::endl;
+                    temp.push_back(std::make_pair(coordx, coordy));
+                }
+            } else { break; }
+        }
+        if (keep) {
+            post_temp.insert(post_temp.end(), temp.begin(), temp.end());
+            temp.clear();
+        } else { temp.clear(); }
+
+    }
+    std::cout << post_temp.size() << std::endl;
+    return post_temp;
+}
+
 void Board::display(const e_color &color, const int &number_of_color_change) const {
     std::string s_color = (color == e_color::WHITE) ? "White" : "Black";
     std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
@@ -33,50 +85,28 @@ void Board::display(const e_color &color, const int &number_of_color_change) con
 
 }
 
-bool Board::is_playable(int &coordx, int &coordy, const e_color &player_color) const {
+bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color) const {
+    int checkx{0};
+    int checky{0};
+    bool is_playable;
+    e_color opposite_color = (play_color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
+    if (getBoard(coordx, coordy).getColor() == opposite_color) { return false; }
+    for (const auto &elem : check_coordinates) {
+        checkx = coordx + elem.first;
+        checky = coordy + elem.second;
+        is_playable = true;
+        if(getBoard(checkx,checky).getColor() != opposite_color){ continue;}
 
-    if (getBoard(coordx, coordy).getColor() != e_color::NONE) { return false; }
-    else if (!get_encirclement(coordx, coordy, player_color).empty()) { return true; }
-
+       do{
+            if (((checkx + elem.first <= ROW - 2) && checkx + elem.first >= 1)
+                && (checky + elem.first <= COL - 2 && checky + elem.first >= 1)) {
+                checkx += elem.first;
+                checky += elem.second;
+            } else {
+                is_playable = false;
+                break; }
+        } while(getBoard(checkx,checky).getColor() != play_color);
+    if(is_playable){ return true;}
+    }
     return false;
-
 }
-
-void Board::change_color(const std::vector<std::pair<int, int>> &coord_to_change,
-                         const e_color &temp_color) {
-    for (const auto &elem : coord_to_change) {
-        othellier[elem.first][elem.second].setColor(temp_color);
-    }
-}
-
-
-std::vector<std::pair<int, int>> Board::get_encirclement
-        (int &coordx, int &coordy, const e_color color) const {
-    std::list<std::pair<int, int>> check_coordinates{std::make_pair(1, 0), std::make_pair(0, 1),
-                                                     std::make_pair(-1, 0), std::make_pair(0, -1),
-                                                     std::make_pair(1, 1), std::make_pair(-1, -1)};
-    std::vector<std::pair<int, int>> temp;
-    int initial_posx = coordx;
-    int initial_posy = coordy;
-    e_color temp_color{color};
-    e_color opposite_color = (temp_color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
-
-
-    for (const auto &elem: check_coordinates) {
-        coordx = initial_posx;
-        coordy = initial_posy;
-
-        while (true) {
-            if (((coordx + elem.first <= ROW - 2) && coordx + elem.first >= 1)
-                && (coordy + elem.second <= COL - 2 && coordy + elem.second >= 1)) {
-                coordx += elem.first;
-                coordx += elem.second;
-            }
-            if (getBoard(coordx, coordy).getColor() == temp_color) { break; }
-            else { temp.push_back(std::make_pair(coordx, coordy)); }
-        }
-
-    }
-    return temp;
-}
-

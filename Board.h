@@ -18,11 +18,11 @@ private:
 public:
     Board();
 
-    bool is_playable(int &i, int &j, const e_color &player_color) const;
+    bool is_playable(const int& coordx,const int& coordy,e_color play_color) const ;
 
     void display(const e_color &color, const int &number_of_color_change = 0) const;
 
-    std::vector<std::pair<int, int>> get_encirclement(int &coordx, int &coordy, const e_color color) const;
+    std::vector<std::pair<int, int>> get_encirclement (const int &coordx, const int &coordy, const e_color& color) const;
 
     void change_color(const std::vector<std::pair<int, int>> &coord_to_change, const e_color &temp_color);
 
