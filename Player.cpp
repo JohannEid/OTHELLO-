@@ -5,6 +5,15 @@
 #include "Player.h"
 
 int Player::play_turn(Board &board_to_play) {
+    std::vector<std::pair<int, int>> flip_coordinates;
+    show_targets(board_to_play);
+    player_mvt(board_to_play);
+    flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
+                                                      board_to_play.getBase().second,
+                                                      getColor());
+    board_to_play.change_color(flip_coordinates, getColor());
+
+    /*
     int base_position_x{0};
     int base_position_y{0};
 
@@ -47,6 +56,7 @@ int Player::play_turn(Board &board_to_play) {
 
     }
     return flip_number;
+     */
 }
 
 bool Player::is_allowed(const Board &board) const {
@@ -70,39 +80,40 @@ void Player::show_targets(Board &board_to_play) const {
 
 }
 
-void Player::player_mvt(Board &board, const int &base_pos_x, const int &base_pos_y) {
-    sf::Event event;
+void Player::player_mvt(Board &board) {
 
-    while (event.key.code != sf::Keyboard::Return) {
-        switch (event.key.code) {
-            case sf::Keyboard::Q:
-                handle_mvt(board, std::make_pair(-1, 0));
-                break;
+    while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) || !board.getBoard(board.getBase().first,
+                                                                                board.getBase().second).isTarget()) {
 
-            case sf::Keyboard::Z:
-                handle_mvt(board, std::make_pair(0, -1));
-                break;
 
-            case sf::Keyboard::D:
-                handle_mvt(board, std::make_pair(1, 0));
-                break;
-
-            case sf::Keyboard::S:
-                handle_mvt(board, std::make_pair(0, 1));
-                break;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+            handle_mvt(board, std::make_pair(0, -1));
+            break;
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+            handle_mvt(board, std::make_pair(-1, 0));
+            break;
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            handle_mvt(board, std::make_pair(0, 1));
+            break;
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            handle_mvt(board, std::make_pair(1, 0));
+            break;
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+            std::cout << "Cannot move in this position" << std::endl;
         }
-    }
 
+
+    }
 }
 
 void Player::handle_mvt(Board &board, const std::pair<int, int> &move_coord) {
     std::pair<int, int> new_position{std::make_pair(board.getBase().first + move_coord.first,
                                                     board.getBase().second + move_coord.second)};
-    if (is_in_board(board.getBase().first + move_coord.first,
-                    board.getBase().second + move_coord.second)) {
-        board.setBase(new_position);
-    } else {
-        std::cout << "can't change position" << std::endl;
+    if (is_in_board(new_position.first,
+                    new_position.second)) { board.setBase(new_position); }
+    else {
+        std::cout << "Can't change position" << std::endl;
     }
 
 }
+

@@ -73,7 +73,8 @@ void Board::display(const e_color &color, const int &number_of_color_change) con
         for (int j{0}; j < ROW; ++j) {
             (othellier[i][j].getColor() == e_color::WHITE) ? rlutil::setColor(rlutil::WHITE) :
             (othellier[i][j].getColor() == e_color::BLACK) ? rlutil::setColor(rlutil::BLACK) :
-            (othellier[i][j].isTarget() ) ? rlutil::setColor(rlutil::RED):
+            (othellier[i][j].isTarget()) ? rlutil::setColor(rlutil::RED) :
+            (i == getBase().first && j == getBase().second) ? rlutil::setColor(rlutil::BLUE) :
             rlutil::setColor(rlutil::YELLOW);
 
             std::cout << getBoard(i, j).getWidget();
@@ -93,18 +94,19 @@ bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color
         checkx = coordx + elem.first;
         checky = coordy + elem.second;
         is_playable = true;
-        if(getBoard(checkx,checky).getColor() != opposite_color){ continue;}
+        if (getBoard(checkx, checky).getColor() != opposite_color) { continue; }
 
-       do{
+        do {
             if (((checkx + elem.first <= ROW - 2) && checkx + elem.first >= 1)
                 && (checky + elem.first <= COL - 2 && checky + elem.first >= 1)) {
                 checkx += elem.first;
                 checky += elem.second;
             } else {
                 is_playable = false;
-                break; }
-        } while(getBoard(checkx,checky).getColor() != play_color);
-    if(is_playable){ return true;}
+                break;
+            }
+        } while (getBoard(checkx, checky).getColor() != play_color);
+        if (is_playable) { return true; }
     }
     return false;
 }

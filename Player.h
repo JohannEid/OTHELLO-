@@ -16,10 +16,10 @@ private:
 
     void show_targets(Board &to_play) const;
 
-    void player_mvt(Board &board, const int &base_pos_x, const int &base_pos_y);
+    void player_mvt(Board &board);
 
-    void
-    handle_mvt(Board &board,const std::pair<int, int> &move_coord);
+    void handle_mvt(Board &board,const std::pair<int, int> &move_coord);
+
 
 
 public:

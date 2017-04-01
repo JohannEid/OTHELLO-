@@ -17,11 +17,8 @@ void Game::game_loop() {
 }
 
 void Game::turn_play(Player &player_to_play, Player &opponent) {
-    int number_of_color_change{1};
     getBoard().display(player_to_play.getColor());
-    number_of_color_change = player_to_play.play_turn(board);
+    player_to_play.play_turn(board);
     getBoard().display(player_to_play.getColor());
-    player_to_play.setScore(player_to_play.getScore() + number_of_color_change);
-    opponent.setScore(opponent.getScore() - number_of_color_change);
 }
 

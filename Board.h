@@ -15,7 +15,7 @@ class Board {
 private:
     matrice othellier;
     int number_of_turn = 0;
-    std::pair<int,int> base;
+    std::pair<int,int> base = std::make_pair(1,1);
 
 public:
     Board();
@@ -39,7 +39,7 @@ public:
     }
 
     void set_color(const int &coordx, const int &coordy, const e_color &color) {
-        othellier[coordx][coordy].setColor(color);
+        othellier[getBase().first][getBase().second].setColor(color);
     }
 
     void setTarget(const int& coordx, const int& coordy,const bool& is_target){

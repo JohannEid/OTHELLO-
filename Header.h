@@ -7,7 +7,14 @@
 
 #include "bits/stdtr1c++.h"
 #include "rlutil.h"
-#include "SFML/Graphics.hpp"
+#include <SFML/Window/Keyboard.hpp>
+enum class keys
+{
+    left,
+    right,
+    up,
+    down
+};
 
 const unsigned int COL = 10;
 const unsigned int ROW = 10;
