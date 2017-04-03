@@ -39,7 +39,7 @@ public:
     }
 
     void set_color(const int &coordx, const int &coordy, const e_color &color) {
-        othellier[getBase().first][getBase().second].setColor(color);
+        othellier[coordx][coordy].setColor(color);
     }
 
     void setTarget(const int& coordx, const int& coordy,const bool& is_target){

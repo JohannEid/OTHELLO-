@@ -20,6 +20,7 @@ void Board::change_color(const std::vector<std::pair<int, int>> &coord_to_change
                          const e_color &temp_color) {
     for (const auto &elem : coord_to_change) {
         set_color(elem.first, elem.second, temp_color);
+        std::cout << elem.first<<elem.second<<std::endl;
     }
 }
 
@@ -41,8 +42,8 @@ std::vector<std::pair<int, int>> Board::get_encirclement
         coordy = initial_posy;
 
         while (true) {
-            if (((coordx + elem.first <= ROW - 2) && coordx + elem.first >= 1)
-                && (coordy + elem.second <= COL - 2 && coordy + elem.second >= 1)) {
+
+            if (is_in_board(coordx + elem.first, coordy + elem.second)) {
                 coordx += elem.first;
                 coordy += elem.second;
                 if (getBoard(coordx, coordy).getColor() == temp_color) {
@@ -62,6 +63,7 @@ std::vector<std::pair<int, int>> Board::get_encirclement
         } else { temp.clear(); }
 
     }
+    for (const auto &elem:post_temp) { std::cout << elem.first << elem.second << std::endl; }
     return post_temp;
 }
 
@@ -71,10 +73,10 @@ void Board::display(const e_color &color, const int &number_of_color_change) con
     std::cout << "Turn of " << s_color << std::endl;
     for (int i{0}; i < COL; ++i) {
         for (int j{0}; j < ROW; ++j) {
-            (othellier[i][j].getColor() == e_color::WHITE) ? rlutil::setColor(rlutil::WHITE) :
-            (othellier[i][j].getColor() == e_color::BLACK) ? rlutil::setColor(rlutil::BLACK) :
-            (othellier[i][j].isTarget()) ? rlutil::setColor(rlutil::RED) :
             (i == getBase().first && j == getBase().second) ? rlutil::setColor(rlutil::BLUE) :
+            (othellier[i][j].getColor() == e_color::BLACK) ? rlutil::setColor(rlutil::BLACK) :
+            (othellier[i][j].getColor() == e_color::WHITE) ? rlutil::setColor(rlutil::WHITE) :
+            (othellier[i][j].isTarget()) ? rlutil::setColor(rlutil::RED) :
             rlutil::setColor(rlutil::YELLOW);
 
             std::cout << getBoard(i, j).getWidget();
@@ -97,8 +99,8 @@ bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color
         if (getBoard(checkx, checky).getColor() != opposite_color) { continue; }
 
         do {
-            if (((checkx + elem.first <= ROW - 2) && checkx + elem.first >= 1)
-                && (checky + elem.first <= COL - 2 && checky + elem.first >= 1)) {
+
+            if (is_in_board(checkx + elem.first, checky + elem.second)) {
                 checkx += elem.first;
                 checky += elem.second;
             } else {

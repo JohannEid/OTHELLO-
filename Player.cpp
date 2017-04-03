@@ -12,53 +12,8 @@ int Player::play_turn(Board &board_to_play) {
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
                                                       getColor());
+    board_to_play.set_color(board_to_play.getBase().first,board_to_play.getBase().second,getColor());
     board_to_play.change_color(flip_coordinates, getColor());
-
-
-    /*
-    int base_position_x{0};
-    int base_position_y{0};
-
-    std::string icoordx{" "};
-    std::string icoordy{" "};
-    char coordx{' '};
-    int iocoordx;
-    int coordy{0};
-    int flip_number{0};
-    std::vector<std::pair<int, int>> flip_coordinates;
-
-    show_targets(board_to_play);
-    board_to_play.display(getColor());
-
-
-    std::cout << "Please choose a coordinate" << std::endl;
-    while (true) {
-        try {
-
-            std::cin >> icoordx;
-            std::cin >> icoordy;
-
-            coordx = (int) toupper(icoordx[0]) - 64;
-            coordy = std::stoi(icoordy);
-
-            if (is_in_board(coordx, coordy)
-                && (board_to_play.is_playable(coordx, coordy, getColor()))) {
-                board_to_play.set_color(coordx, coordy, getColor());
-                flip_coordinates = board_to_play.get_encirclement(coordx, coordy, getColor());
-                board_to_play.change_color(flip_coordinates, getColor());
-                flip_number = flip_coordinates.size();
-                break;
-            } else {
-                throw std::domain_error("Can't choose to perform this action");
-            }
-        }
-        catch (std::exception const &e) {
-            std::cerr << "Error" << e.what() << std::endl;
-        }
-
-    }
-    return flip_number;
-     */
 }
 
 bool Player::is_allowed(const Board &board) const {
