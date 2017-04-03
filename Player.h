@@ -18,9 +18,11 @@ private:
 
     void player_mvt(Board &board);
 
-    void handle_mvt(Board &board,const std::pair<int, int> &move_coord);
+    void handle_mvt(Board &board, const std::vector<bool> &key_states);
 
+    std::pair<int, int> handle_key_states(const std::vector<bool> &key_states);
 
+    void update_key_state(Board& board,std::vector<bool>& key_states,const keys& key);
 
 public:
     Player(e_color color) : color(color) {}
