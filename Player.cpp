@@ -12,8 +12,9 @@ int Player::play_turn(Board &board_to_play) {
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
                                                       getColor());
-    board_to_play.set_color(board_to_play.getBase().first,board_to_play.getBase().second,getColor());
+    board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
+    return flip_coordinates.size();
 }
 
 bool Player::is_allowed(const Board &board) const {
@@ -38,7 +39,7 @@ void Player::show_targets(Board &board_to_play) const {
 }
 
 void Player::player_mvt(Board &board) {
-    std::vector<bool> key_states{false, false, false, false};
+    std::vector<bool> key_states{false, false, false, false, false};
     while (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && board.getBoard(board.getBase().first,
                                                                                 board.getBase().second).isTarget())) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
@@ -57,6 +58,9 @@ void Player::player_mvt(Board &board) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             update_key_state(board, key_states, down);
         } else { key_states[down] = false; }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
+            update_key_state(board, key_states, tab);
+        } else { key_states[tab] = false; }
     }
 }
 
@@ -81,12 +85,24 @@ std::pair<int, int> Player::handle_key_states(const std::vector<bool> &key_state
     else if (key_states[right]) { return std::make_pair(0, 1); }
     else if (key_states[up]) { return std::make_pair(-1, 0); }
     else if (key_states[down]) { return std::make_pair(1, 0); }
+
+
 }
 
 void Player::update_key_state(Board &board, std::vector<bool> &key_states, const keys &key) {
-    if (!key_states[key]) {
+    if (!key_states[key] && key != tab) {
         key_states[key] = true;
         handle_mvt(board, key_states);
     }
+    else if(key == tab){
+        display_player_score(board);
+    }
 
 }
+
+void Player::display_player_score(const Board &board) const {
+    int opponent_score{board.getNumber_of_turn() + 4 - getScore()};
+    std::cout << "Player score is :" << getScore() << std::endl;
+    std::cout << "Opponent score is :" << opponent_score << std::endl;
+    std::cout << "Number of turn is : "<<board.getNumber_of_turn()<<std::endl;
+    std::cin.ignore(256, '\n');}

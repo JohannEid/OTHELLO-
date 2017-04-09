@@ -24,6 +24,9 @@ private:
 
     void update_key_state(Board& board,std::vector<bool>& key_states,const keys& key);
 
+    void display_player_score(const Board& board) const;
+
+
 public:
     Player(e_color color) : color(color) {}
 

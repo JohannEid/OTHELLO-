@@ -8,8 +8,14 @@
 #include "bits/stdtr1c++.h"
 #include "rlutil.h"
 #include <SFML/Graphics.hpp>
+
+inline void clearconsole() {
+    for (int i{0}; i < 20; ++i)
+        std::cout << std::endl;
+}
+
 enum keys {
-    left = 0, right = 1, up = 2, down = 3
+    left = 0, right = 1, up = 2, down = 3,tab=4
 };
 const unsigned int COL = 10;
 const unsigned int ROW = 10;
