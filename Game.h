@@ -13,6 +13,10 @@ private:
     std::vector<Player>players {Player(e_color::WHITE), Player(e_color::BLACK)};
     Board board;
 
+    void save() const ;
+
+    char write_in_file(const int& coordx,const int& coordy) const;
+
 public:
     void game_loop();
 
