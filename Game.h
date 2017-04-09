@@ -10,28 +10,28 @@
 
 class Game {
 private:
-    Player white = Player(e_color::WHITE);
-    Player black = Player(e_color::BLACK);
+    std::vector<Player>players {Player(e_color::WHITE), Player(e_color::BLACK)};
     Board board;
 
 public:
     void game_loop();
 
-    void turn_play(Player &player_to_play, Player& opponent);
+    bool turn_play(Player &player_to_play, Player& opponent);
 
-    bool is_end() const {return (!getWhite().is_allowed(board) && !getBlack().is_allowed(board));}
+    bool is_end() const {return (!getPlayers()[0].is_allowed(board) && !getPlayers()[1].is_allowed(board));}
 
     const Board &getBoard() const {
         return board;
     }
 
-    const Player &getWhite() const {
-        return white;
+    const std::vector<Player> &getPlayers() const {
+        return players;
     }
 
-    const Player &getBlack() const {
-        return black;
+    void setPlayers(const std::vector<Player> &players) {
+        Game::players = players;
     }
+
 
     void incr_number_of_turn(){board.incrNumberOfTurns();}
 

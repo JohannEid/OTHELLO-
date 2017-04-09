@@ -8,7 +8,7 @@
 int Player::play_turn(Board &board_to_play) {
     std::vector<std::pair<int, int>> flip_coordinates;
     show_targets(board_to_play);
-    player_mvt(board_to_play);
+    if (!player_input(board_to_play)){return 404;};
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
                                                       getColor());
@@ -38,7 +38,7 @@ void Player::show_targets(Board &board_to_play) const {
 
 }
 
-void Player::player_mvt(Board &board) {
+bool Player::player_input(Board &board){
     std::vector<bool> key_states{false, false, false, false, false};
     while (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && board.getBoard(board.getBase().first,
                                                                                 board.getBase().second).isTarget())) {
@@ -61,7 +61,11 @@ void Player::player_mvt(Board &board) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
             update_key_state(board, key_states, tab);
         } else { key_states[tab] = false; }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            return false;
+        }
     }
+    return true;
 }
 
 

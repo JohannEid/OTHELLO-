@@ -16,7 +16,7 @@ private:
 
     void show_targets(Board &to_play) const;
 
-    void player_mvt(Board &board);
+    bool player_input(Board &board);
 
     void handle_mvt(Board &board, const std::vector<bool> &key_states);
 

@@ -19,6 +19,7 @@ enum keys {
 };
 const unsigned int COL = 10;
 const unsigned int ROW = 10;
+const int QUIT = 404;
 const std::list<std::pair<int, int>> check_coordinates{std::make_pair(1, 0), std::make_pair(0, 1),
                                                        std::make_pair(-1, 0), std::make_pair(0, -1),
                                                        std::make_pair(1, 1), std::make_pair(-1, -1)};
