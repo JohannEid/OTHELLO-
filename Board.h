@@ -53,6 +53,10 @@ public:
     void setBase(const std::pair<int, int> &base) {
         Board::base = base;
     }
+
+    void setNumber_of_turn(int number_of_turn) {
+        Board::number_of_turn = number_of_turn;
+    }
 };
 
 

@@ -25,7 +25,7 @@ const std::list<std::pair<int, int>> check_coordinates{std::make_pair(1, 0), std
                                                        std::make_pair(1, 1), std::make_pair(-1, -1)};
 
 constexpr bool is_in_board(const int &coordx, const int &coordy) {
-    return coordx <= ROW - 2 && coordx >= 1 && coordy <= COL - 2 && coordy >= 1;
+    return coordx <= ROW - 1 && coordx >= 1 && coordy <= COL - 1 && coordy >= 1;
 }
 
 #endif //OTHELLO_HEADER_H

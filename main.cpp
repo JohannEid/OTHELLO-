@@ -6,7 +6,7 @@
 int main() {
 
     Game main_game;
-    main_game.game_loop();
+    main_game.game_menu();
 
 
 

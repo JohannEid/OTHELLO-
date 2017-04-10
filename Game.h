@@ -10,15 +10,26 @@
 
 class Game {
 private:
-    std::vector<Player>players {Player(e_color::WHITE), Player(e_color::BLACK)};
+    std::vector<Player>players {Player(e_color::BLACK), Player(e_color::WHITE)};
+
     Board board;
 
     void save() const ;
 
     char write_in_file(const int& coordx,const int& coordy) const;
 
+    void game_menu_display() const;
+
+
+    e_color write_from_file(const char& c) const;
+
+    void load_from_file();
+
 public:
-    void game_loop();
+    void game_loop(const int& index_player = 404);
+
+    void game_menu();
+
 
     bool turn_play(Player &player_to_play, Player& opponent);
 
@@ -38,6 +49,11 @@ public:
 
 
     void incr_number_of_turn(){board.incrNumberOfTurns();}
+
+    void set_number_of_turns(int number_of_turn){board.setNumber_of_turn(number_of_turn);}
+
+    int get_number_of_turns(){return board.getNumber_of_turn();}
+
 
 
 };

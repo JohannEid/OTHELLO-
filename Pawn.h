@@ -37,7 +37,7 @@ public:
     }
 
     void setColor(e_color color) {
-        setWidget('O');
+        (color != e_color::NONE) ? setWidget('O') : setWidget('\0');
         Tile::color = color;
     }
 
@@ -48,7 +48,6 @@ public:
     void setTarget(bool target) {
         Tile::target = target;
     }
-
 
 
 };
