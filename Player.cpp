@@ -8,7 +8,7 @@
 int Player::play_turn(Board &board_to_play) {
     std::vector<std::pair<int, int>> flip_coordinates;
     show_targets(board_to_play);
-    if (!player_input(board_to_play)){return 404;};
+    if (!player_input(board_to_play)) { return 404; };
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
                                                       getColor());
@@ -38,7 +38,7 @@ void Player::show_targets(Board &board_to_play) const {
 
 }
 
-bool Player::player_input(Board &board){
+bool Player::player_input(Board &board) {
     std::vector<bool> key_states{false, false, false, false, false};
     while (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && board.getBoard(board.getBase().first,
                                                                                 board.getBase().second).isTarget())) {
@@ -97,8 +97,7 @@ void Player::update_key_state(Board &board, std::vector<bool> &key_states, const
     if (!key_states[key] && key != tab) {
         key_states[key] = true;
         handle_mvt(board, key_states);
-    }
-    else if(key == tab){
+    } else if (key == tab) {
         display_player_score(board);
     }
 
@@ -108,5 +107,37 @@ void Player::display_player_score(const Board &board) const {
     int opponent_score{board.getNumber_of_turn() + 4 - getScore()};
     std::cout << "Player score is :" << getScore() << std::endl;
     std::cout << "Opponent score is :" << opponent_score << std::endl;
-    std::cout << "Number of turn is : "<<board.getNumber_of_turn()<<std::endl;
-    std::cin.ignore(256, '\n');}
+    std::cout << "Number of turn is : " << board.getNumber_of_turn() << std::endl;
+    std::cin.ignore(256, '\n');
+}
+
+int Ai_easy::play_turn(Board &board_to_play) {
+    std::vector<std::pair<int, int>> flip_coordinates;
+    choose_play(board_to_play);
+    flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
+                                                      board_to_play.getBase().second,
+                                                      getColor());
+    board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
+    board_to_play.change_color(flip_coordinates, getColor());
+    return flip_coordinates.size();
+
+}
+
+std::vector<std::pair<int, int>> Ai_easy::list_choices(Board &board_to_play) const {
+    std::vector<std::pair<int, int>> choices;
+    for (int i{1}; i < ROW - 2; ++i) {
+        for (int j{1}; j < COL - 2; ++j) {
+            if (board_to_play.is_playable(i, j, getColor())) { choices.push_back(std::make_pair(i, j)); }
+        }
+    }
+    return choices;
+}
+
+void Ai_easy::choose_play(Board &board_to_play) {
+    std::vector<std::pair<int, int>> choices{list_choices(board_to_play)};
+    int rand_index{rand() % (int) choices.size()};
+
+    board_to_play.setBase(choices[rand_index]);
+
+
+}

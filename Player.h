@@ -22,15 +22,15 @@ private:
 
     std::pair<int, int> handle_key_states(const std::vector<bool> &key_states);
 
-    void update_key_state(Board& board,std::vector<bool>& key_states,const keys& key);
+    void update_key_state(Board &board, std::vector<bool> &key_states, const keys &key);
 
-    void display_player_score(const Board& board) const;
+    void display_player_score(const Board &board) const;
 
 
 public:
     Player(e_color color) : color(color) {}
 
-    int play_turn(Board &board_to_play);
+    virtual int play_turn(Board &board_to_play);
 
     bool is_allowed(const Board &board) const;
 
@@ -47,5 +47,18 @@ public:
     }
 };
 
+class Ai_easy : public Player {
+
+public:
+    Ai_easy(e_color color) : Player(color) {}
+
+    virtual int play_turn(Board &board_to_play);
+
+    void choose_play( Board& board_to_play);
+
+    std::vector<std::pair<int,int>>  list_choices( Board& board_to_play) const;
+
+
+};
 
 #endif //OTHELLO_PLAYER_H
