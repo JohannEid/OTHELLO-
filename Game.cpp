@@ -5,15 +5,18 @@
 #include "Game.h"
 
 
-void Game::game_loop(const int& index_player) {
+void Game::game_loop(const int &index_player) {
     bool end;
-    Player *ref_opponent;
     while (!is_end()) {
         int i = (index_player != 404) ? index_player : 0;
         for (; i < getPlayers().size(); ++i) {
-            ref_opponent = (players[i].getColor() == e_color::WHITE) ? &players[0] : &players[1];
-            if (players[i].is_allowed(board)) { end = turn_play(players[i], *ref_opponent); }
-            if (!end) { save();
+
+            if (players[i]->is_allowed(board)) {
+                end = turn_play(*players[i],
+                                (i == 0) ? *players[1] : *players[0]);
+            }
+            if (!end) {
+                save();
                 return;
             }
         }
@@ -62,17 +65,17 @@ e_color Game::write_from_file(const char &c) const {
 
 void Game::save() const {
     std::ofstream save_file("save.txt");
-    assert (save_file.is_open());
+    assert(save_file.is_open());
     for (int i{1}; i < ROW - 1; ++i) {
         for (int j{1}; j < COL - 1; ++j) {
             save_file << write_in_file(i, j);
         }
         save_file << std::endl;
     }
-    save_file<<std::endl;
+    save_file << std::endl;
     save_file << getBoard().getNumber_of_turn() << std::endl;
-    save_file << getPlayers()[0].getScore() << std::endl;
-    save_file << getPlayers()[1].getScore() << std::endl;
+    save_file << getPlayers()[0]->getScore() << std::endl;
+    save_file << getPlayers()[1]->getScore() << std::endl;
     save_file.close();
 }
 
@@ -83,7 +86,7 @@ void Game::load_from_file() {
     int coordy{1};
     int number{0};
     std::vector<int> temp;
-    assert (load_file.is_open());
+    assert(load_file.is_open());
 
     while (load_file.get(c)) {
 
@@ -97,7 +100,7 @@ void Game::load_from_file() {
 
         } else {
             while (load_file >> number) {
-                std::cout << number<<std::endl;
+                std::cout << number << std::endl;
                 temp.push_back(number);
             }
         }
@@ -106,8 +109,8 @@ void Game::load_from_file() {
     }
     load_file.close();
     set_number_of_turns(temp[0]);
-    players[0].setScore(temp[1]);
-    players[1].setScore(temp[2]);
+    players[0]->setScore(temp[1]);
+    players[1]->setScore(temp[2]);
 }
 
 void Game::game_menu() {
@@ -126,8 +129,11 @@ void Game::game_menu() {
             if (choice == 1) {
                 break;
             } else if (choice == 2) {
+               players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
+                break;
+            } else if (choice == 3) {
                 load_from_file();
-                save_starter = (get_number_of_turns() % 2 == 0)? 0 : 1;
+                save_starter = (get_number_of_turns() % 2 == 0) ? 0 : 1;
                 break;
             } else {
                 throw std::domain_error("Wrong entry");
@@ -137,14 +143,15 @@ void Game::game_menu() {
             std::cerr << "Erreur" << e.what() << std::endl;
         }
     }
-    (save_starter != 404)?game_loop(save_starter):game_loop();
+    (save_starter != 404) ? game_loop(save_starter) : game_loop();
 
 }
 
 void Game::game_menu_display() const {
     std::cout << "Welcome to othello" << std::endl;
-    std::cout << "1.Start a new game" << std::endl;
-    std::cout << "2.Load previous game" << std::endl;
+    std::cout << "1.Start a new game between humans" << std::endl;
+    std::cout << "2.Play against easy AI." << std::endl;
+    std::cout << "3.Load previous game" << std::endl;
 }
 
 

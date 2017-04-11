@@ -119,7 +119,7 @@ int Ai_easy::play_turn(Board &board_to_play) {
                                                       getColor());
     board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
-    return flip_coordinates.size();
+    return (int) flip_coordinates.size();
 
 }
 

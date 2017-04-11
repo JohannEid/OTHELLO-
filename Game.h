@@ -10,7 +10,7 @@
 
 class Game {
 private:
-    std::vector<Player>players {Player(e_color::BLACK), Player(e_color::WHITE)};
+    std::vector<std::unique_ptr<Player>> players ;
 
     Board board;
 
@@ -26,6 +26,10 @@ private:
     void load_from_file();
 
 public:
+
+    Game(){
+        players.push_back(std::make_unique<Player> (Player(e_color::BLACK)));
+        players.push_back(std::make_unique<Player> (Player(e_color::WHITE))); }
     void game_loop(const int& index_player = 404);
 
     void game_menu();
@@ -33,20 +37,15 @@ public:
 
     bool turn_play(Player &player_to_play, Player& opponent);
 
-    bool is_end() const {return (!getPlayers()[0].is_allowed(board) && !getPlayers()[1].is_allowed(board));}
+    bool is_end() const {return (!getPlayers()[0]->is_allowed(board) && !getPlayers()[1]->is_allowed(board));}
 
     const Board &getBoard() const {
         return board;
     }
 
-    const std::vector<Player> &getPlayers() const {
-        return players;
+    const std::vector<std::unique_ptr<Player>> &getPlayers() const {
+        return  players;
     }
-
-    void setPlayers(const std::vector<Player> &players) {
-        Game::players = players;
-    }
-
 
     void incr_number_of_turn(){board.incrNumberOfTurns();}
 
