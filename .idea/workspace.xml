@@ -604,7 +604,7 @@
       <workItem from="1492003965369" duration="7000" />
       <workItem from="1492003982159" duration="2000" />
       <workItem from="1492003997458" duration="4745000" />
-      <workItem from="1492011320426" duration="2355000" />
+      <workItem from="1492011320426" duration="2425000" />
     </task>
     <task id="LOCAL-00001" summary="Begin to implement graphic design with SFML library">
       <created>1492013221402</created>
@@ -620,11 +620,25 @@
       <option name="project" value="LOCAL" />
       <updated>1492029849757</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Begin to implement graphic design with SFML library">
+      <created>1492029993299</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1492029993299</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Begin to implement graphic design with SFML library">
+      <created>1492030014315</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1492030014315</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110100000" />
+    <option name="totallyTimeSpent" value="110170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
