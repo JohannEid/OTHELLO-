@@ -195,7 +195,6 @@ void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, const Tree
     bool is_opponent{min_max == e_min_max::MAX};
 
     for (const auto &elem: list_choices(current_map, is_opponent)) {
-        std::cout << elem.first << elem.second << std::endl;
         value = (terminal) ? value_fonction(elem, current_map) : -1;
         new_node = std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map));
         new_node->simulate_play(min_max_color(min_max, getColor()));
@@ -203,10 +202,7 @@ void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, const Tree
         queue.push(new_node);
         tree.getCurrent()->setVisited(true);
         incr_depth_simulation(tree.getCurrent());
-        queue.pop();
-
-    }
-
+        queue.pop();}
 }
 
 void Ai_medium::incr_depth_simulation(const std::shared_ptr<Node> &current_node) {

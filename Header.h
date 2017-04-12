@@ -8,6 +8,9 @@
 #include "bits/stdtr1c++.h"
 #include "rlutil.h"
 #include <SFML/Graphics.hpp>
+#include <list>
+#include <fstream>
+
 
 enum class e_color {
     WHITE, BLACK, NONE
