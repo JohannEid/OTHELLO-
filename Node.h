@@ -6,22 +6,32 @@
 #define OTHELLO_NODE_H
 
 #include "Header.h"
-enum class e_min_max{MIN , MAX};
+enum class e_min_max {
+    MIN, MAX
+};
+
 
 class Node {
 private:
-    std::pair<int,int> action_position;
+    std::pair<int, int> action_position;
     e_min_max min_max;
     int value;
     bool terminal;
     std::shared_ptr<Node> prec;
-    std::priority_queue <std::shared_ptr<Node>> next;
+    std::priority_queue<std::shared_ptr<Node>> next;
 public:
-    bool operator < (const Node& to_compare);
+
+
+    Node(const std::pair<int, int> &action_position, e_min_max min_max, int value, bool terminal,
+         const std::shared_ptr<Node> &prec) : action_position(action_position), min_max(min_max), value(value),
+                                              terminal(terminal), prec(prec) {}
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
     }
+    bool operator < (const std::shared_ptr<Node>& rhs) const;
+
+    void add_next_node(const std::shared_ptr<Node>& to_add);
 
     void setAction_position(const std::pair<int, int> &action_position) {
         Node::action_position = action_position;
@@ -59,13 +69,7 @@ public:
         Node::prec = prec;
     }
 
-    const std::priority_queue<std::shared_ptr<Node>> &getNext() const {
-        return next;
-    }
 
-    void setNext(const std::priority_queue<std::shared_ptr<Node>> &next) {
-        Node::next = next;
-    }
 
 
 };

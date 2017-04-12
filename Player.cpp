@@ -111,6 +111,7 @@ void Player::display_player_score(const Board &board) const {
     std::cin.ignore(256, '\n');
 }
 
+
 int Ai_easy::play_turn(Board &board_to_play) {
     std::vector<std::pair<int, int>> flip_coordinates;
     choose_play(board_to_play);
@@ -123,7 +124,7 @@ int Ai_easy::play_turn(Board &board_to_play) {
 
 }
 
-std::vector<std::pair<int, int>> Ai_easy::list_choices(Board &board_to_play) const {
+std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play) const {
     std::vector<std::pair<int, int>> choices;
     for (int i{1}; i < ROW - 2; ++i) {
         for (int j{1}; j < COL - 2; ++j) {
@@ -133,11 +134,37 @@ std::vector<std::pair<int, int>> Ai_easy::list_choices(Board &board_to_play) con
     return choices;
 }
 
+int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play) const {
+    return (int) board_to_play.get_encirclement(positon.first, positon.second, getColor()).size();
+}
+
 void Ai_easy::choose_play(Board &board_to_play) {
     std::vector<std::pair<int, int>> choices{list_choices(board_to_play)};
     int rand_index{rand() % (int) choices.size()};
 
     board_to_play.setBase(choices[rand_index]);
 
+}
 
+void Ai_medium::choose_play(Board &board_to_play) {
+    min_max(board_to_play);
+
+}
+
+void Ai_medium::min_max(Board &board_to_play) const {
+    create_tree(board_to_play);
+
+}
+
+void Ai_medium::create_tree(Board &board_to_play) const {
+    Board simulation = board_to_play;
+    Node base(std::make_pair(0, 0), e_min_max::MAX, 0, false, nullptr);
+    for (const auto &elem: list_choices(simulation)) {
+        std::cout << elem.first;
+    }
+
+}
+
+int Ai_medium::play_turn(Board &board_to_play) {
+    choose_play(board_to_play);
 }
