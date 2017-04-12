@@ -3,7 +3,6 @@
 //
 
 #include "Player.h"
-#include "Tree.h"
 
 
 int Player::play_turn(Board &board_to_play) {
@@ -113,6 +112,23 @@ void Player::display_player_score(const Board &board) const {
 }
 
 
+std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_opponent) const {
+    std::vector<std::pair<int, int>> choices;
+    e_color opposite_color = (getColor() == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
+    e_color color = (is_opponent) ? opposite_color : getColor();
+    for (int i{1}; i < ROW - 2; ++i) {
+        for (int j{1}; j < COL - 2; ++j) {
+            if (board_to_play.is_playable(i, j, color)) { choices.push_back(std::make_pair(i, j)); }
+        }
+    }
+    return choices;
+}
+
+int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play) const {
+    return (int) board_to_play.get_encirclement(positon.first, positon.second, getColor()).size();
+}
+
+
 int Ai_easy::play_turn(Board &board_to_play) {
     std::vector<std::pair<int, int>> flip_coordinates;
     choose_play(board_to_play);
@@ -125,20 +141,6 @@ int Ai_easy::play_turn(Board &board_to_play) {
 
 }
 
-std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play) const {
-    std::vector<std::pair<int, int>> choices;
-    for (int i{1}; i < ROW - 2; ++i) {
-        for (int j{1}; j < COL - 2; ++j) {
-            if (board_to_play.is_playable(i, j, getColor())) { choices.push_back(std::make_pair(i, j)); }
-        }
-    }
-    return choices;
-}
-
-int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play) const {
-    return (int) board_to_play.get_encirclement(positon.first, positon.second, getColor()).size();
-}
-
 void Ai_easy::choose_play(Board &board_to_play) {
     std::vector<std::pair<int, int>> choices{list_choices(board_to_play)};
     int rand_index{rand() % (int) choices.size()};
@@ -147,36 +149,68 @@ void Ai_easy::choose_play(Board &board_to_play) {
 
 }
 
+int Ai_medium::play_turn(Board &board_to_play) {
+    choose_play(board_to_play);
+
+
+}
+
+
 void Ai_medium::choose_play(Board &board_to_play) {
     min_max(board_to_play);
 
 }
 
-void Ai_medium::min_max(Board &board_to_play) const {
+void Ai_medium::min_max(Board &board_to_play) {
     create_tree(board_to_play);
 
 }
 
-void Ai_medium::create_tree(Board &board_to_play) const {
+void Ai_medium::create_tree(Board &board_to_play) {
     Board simulation = board_to_play;
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation)), 5);
-    std::shared_ptr<Node> prec = tree.getBase();
+    std::queue<std::shared_ptr<Node>> queue;
+
+    queue.push(tree.getCurrent());
+
+    while (!queue.empty()) {
+        tree.setCurrent(queue.front());
+        update_node(queue, tree);
+    }
+
+
+}
+
+
+void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, const Tree &tree) {
+    std::shared_ptr<Node> prec = tree.getCurrent();
+    std::shared_ptr<Node> new_node;
     std::pair<int, int> position;
-    e_min_max min_max;
+    e_min_max min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
     int value{0};
-    bool terminal{false};
-    for (const auto &elem: list_choices(prec->getSimulation())) {
-        terminal = getDepth_simulation() == tree.getDepth();
-        min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
+    Board current_map = prec->getSimulation();
+    bool terminal{getDepth_simulation() == tree.getDepth()};
+    bool is_opponent{min_max == e_min_max::MAX};
+    for (const auto &elem: list_choices(current_map, is_opponent)) {
         position = std::make_pair(elem.first, elem.second);
-        value = (terminal) ? value_fonction(elem, simulation) : -1;
-        tree.getBase()->add_next_node(std::make_shared<Node>(
-                Node(position, min_max, value, terminal, prec, prec->getSimulation())));
+        value = (terminal) ? value_fonction(elem, current_map) : -1;
+        new_node = std::make_shared<Node>(Node(position, min_max, value, terminal, prec, current_map));
+        new_node->simulate_play(min_max_color(min_max, getColor()));
+        tree.getBase()->add_next_node(new_node);
+        queue.push(new_node);
+        tree.getCurrent()->setVisited(true);
+        incr_depth_simulation(tree.getCurrent());
+        queue.pop();
     }
 
 }
 
-int Ai_medium::play_turn(Board &board_to_play) {
-    choose_play(board_to_play);
+void Ai_medium::incr_depth_simulation(const std::shared_ptr<Node> &current_node) {
+    for (const auto &elem : current_node->getPrec()->getNext()) {
+        if (!elem->isVisited()) { return; }
+    }
+    ++depth_simulation;
 }
+
+

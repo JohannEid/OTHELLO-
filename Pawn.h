@@ -7,11 +7,6 @@
 
 #include "Header.h"
 
-enum class e_color {
-    WHITE, BLACK, NONE
-};
-
-
 class Tile {
 private:
     e_color color = e_color::NONE;

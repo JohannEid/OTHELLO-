@@ -3,7 +3,3 @@
 //
 
 #include "Tree.h"
-
-void Tree::create_tree(Board &board_to_play) {
-
-}

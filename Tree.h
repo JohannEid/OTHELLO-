@@ -10,6 +10,8 @@
 class Tree {
 private:
     std::shared_ptr<Node> base;
+    std::shared_ptr<Node> current = base;
+
 
     int depth{0};
 
@@ -17,7 +19,7 @@ private:
 public:
     Tree(const std::shared_ptr<Node> &base, int depth) : base(base), depth(depth) {}
 
-    void create_tree(Board& board_to_play);
+
 
     const std::shared_ptr<Node> &getBase() const {
         return base;
@@ -33,6 +35,13 @@ public:
 
     void setDepth(int depth) {
         Tree::depth = depth;
+    }
+    const std::shared_ptr<Node> &getCurrent() const {
+        return current;
+    }
+
+    void setCurrent(const std::shared_ptr<Node> &current) {
+        Tree::current = current;
     }
 
 };

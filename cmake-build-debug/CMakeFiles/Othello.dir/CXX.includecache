@@ -9,6 +9,8 @@
 /home/johann/Work/Othello/Board.cpp
 Board.h
 /home/johann/Work/Othello/Board.h
+Player.h
+/home/johann/Work/Othello/Player.h
 
 /home/johann/Work/Othello/Board.h
 Header.h
@@ -31,6 +33,18 @@ bits/stdtr1c++.h
 /home/johann/Work/Othello/bits/stdtr1c++.h
 rlutil.h
 /home/johann/Work/Othello/rlutil.h
+SFML/Graphics.hpp
+-
+
+/home/johann/Work/Othello/Node.cpp
+Node.h
+/home/johann/Work/Othello/Node.h
+
+/home/johann/Work/Othello/Node.h
+Header.h
+/home/johann/Work/Othello/Header.h
+Board.h
+/home/johann/Work/Othello/Board.h
 
 /home/johann/Work/Othello/Pawn.cpp
 Pawn.h
@@ -49,6 +63,18 @@ Pawn.h
 /home/johann/Work/Othello/Pawn.h
 Board.h
 /home/johann/Work/Othello/Board.h
+Node.h
+/home/johann/Work/Othello/Node.h
+Tree.h
+/home/johann/Work/Othello/Tree.h
+
+/home/johann/Work/Othello/Tree.cpp
+Tree.h
+/home/johann/Work/Othello/Tree.h
+
+/home/johann/Work/Othello/Tree.h
+Node.h
+/home/johann/Work/Othello/Node.h
 
 /home/johann/Work/Othello/main.cpp
 iostream

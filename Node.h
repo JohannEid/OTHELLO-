@@ -6,9 +6,9 @@
 #define OTHELLO_NODE_H
 
 #include "Header.h"
-enum class e_min_max {
-    MIN, MAX
-};
+#include "Board.h"
+
+
 
 
 class Node {
@@ -18,20 +18,34 @@ private:
     int value;
     bool terminal;
     std::shared_ptr<Node> prec;
-    std::priority_queue<std::shared_ptr<Node>> next;
+    std::vector<std::shared_ptr<Node>> next;
+    Board simulation;
+    bool visited;
 public:
 
 
     Node(const std::pair<int, int> &action_position, e_min_max min_max, int value, bool terminal,
-         const std::shared_ptr<Node> &prec) : action_position(action_position), min_max(min_max), value(value),
-                                              terminal(terminal), prec(prec) {}
+         const std::shared_ptr<Node> &prec,const Board& board) : action_position(action_position), min_max(min_max), value(value),
+                                              terminal(terminal), prec(prec),simulation(board) {}
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
     }
     bool operator < (const std::shared_ptr<Node>& rhs) const;
 
-    void add_next_node(const std::shared_ptr<Node>& to_add);
+    void add_next_node(const std::shared_ptr<Node>& to_add){
+        next.push_back(to_add);
+    }
+
+    const std::vector<std::shared_ptr<Node>> &getNext() const {
+        return next;
+    }
+
+    const Board &getSimulation() const {
+        return simulation;
+    }
+
+    int simulate_play(const e_color& color);
 
     void setAction_position(const std::pair<int, int> &action_position) {
         Node::action_position = action_position;
@@ -69,7 +83,13 @@ public:
         Node::prec = prec;
     }
 
+    bool isVisited() const {
+        return visited;
+    }
 
+    void setVisited(bool visited) {
+        Node::visited = visited;
+    }
 
 
 };

@@ -3,7 +3,7 @@ project(Othello)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp Pawn.h Board.cpp Board.h Header.h Pawn.cpp Player.cpp Player.h Game.cpp Game.h Node.cpp Node.h)
+set(SOURCE_FILES main.cpp Pawn.h Board.cpp Board.h Header.h Pawn.cpp Player.cpp Player.h Game.cpp Game.h Node.cpp Node.h Tree.cpp Tree.h)
 add_executable(Othello ${SOURCE_FILES})
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_package(SFML REQUIRED system window graphics network audio)

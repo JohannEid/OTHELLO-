@@ -129,10 +129,9 @@ void Game::game_menu() {
             if (choice == 1) {
                 break;
             } else if (choice == 2) {
-               players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
+                players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
                 break;
-            }
-            else if (choice == 3) {
+            } else if (choice == 3) {
                 players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK)));
                 break;
             } else if (choice == 4) {

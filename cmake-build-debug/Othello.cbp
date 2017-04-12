@@ -5,7 +5,7 @@
 		<Option title="Othello"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake_modules\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/johann/Work/Othello/cmake-build-debug"/>
@@ -99,6 +99,12 @@
 		<Unit filename="/home/johann/Work/Othello/Header.h">
 			<Option target="Othello"/>
 		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Node.cpp">
+			<Option target="Othello"/>
+		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Node.h">
+			<Option target="Othello"/>
+		</Unit>
 		<Unit filename="/home/johann/Work/Othello/Pawn.cpp">
 			<Option target="Othello"/>
 		</Unit>
@@ -111,11 +117,20 @@
 		<Unit filename="/home/johann/Work/Othello/Player.h">
 			<Option target="Othello"/>
 		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Tree.cpp">
+			<Option target="Othello"/>
+		</Unit>
+		<Unit filename="/home/johann/Work/Othello/Tree.h">
+			<Option target="Othello"/>
+		</Unit>
 		<Unit filename="/home/johann/Work/Othello/main.cpp">
 			<Option target="Othello"/>
 		</Unit>
 		<Unit filename="/home/johann/Work/Othello/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/johann/Work/Othello/cmake_modules/FindSFML.cmake">
+			<Option virtualFolder="CMake Files\cmake_modules\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

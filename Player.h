@@ -9,6 +9,7 @@
 #include "Pawn.h"
 #include "Board.h"
 #include "Node.h"
+#include "Tree.h"
 
 class Player {
 private:
@@ -26,7 +27,6 @@ private:
     void update_key_state(Board &board, std::vector<bool> &key_states, const keys &key);
 
     void display_player_score(const Board &board) const;
-
 
 
 public:
@@ -54,12 +54,13 @@ class Ai : public Player {
 public:
     Ai(e_color color) : Player(color) {}
 
-    virtual int play_turn(Board &board_to_play){}
+    virtual int play_turn(Board &board_to_play) {}
 
-    virtual void choose_play(Board &board_to_play){}
-    std::vector<std::pair<int, int>> list_choices(Board &board_to_play) const;
+    virtual void choose_play(Board &board_to_play) {}
 
-    virtual int value_fonction(const std::pair<int,int>& positon, Board& board_to_play) const;
+    virtual std::vector<std::pair<int, int>> list_choices(Board &board_to_play, bool is_oppenent = false) const;
+
+    virtual int value_fonction(const std::pair<int, int> &positon, Board &board_to_play) const;
 
 
 };
@@ -79,6 +80,9 @@ public:
 
 class Ai_medium : public Ai {
 
+
+
+
 public:
 
     Ai_medium(e_color color) : Ai(color) {}
@@ -94,17 +98,16 @@ public:
     void setDepth_simulation(int depth_simulation) {
         Ai_medium::depth_simulation = depth_simulation;
     }
-    void incr_depth_simulation(){depth_simulation++;}
 
-
+    void incr_depth_simulation(const std::shared_ptr<Node> &current_node);
 private:
-    int depth_simulation{0};
+    int depth_simulation = 0;
 
-    void min_max(Board &board_to_play) const;
+    void min_max(Board &board_to_play);
 
-    void create_tree(Board &board_to_play) const;
+    void create_tree(Board &board_to_play);
 
-
+    void update_node(std::queue<std::shared_ptr<Node>> &node, const Tree &tree);
 
 
 };
