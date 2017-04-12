@@ -3,6 +3,7 @@
 //
 
 #include "Player.h"
+#include "Tree.h"
 
 
 int Player::play_turn(Board &board_to_play) {
@@ -158,9 +159,20 @@ void Ai_medium::min_max(Board &board_to_play) const {
 
 void Ai_medium::create_tree(Board &board_to_play) const {
     Board simulation = board_to_play;
-    Node base(std::make_pair(0, 0), e_min_max::MAX, 0, false, nullptr);
-    for (const auto &elem: list_choices(simulation)) {
-        std::cout << elem.first;
+    Tree tree(std::make_shared<Node>(
+            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation)), 5);
+    std::shared_ptr<Node> prec = tree.getBase();
+    std::pair<int, int> position;
+    e_min_max min_max;
+    int value{0};
+    bool terminal{false};
+    for (const auto &elem: list_choices(prec->getSimulation())) {
+        terminal = getDepth_simulation() == tree.getDepth();
+        min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
+        position = std::make_pair(elem.first, elem.second);
+        value = (terminal) ? value_fonction(elem, simulation) : -1;
+        tree.getBase()->add_next_node(std::make_shared<Node>(
+                Node(position, min_max, value, terminal, prec, prec->getSimulation())));
     }
 
 }

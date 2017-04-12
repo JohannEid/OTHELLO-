@@ -131,7 +131,11 @@ void Game::game_menu() {
             } else if (choice == 2) {
                players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
                 break;
-            } else if (choice == 3) {
+            }
+            else if (choice == 3) {
+                players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK)));
+                break;
+            } else if (choice == 4) {
                 load_from_file();
                 save_starter = (get_number_of_turns() % 2 == 0) ? 0 : 1;
                 break;
@@ -151,7 +155,8 @@ void Game::game_menu_display() const {
     std::cout << "Welcome to othello" << std::endl;
     std::cout << "1.Start a new game between humans" << std::endl;
     std::cout << "2.Play against easy AI." << std::endl;
-    std::cout << "3.Load previous game" << std::endl;
+    std::cout << "3.Play against medium AI." << std::endl;
+    std::cout << "4.Load previous game" << std::endl;
 }
 
 
