@@ -82,7 +82,6 @@ class Ai_medium : public Ai {
 
 
 
-
 public:
 
     Ai_medium(e_color color) : Ai(color) {}

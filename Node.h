@@ -28,6 +28,8 @@ public:
          const std::shared_ptr<Node> &prec,const Board& board) : action_position(action_position), min_max(min_max), value(value),
                                               terminal(terminal), prec(prec),simulation(board) {}
 
+
+
     const std::pair<int, int> &getAction_position() const {
         return action_position;
     }
@@ -90,6 +92,10 @@ public:
     void setVisited(bool visited) {
         Node::visited = visited;
     }
+
+    void display(){
+            getSimulation().display();
+    };
 
 
 };

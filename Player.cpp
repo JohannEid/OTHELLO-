@@ -175,8 +175,8 @@ void Ai_medium::create_tree(Board &board_to_play) {
     queue.push(tree.getCurrent());
 
     while (!queue.empty()) {
-       if(queue.front()->isTerminal()){ break;}
-       else{tree.setCurrent(queue.front());}
+        if (queue.front()->isTerminal()) { break; }
+        else { tree.setCurrent(queue.front()); }
         update_node(queue, tree);
     }
 
@@ -193,16 +193,21 @@ void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, const Tree
     Board current_map = prec->getSimulation();
     bool terminal{getDepth_simulation() >= tree.getDepth()};
     bool is_opponent{min_max == e_min_max::MAX};
+    e_color color = (is_opponent)?opposite_color(getColor()):getColor();
+
 
     for (const auto &elem: list_choices(current_map, is_opponent)) {
         value = (terminal) ? value_fonction(elem, current_map) : -1;
         new_node = std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map));
-        new_node->simulate_play(min_max_color(min_max, getColor()));
+        new_node->simulate_play(color);
+        new_node->display();
         tree.getBase()->add_next_node(new_node);
         queue.push(new_node);
         tree.getCurrent()->setVisited(true);
         incr_depth_simulation(tree.getCurrent());
-        queue.pop();}
+        queue.pop();
+
+    }
 }
 
 void Ai_medium::incr_depth_simulation(const std::shared_ptr<Node> &current_node) {

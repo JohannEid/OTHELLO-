@@ -13,11 +13,12 @@ bool Node::operator<(const std::shared_ptr<Node> &rhs) const {
 
 int Node::simulate_play(const e_color& color) {
     std::vector<std::pair<int, int>> flip_coordinates;
-    flip_coordinates = simulation.get_encirclement(simulation.getBase().first,
-                                                   simulation.getBase().second,
+    flip_coordinates = simulation.get_encirclement(getAction_position().first,
+                                                   getAction_position().second,
                                                       color);
-    simulation.set_color(simulation.getBase().first, simulation.getBase().second, color);
+    simulation.set_color(getAction_position().first, getAction_position().second, color);
     simulation.change_color(flip_coordinates, color);
     return flip_coordinates.size();
 
 }
+

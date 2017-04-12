@@ -22,7 +22,7 @@ public:
 
     bool is_playable(const int& coordx,const int& coordy,e_color play_color) const ;
 
-    void display(const e_color &color, const int &number_of_color_change = 0) const;
+    void display(const e_color &color = e_color ::WHITE, const int &number_of_color_change = 0) const;
 
     std::vector<std::pair<int, int>> get_encirclement (const int &coordx, const int &coordy, const e_color& color) const;
 
