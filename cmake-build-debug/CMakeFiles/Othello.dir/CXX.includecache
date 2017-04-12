@@ -6,87 +6,93 @@
 
 #IncludeRegexTransform: 
 
-/home/johann/Work/Othello/Board.cpp
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Board.cpp
 Board.h
-/home/johann/Work/Othello/Board.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Board.h
 Player.h
-/home/johann/Work/Othello/Player.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Player.h
 
-/home/johann/Work/Othello/Board.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Board.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Header.h
 Pawn.h
-/home/johann/Work/Othello/Pawn.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Pawn.h
 
-/home/johann/Work/Othello/Game.cpp
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Game.cpp
 Game.h
-/home/johann/Work/Othello/Game.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Game.h
 
-/home/johann/Work/Othello/Game.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Game.h
 Player.h
-/home/johann/Work/Othello/Player.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Player.h
 Board.h
-/home/johann/Work/Othello/Board.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Board.h
 
-/home/johann/Work/Othello/Header.h
-bits/stdtr1c++.h
-/home/johann/Work/Othello/bits/stdtr1c++.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Header.h
+queue
+-
+assert.h
+-
 rlutil.h
-/home/johann/Work/Othello/rlutil.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/rlutil.h
 SFML/Graphics.hpp
 -
+list
+-
+fstream
+-
 
-/home/johann/Work/Othello/Node.cpp
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Node.cpp
 Node.h
-/home/johann/Work/Othello/Node.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Node.h
 
-/home/johann/Work/Othello/Node.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Node.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Header.h
 Board.h
-/home/johann/Work/Othello/Board.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Board.h
 
-/home/johann/Work/Othello/Pawn.cpp
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Pawn.cpp
 Pawn.h
-/home/johann/Work/Othello/Pawn.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Pawn.h
 
-/home/johann/Work/Othello/Pawn.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Pawn.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Header.h
 
-/home/johann/Work/Othello/Player.cpp
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Player.cpp
 Player.h
-/home/johann/Work/Othello/Player.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Player.h
 
-/home/johann/Work/Othello/Player.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Player.h
 Pawn.h
-/home/johann/Work/Othello/Pawn.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Pawn.h
 Board.h
-/home/johann/Work/Othello/Board.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Board.h
 Node.h
-/home/johann/Work/Othello/Node.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Node.h
 Tree.h
-/home/johann/Work/Othello/Tree.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Tree.h
 
-/home/johann/Work/Othello/Tree.cpp
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Tree.cpp
 Tree.h
-/home/johann/Work/Othello/Tree.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Tree.h
 
-/home/johann/Work/Othello/Tree.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Tree.h
 Node.h
-/home/johann/Work/Othello/Node.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Node.h
 
-/home/johann/Work/Othello/main.cpp
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/main.cpp
 iostream
 -
 Board.h
-/home/johann/Work/Othello/Board.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Board.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Header.h
 Game.h
-/home/johann/Work/Othello/Game.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/Game.h
 
-/home/johann/Work/Othello/rlutil.h
+/Users/clementdebailliencourt/CLionProjects/OTHELLO-/rlutil.h
 iostream
 -
 string
