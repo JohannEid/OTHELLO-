@@ -20,7 +20,6 @@ void Board::change_color(const std::vector<std::pair<int, int>> &coord_to_change
                          const e_color &temp_color) {
     for (const auto &elem : coord_to_change) {
         set_color(elem.first, elem.second, temp_color);
-        std::cout << elem.first << elem.second << std::endl;
     }
 }
 
@@ -63,13 +62,12 @@ std::vector<std::pair<int, int>> Board::get_encirclement
         } else { temp.clear(); }
 
     }
-    for (const auto &elem:post_temp) { std::cout << elem.first << elem.second << std::endl; }
     return post_temp;
 }
 
 void Board::display(const e_color &color, const int &number_of_color_change) const {
     std::string s_color = (color == e_color::WHITE) ? "White" : "Black";
-    clearconsole();
+   // clearconsole();
     std::cout << "Turn of " << s_color << std::endl;
     for (int i{0}; i < COL; ++i) {
         for (int j{0}; j < ROW; ++j) {

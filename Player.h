@@ -90,23 +90,14 @@ public:
 
     int play_turn(Board &board_to_play);
 
-    int getDepth_simulation() const {
-        return depth_simulation;
-    }
 
-    void setDepth_simulation(int depth_simulation) {
-        Ai_medium::depth_simulation = depth_simulation;
-    }
-
-    void incr_depth_simulation(const std::shared_ptr<Node> &current_node);
 private:
-    int depth_simulation = 0;
 
     void min_max(Board &board_to_play);
 
     void create_tree(Board &board_to_play);
 
-    void update_node(std::queue<std::shared_ptr<Node>> &node, const Tree &tree);
+    void update_node(std::queue<std::shared_ptr<Node>> &node,  Tree &tree);
 
 
 };
