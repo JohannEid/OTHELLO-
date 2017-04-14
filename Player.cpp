@@ -29,8 +29,8 @@ bool Player::is_allowed(const Board &board) const {
 
 void Player::show_targets(Board &board_to_play) const {
 
-    for (int i{1}; i < ROW - 2; ++i) {
-        for (int j{1}; j < COL - 2; ++j) {
+    for (int i{1}; i < ROW - 1; ++i) {
+        for (int j{1}; j < COL - 1; ++j) {
             if (board_to_play.is_playable(i, j, getColor())) { board_to_play.setTarget(i, j, true); }
             else { board_to_play.setTarget(i, j, false); }
         }
@@ -77,10 +77,8 @@ void Player::handle_mvt(Board &board, const std::vector<bool> &key_states) {
     if (is_in_board(new_position.first, new_position.second)) {
         board.setBase(new_position);
     } else {
-        std::cout << "Can't change position" << std::endl;
-    }
+        std::cout << "Can't change position" << std::endl; }
     board.display(getColor());
-
 }
 
 
@@ -124,8 +122,8 @@ std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_
     return choices;
 }
 
-int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play) const {
-    return (int) board_to_play.get_encirclement(positon.first, positon.second, getColor()).size();
+int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play, const e_color &color) const {
+    return (int) board_to_play.get_encirclement(positon.first, positon.second, color).size();
 }
 
 
@@ -157,20 +155,22 @@ int Ai_medium::play_turn(Board &board_to_play) {
 
 
 void Ai_medium::choose_play(Board &board_to_play) {
-    min_max(board_to_play);
+    Tree tree = create_tree(board_to_play);
+    min_max(tree);
 
 }
 
-void Ai_medium::min_max(Board &board_to_play) {
-    create_tree(board_to_play);
+void Ai_medium::min_max(Tree &tree) {
+    min_max_value(tree.getBase());
 
 }
 
-void Ai_medium::create_tree(Board &board_to_play) {
+
+Tree Ai_medium::create_tree(Board &board_to_play) {
 
     Board simulation = board_to_play;
     Tree tree(std::make_shared<Node>(
-            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation, getColor())), 6);
+            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation, getColor())), 5);
     std::queue<std::shared_ptr<Node>> queue;
     queue.push(tree.getCurrent());
     while (!queue.empty()) {
@@ -178,13 +178,14 @@ void Ai_medium::create_tree(Board &board_to_play) {
         else { tree.setCurrent(queue.front()); }
         update_node(queue, tree);
     }
-    //tree.display_tree();
+    return tree;
 }
 
 
 void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree) {
     std::shared_ptr<Node> prec = tree.getCurrent();
     e_min_max min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
+    std::shared_ptr<Node> new_node;
     int value{0};
     Board current_map = tree.getCurrent()->getSimulation();
     bool terminal{prec->getSimulation().getNumber_of_turn() == tree.getDepth() - 1};
@@ -194,11 +195,27 @@ void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree
 
 
     for (const auto &elem: possible) {
-        value = (terminal) ? value_fonction(elem, current_map) : -1;
-        tree.getCurrent()->add_next_node(
-                std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map, color)));
-        queue.push(tree.getCurrent()->getNext()[tree.getCurrent()->getNext().size() - 1]);
+        value = (terminal) ? value_fonction(elem, current_map, color) : -1;
+        new_node = std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map, color));
+        tree.getCurrent()->add_next_node(new_node);
+        queue.push(new_node);
 
     }
     queue.pop();
+}
+
+void Ai_medium::min_max_value(std::shared_ptr<Node> &state) {
+    std::shared_ptr<Node> prec;
+    std::vector<std::shared_ptr<Node>> next;
+    if (state->getValue() != -1) {
+        prec = state->getPrec();
+        next = {state->getPrec()->getNext()};
+        //std::sort(next.begin(), next.end(), std::greater<Node>());
+        prec->setValue(next[0]->getValue());
+        std::cout << next[0]->getValue() << std::endl;
+    } else {
+        for (auto elem: state->getNext()) {
+            min_max_value(elem);
+        }
+    }
 }

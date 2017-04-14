@@ -60,7 +60,7 @@ public:
 
     virtual std::vector<std::pair<int, int>> list_choices(Board &board_to_play, bool is_oppenent = false) const;
 
-    virtual int value_fonction(const std::pair<int, int> &positon, Board &board_to_play) const;
+    virtual int value_fonction(const std::pair<int, int> &positon, Board &board_to_play,const e_color& color) const;
 
 
 };
@@ -90,12 +90,14 @@ public:
 
     int play_turn(Board &board_to_play);
 
+    void min_max_value(std::shared_ptr<Node>& node);
+
 
 private:
 
-    void min_max(Board &board_to_play);
+    void min_max(Tree& tree);
 
-    void create_tree(Board &board_to_play);
+    Tree create_tree(Board &board_to_play);
 
     void update_node(std::queue<std::shared_ptr<Node>> &node,  Tree &tree);
 

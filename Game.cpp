@@ -5,10 +5,11 @@
 #include "Game.h"
 
 
-void Game::game_loop(const int &index_player) {
+void Game::game_loop(int index_player) {
     bool end;
     while (!is_end()) {
         int i = (index_player != 404) ? index_player : 0;
+        index_player = 0;
         for (; i < getPlayers().size(); ++i) {
 
             if (players[i]->is_allowed(board)) {
@@ -145,7 +146,7 @@ void Game::game_menu() {
             std::cerr << "Erreur" << e.what() << std::endl;
         }
     }
-    (save_starter != 404) ? game_loop(save_starter) : game_loop();
+    (save_starter != QUIT) ? game_loop(save_starter) : game_loop();
 
 }
 

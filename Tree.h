@@ -11,8 +11,6 @@ class Tree {
 private:
     std::shared_ptr<Node> base;
     std::shared_ptr<Node> current = base;
-
-
     int depth{0};
 
 
@@ -21,7 +19,7 @@ public:
 
 
 
-    const std::shared_ptr<Node> &getBase() const {
+     std::shared_ptr<Node> &getBase()  {
         return base;
     }
 
@@ -43,6 +41,7 @@ public:
     void setCurrent(const std::shared_ptr<Node> &current) {
         Tree::current = current;
     }
+    void display_tree();
 
 };
 

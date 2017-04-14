@@ -5,11 +5,6 @@
 #include "Node.h"
 int Node ::id = 0;
 
-bool Node::operator<(const std::shared_ptr<Node> &rhs) const {
-    if (getMin_max() == e_min_max::MAX) {
-        return getValue() < rhs->getValue();
-    } else { return getValue() > rhs->getValue(); }
-}
 
 int Node::simulate_play(const e_color& color) {
     std::vector<std::pair<int, int>> flip_coordinates;
