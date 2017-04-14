@@ -30,7 +30,8 @@ public:
     Game(){
         players.push_back(std::make_unique<Player> (Player(e_color::BLACK)));
         players.push_back(std::make_unique<Player> (Player(e_color::WHITE))); }
-    void game_loop(const int& index_player = 404);
+
+    void game_loop( int index_player = 404);
 
     void game_menu();
 
