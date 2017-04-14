@@ -9,33 +9,37 @@
 #include "Board.h"
 
 
-
-
 class Node {
 private:
     std::pair<int, int> action_position;
+    Board simulation;
     e_min_max min_max;
-    int value;
-    bool terminal;
+    int value, id_n;
+    static int id;
+    bool terminal, visited;
     std::shared_ptr<Node> prec;
     std::vector<std::shared_ptr<Node>> next;
-    Board simulation;
-    bool visited;
 public:
 
 
     Node(const std::pair<int, int> &action_position, e_min_max min_max, int value, bool terminal,
-         const std::shared_ptr<Node> &prec,const Board& board) : action_position(action_position), min_max(min_max), value(value),
-                                              terminal(terminal), prec(prec),simulation(board) {}
-
+         const std::shared_ptr<Node> &prec, const Board &board, const e_color &color) : action_position(
+            action_position), min_max(min_max), value(value),
+                                                                                        terminal(terminal), prec(prec),
+                                                                                        simulation(board),
+                                                                                        id_n(Node::id + 1) {
+        if(action_position!=std::make_pair(0,0))simulate_play(color);
+        display();
+    }
 
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
     }
-    bool operator < (const std::shared_ptr<Node>& rhs) const;
 
-    void add_next_node(const std::shared_ptr<Node>& to_add){
+    bool operator<(const std::shared_ptr<Node> &rhs) const;
+
+    void add_next_node(const std::shared_ptr<Node> &to_add) {
         next.push_back(to_add);
     }
 
@@ -47,7 +51,7 @@ public:
         return simulation;
     }
 
-    int simulate_play(const e_color& color);
+    int simulate_play(const e_color &color);
 
     void setAction_position(const std::pair<int, int> &action_position) {
         Node::action_position = action_position;
@@ -56,11 +60,6 @@ public:
     e_min_max getMin_max() const {
         return min_max;
     }
-
-    void setMin_max(e_min_max min_max) {
-        Node::min_max = min_max;
-    }
-
     int getValue() const {
         return value;
     }
@@ -73,29 +72,20 @@ public:
         return terminal;
     }
 
-    void setTerminal(bool terminal) {
-        Node::terminal = terminal;
-    }
 
-    const std::shared_ptr<Node> &getPrec() const {
-        return prec;
-    }
 
-    void setPrec(const std::shared_ptr<Node> &prec) {
-        Node::prec = prec;
-    }
-
-    bool isVisited() const {
-        return visited;
-    }
-
-    void setVisited(bool visited) {
-        Node::visited = visited;
-    }
-
-    void display(){
-            getSimulation().display();
+    void display() {
+        getSimulation().display();
     };
+
+
+    int getId_n() const {
+        return id_n;
+    }
+
+    void setId_n(int id_n) {
+        Node::id_n = id_n;
+    }
 
 
 };

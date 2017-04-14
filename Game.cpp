@@ -100,7 +100,6 @@ void Game::load_from_file() {
 
         } else {
             while (load_file >> number) {
-                std::cout << number << std::endl;
                 temp.push_back(number);
             }
         }

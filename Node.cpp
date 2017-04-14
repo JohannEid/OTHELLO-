@@ -3,7 +3,7 @@
 //
 
 #include "Node.h"
-
+int Node ::id = 0;
 
 bool Node::operator<(const std::shared_ptr<Node> &rhs) const {
     if (getMin_max() == e_min_max::MAX) {
@@ -18,6 +18,7 @@ int Node::simulate_play(const e_color& color) {
                                                       color);
     simulation.set_color(getAction_position().first, getAction_position().second, color);
     simulation.change_color(flip_coordinates, color);
+    simulation.setNumber_of_turn(simulation.getNumber_of_turn()+1);
     return flip_coordinates.size();
 
 }
