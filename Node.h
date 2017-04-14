@@ -19,6 +19,7 @@ private:
     bool terminal, visited;
     std::shared_ptr<Node> prec;
     std::vector<std::shared_ptr<Node>> next;
+    std::shared_ptr<Node> min_max_next;
 public:
 
 
@@ -27,19 +28,21 @@ public:
             action_position), min_max(min_max), value(value),
                                                                                         terminal(terminal), prec(prec),
                                                                                         simulation(board),
-                                                                                        id_n(Node::id + 1) {
+                                                                                        id_n(Node::id ++) {
         if (action_position != std::make_pair(0, 0))simulate_play(color);
-        display();
     }
+
+    struct Order_node {
+        bool operator()(const std::shared_ptr<Node> &lhs, const std::shared_ptr<Node> &rhs) const {
+            return lhs->value < rhs->value;
+        }
+    };
 
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
     }
 
-    bool operator<(const std::shared_ptr<Node> &rhs) const {
-        return value < rhs->value;
-    }
 
     bool operator>(const std::shared_ptr<Node> &rhs) const {
         return value > rhs->value;
@@ -89,6 +92,14 @@ public:
         Node::value = value;
     }
 
+    const std::shared_ptr<Node> &getMin_max_next() const {
+        return min_max_next;
+    }
+
+    void setMin_max_next(const std::shared_ptr<Node> &min_max_next) {
+        Node::min_max_next = min_max_next;
+        setValue(min_max_next->getValue());
+    }
 
 };
 
