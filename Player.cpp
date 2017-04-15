@@ -7,7 +7,7 @@
 
 
 int Player::play_turn(Board &board_to_play, sf::RenderWindow &window) {
-    std::cout << "called" << std::endl;
+    std::cout <<"called"<<std::endl;
     std::vector<std::pair<int, int>> flip_coordinates;
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
@@ -143,7 +143,7 @@ int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play,
            (int) board_to_play.get_encirclement(positon.first, positon.second, color).size();
 }
 
-int Ai::play_turn(Board &board_to_play) {
+int Ai::play_turn(Board &board_to_play,sf::RenderWindow& window) {
     std::vector<std::pair<int, int>> flip_coordinates;
     choose_play(board_to_play);
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
@@ -156,6 +156,7 @@ int Ai::play_turn(Board &board_to_play) {
 
 
 void Ai_easy::choose_play(Board &board_to_play) {
+
     std::vector<std::pair<int, int>> choices{list_choices(board_to_play)};
     int rand_index{rand() % (int) choices.size()};
 

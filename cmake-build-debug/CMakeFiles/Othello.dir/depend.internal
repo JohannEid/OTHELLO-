@@ -8,7 +8,6 @@ CMakeFiles/Othello.dir/Board.cpp.o
  /home/johann/Work/Othello/Node.h
  /home/johann/Work/Othello/Pawn.h
  /home/johann/Work/Othello/Player.h
- /home/johann/Work/Othello/Tree.h
  /home/johann/Work/Othello/rlutil.h
 CMakeFiles/Othello.dir/Game.cpp.o
  /home/johann/Work/Othello/Board.h
@@ -18,7 +17,6 @@ CMakeFiles/Othello.dir/Game.cpp.o
  /home/johann/Work/Othello/Node.h
  /home/johann/Work/Othello/Pawn.h
  /home/johann/Work/Othello/Player.h
- /home/johann/Work/Othello/Tree.h
  /home/johann/Work/Othello/rlutil.h
 CMakeFiles/Othello.dir/Node.cpp.o
  /home/johann/Work/Othello/Board.h
@@ -46,6 +44,7 @@ CMakeFiles/Othello.dir/Tree.cpp.o
  /home/johann/Work/Othello/Header.h
  /home/johann/Work/Othello/Node.h
  /home/johann/Work/Othello/Pawn.h
+ /home/johann/Work/Othello/Player.h
  /home/johann/Work/Othello/Tree.cpp
  /home/johann/Work/Othello/Tree.h
  /home/johann/Work/Othello/rlutil.h
@@ -56,6 +55,5 @@ CMakeFiles/Othello.dir/main.cpp.o
  /home/johann/Work/Othello/Node.h
  /home/johann/Work/Othello/Pawn.h
  /home/johann/Work/Othello/Player.h
- /home/johann/Work/Othello/Tree.h
  /home/johann/Work/Othello/main.cpp
  /home/johann/Work/Othello/rlutil.h

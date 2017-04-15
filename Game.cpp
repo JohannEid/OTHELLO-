@@ -6,6 +6,7 @@
 
 
 void Game::game_loop(int index_player) {
+    players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
     sf::Event event;
     window.setMouseCursorVisible(false);
     int player_index = (index_player != 404) ? index_player : 0;
@@ -22,7 +23,10 @@ void Game::game_loop(int index_player) {
                 opponent_index = (player_index == 1) ? 0 : 1;
                 turn_play(*players[player_index], *players[opponent_index]);
                 player_index = opponent_index;
-
+            } else if (players[player_index]->getName() == "Ai") {
+                opponent_index = (player_index == 1) ? 0 : 1;
+                turn_play(*players[player_index], *players[opponent_index]);
+                player_index = opponent_index;
             }
 
 
@@ -196,7 +200,7 @@ void Game::display(int index_player) {
         }
 }
 
-void Game::custom_cursor(const int &player_index)  {
+void Game::custom_cursor(const int &player_index) {
     sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
 
     sprite[player_index].setPosition(mouse_pos.x, mouse_pos.y);

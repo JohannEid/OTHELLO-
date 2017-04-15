@@ -65,6 +65,8 @@ Header.h
 /home/johann/Work/Othello/Player.cpp
 Player.h
 /home/johann/Work/Othello/Player.h
+Tree.h
+/home/johann/Work/Othello/Tree.h
 
 /home/johann/Work/Othello/Player.h
 Pawn.h
@@ -73,8 +75,6 @@ Board.h
 /home/johann/Work/Othello/Board.h
 Node.h
 /home/johann/Work/Othello/Node.h
-Tree.h
-/home/johann/Work/Othello/Tree.h
 
 /home/johann/Work/Othello/Tree.cpp
 Tree.h
@@ -83,6 +83,8 @@ Tree.h
 /home/johann/Work/Othello/Tree.h
 Node.h
 /home/johann/Work/Othello/Node.h
+Player.h
+/home/johann/Work/Othello/Player.h
 
 /home/johann/Work/Othello/main.cpp
 iostream

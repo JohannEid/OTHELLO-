@@ -96,7 +96,8 @@ bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color
         checkx = coordx + elem.first;
         checky = coordy + elem.second;
         is_playable = true;
-        if (getBoard(checkx, checky).getColor() != opposite_color) { continue; }
+        if (getBoard(checkx, checky).getColor() != opposite_color) { is_playable= false;
+            continue; }
 
         do {
 

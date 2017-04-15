@@ -11,10 +11,12 @@
 #include "Node.h"
 class Tree;
 class Player {
+protected:
+    std::string name = "Player";
+
 private:
     e_color color;
     int score = 2;
-
 
     bool player_input(Board &board);
 
@@ -50,15 +52,20 @@ public:
 
     void show_targets(Board &to_play) const;
 
+    const std::string &getName() const {
+        return name;
+    }
+
 
 };
 
 class Ai : public Player {
 
 public:
-    Ai(e_color color) : Player(color) {}
 
-    int play_turn(Board &board_to_play);
+    Ai(e_color color) : Player(color) {name = "Ai";}
+
+    int play_turn(Board &board_to_play,sf::RenderWindow& window);
 
     virtual void choose_play(Board &board_to_play) {}
 

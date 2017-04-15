@@ -7,7 +7,6 @@ CMakeFiles/Othello.dir/Board.cpp.o: ../Header.h
 CMakeFiles/Othello.dir/Board.cpp.o: ../Node.h
 CMakeFiles/Othello.dir/Board.cpp.o: ../Pawn.h
 CMakeFiles/Othello.dir/Board.cpp.o: ../Player.h
-CMakeFiles/Othello.dir/Board.cpp.o: ../Tree.h
 CMakeFiles/Othello.dir/Board.cpp.o: ../rlutil.h
 
 CMakeFiles/Othello.dir/Game.cpp.o: ../Board.h
@@ -17,7 +16,6 @@ CMakeFiles/Othello.dir/Game.cpp.o: ../Header.h
 CMakeFiles/Othello.dir/Game.cpp.o: ../Node.h
 CMakeFiles/Othello.dir/Game.cpp.o: ../Pawn.h
 CMakeFiles/Othello.dir/Game.cpp.o: ../Player.h
-CMakeFiles/Othello.dir/Game.cpp.o: ../Tree.h
 CMakeFiles/Othello.dir/Game.cpp.o: ../rlutil.h
 
 CMakeFiles/Othello.dir/Node.cpp.o: ../Board.h
@@ -45,6 +43,7 @@ CMakeFiles/Othello.dir/Tree.cpp.o: ../Board.h
 CMakeFiles/Othello.dir/Tree.cpp.o: ../Header.h
 CMakeFiles/Othello.dir/Tree.cpp.o: ../Node.h
 CMakeFiles/Othello.dir/Tree.cpp.o: ../Pawn.h
+CMakeFiles/Othello.dir/Tree.cpp.o: ../Player.h
 CMakeFiles/Othello.dir/Tree.cpp.o: ../Tree.cpp
 CMakeFiles/Othello.dir/Tree.cpp.o: ../Tree.h
 CMakeFiles/Othello.dir/Tree.cpp.o: ../rlutil.h
@@ -55,7 +54,6 @@ CMakeFiles/Othello.dir/main.cpp.o: ../Header.h
 CMakeFiles/Othello.dir/main.cpp.o: ../Node.h
 CMakeFiles/Othello.dir/main.cpp.o: ../Pawn.h
 CMakeFiles/Othello.dir/main.cpp.o: ../Player.h
-CMakeFiles/Othello.dir/main.cpp.o: ../Tree.h
 CMakeFiles/Othello.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Othello.dir/main.cpp.o: ../rlutil.h
 
