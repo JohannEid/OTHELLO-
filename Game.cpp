@@ -9,12 +9,14 @@ void Game::game_loop(int index_player) {
     sf::Event event;
     int player_index = (index_player != 404) ? index_player : 0;
     int opponent_index;
+    my_audio.playMusic();
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
             else if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
                      && players[player_index]->moveSelection(window, board) != ERROR) {
+                my_audio.playSoundEffet();
                 opponent_index = (player_index == 1) ? 0 : 1;
                 turn_play(*players[player_index], *players[opponent_index]);
                 player_index = opponent_index;
@@ -24,7 +26,7 @@ void Game::game_loop(int index_player) {
 
         }
         window.clear();
-        display();
+        display(player_index);
         window.display();
 
     }
@@ -32,9 +34,6 @@ void Game::game_loop(int index_player) {
     save();
 
 }
-
-
-
 
 
 bool Game::turn_play(Player &player_to_play, Player &opponent) {
@@ -170,11 +169,13 @@ void Game::game_menu_display() const {
 
 Game::Game() {
     window.create(sf::VideoMode(window_width, window_height), "JChess");
+    my_audio.createAudio("sounds/satie_je_te_veux.wav", "sounds/redneck_roll_dice.wav");
     players.push_back(std::make_unique<Player>(Player(e_color::BLACK)));
     players.push_back(std::make_unique<Player>(Player(e_color::WHITE)));
 }
 
-void Game::display() {
+void Game::display(int index_player)  {
+    players[index_player]->show_targets(board);
     window.draw(board.getSprite_board());
     for (int i{1}; i < ROW - 2; ++i)
         for (int j{1}; j < COL - 2; ++j) {
@@ -182,15 +183,34 @@ void Game::display() {
                 board.set_sprite_position(i, j);
                 window.draw(board.getBoard(i, j).getPawn_sprite());
             }
+            else if ( getBoard().getBoard(i, j).isTarget()){
+                board.set_sprite_position_target(i, j);
+                window.draw(board.getBoard(i, j).getTarget_sprite());
+            }
 
 
         }
 }
 
 
+void Audio::createAudio(const std::string &background_music_file, const std::string &buffer_roll_dice_file) {
 
+    assert(background_music.openFromFile(background_music_file));
+    assert(buffer_roll_dice.loadFromFile(buffer_roll_dice_file));
+    sound_roll_dice.setBuffer(buffer_roll_dice);
 
+}
 
+void Audio::playMusic() {
+    background_music.play();
+    background_music.setLoop(true);
+
+}
+
+void Audio::playSoundEffet() {
+    sound_roll_dice.play();
+
+}
 
 
 

@@ -27,6 +27,8 @@ Player.h
 /home/johann/Work/Othello/Player.h
 Board.h
 /home/johann/Work/Othello/Board.h
+Header.h
+/home/johann/Work/Othello/Header.h
 
 /home/johann/Work/Othello/Header.h
 bits/stdtr1c++.h
@@ -34,6 +36,8 @@ bits/stdtr1c++.h
 rlutil.h
 /home/johann/Work/Othello/rlutil.h
 SFML/Graphics.hpp
+-
+SFML/Audio.hpp
 -
 list
 -

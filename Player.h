@@ -16,7 +16,6 @@ private:
     e_color color;
     int score = 2;
 
-    void show_targets(Board &to_play) const;
 
     bool player_input(Board &board);
 
@@ -49,6 +48,9 @@ public:
         Player::score = score;
     }
     int moveSelection(sf::RenderWindow &window,Board& board);
+
+    void show_targets(Board &to_play) const;
+
 
 };
 

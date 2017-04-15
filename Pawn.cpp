@@ -31,3 +31,16 @@ void Tile::setColor(e_color color) {
 
 }
 
+void Tile::setTarget(bool target) {
+    assert(target_texture.loadFromFile("sprites/target.png"));
+    target_sprite.setTexture(target_texture);
+    Tile::target = target;
+
+}
+
+Tile::Tile(e_color color) {
+    setColor(color);
+}
+
+
+

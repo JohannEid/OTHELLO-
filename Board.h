@@ -67,6 +67,9 @@ public:
     void set_sprite_position(const int&i,const int& j){
         othellier[i][j].setSpritePosition((i -1)*square_size,(j-1)*square_size);
     }
+    void set_sprite_position_target(const int&i,const int& j){
+        othellier[i][j].setSpritePosition_target((i -1)*square_size,(j-1)*square_size);
+    }
 };
 
 

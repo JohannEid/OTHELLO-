@@ -7,6 +7,23 @@
 
 #include "Player.h"
 #include "Board.h"
+#include "Header.h"
+
+class Audio {
+private:
+    sf::Music background_music;
+    sf::SoundBuffer buffer_roll_dice;
+    sf::Sound sound_roll_dice;
+
+
+public:
+    void createAudio(const std::string &, const std::string &);
+
+    void playMusic();
+
+    void playSoundEffet();
+};
+
 
 class Game {
 private:
@@ -15,6 +32,8 @@ private:
     Board board;
 
     sf::RenderWindow window ;
+
+    Audio my_audio;
 
     void save() const ;
 
@@ -51,11 +70,11 @@ public:
 
     void set_number_of_turns(int number_of_turn){board.setNumber_of_turn(number_of_turn);}
 
-    int get_number_of_turns(){return board.getNumber_of_turn();}
+    int get_number_of_turns() const {return board.getNumber_of_turn();}
 
 
 
-    void display();
+    void display(int index_player)  ;
 
 
 

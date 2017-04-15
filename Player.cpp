@@ -115,14 +115,11 @@ int Player::moveSelection(sf::RenderWindow &window, Board &board) {
         sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
         int x{mouse_pos.x / square_size + 1};
         int y{mouse_pos.y / square_size + 1};
-        std::cout << x << y << std::endl;
-        if (is_in_board(x, y)) {
-            if (board.getBoard(x, y).isTarget()) {
-                board.setBase(std::make_pair(x, y));
-            }
+        if (board.getBoard(x, y).isTarget()) {
+            board.setBase(std::make_pair(x, y));
             return 1;
-        }
-        return ERROR;
+
+        } else { return ERROR; }
 
     }
 }

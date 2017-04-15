@@ -96,9 +96,6 @@
 		<Unit filename="/home/johann/Work/Othello/Game.h">
 			<Option target="Othello"/>
 		</Unit>
-		<Unit filename="/home/johann/Work/Othello/Game_engine.h">
-			<Option target="Othello"/>
-		</Unit>
 		<Unit filename="/home/johann/Work/Othello/Header.h">
 			<Option target="Othello"/>
 		</Unit>
