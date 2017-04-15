@@ -14,23 +14,22 @@ private:
 
     Board board;
 
+    sf::RenderWindow window ;
+
     void save() const ;
 
     char write_in_file(const int& coordx,const int& coordy) const;
 
     void game_menu_display() const;
 
-
     e_color write_from_file(const char& c) const;
 
     void load_from_file();
 
+
 public:
 
-    Game(){
-        players.push_back(std::make_unique<Player> (Player(e_color::BLACK)));
-        players.push_back(std::make_unique<Player> (Player(e_color::WHITE))); }
-
+    Game();
     void game_loop( int index_player = 404);
 
     void game_menu();
@@ -53,6 +52,8 @@ public:
     void set_number_of_turns(int number_of_turn){board.setNumber_of_turn(number_of_turn);}
 
     int get_number_of_turns(){return board.getNumber_of_turn();}
+
+    void display();
 
 
 

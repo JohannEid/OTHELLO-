@@ -16,11 +16,14 @@ private:
     matrice othellier;
     int number_of_turn = 0;
     std::pair<int,int> base = std::make_pair(1,1);
+    sf::Sprite sprite_board;
+    sf::Texture texture_board;
 
 public:
     Board();
 
     bool is_playable(const int& coordx,const int& coordy,e_color play_color) const ;
+
 
     void display(const e_color &color = e_color ::WHITE, const int &number_of_color_change = 0) const;
 
@@ -56,6 +59,13 @@ public:
 
     void setNumber_of_turn(int number_of_turn) {
         Board::number_of_turn = number_of_turn;
+    }
+
+    const sf::Sprite &getSprite_board() const {
+        return sprite_board;
+    }
+    void set_sprite_position(const int&i,const int& j){
+        othellier[i][j].setSpritePosition(i*square_size,j*square_size);
     }
 };
 

@@ -6,30 +6,37 @@
 
 
 void Game::game_loop(int index_player) {
-    bool end;
-    while (!is_end()) {
-        int i = (index_player != 404) ? index_player : 0;
-        index_player = 0;
-        for (; i < getPlayers().size(); ++i) {
+    sf::Event event;
+    while (window.isOpen()) {
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+            /*
+            int i = (index_player != 404) ? index_player : 0;
+            index_player = 0;
+            for (; i < getPlayers().size(); ++i) {
 
-            if (players[i]->is_allowed(board)) {
-                end = turn_play(*players[i],
-                                (i == 0) ? *players[1] : *players[0]);
+                if (players[i]->is_allowed(board)) {
+                    turn_play(*players[i], (i == 0) ? *players[1] : *players[0]);
+                }
+
+
             }
-            if (!end) {
-                save();
-                return;
-            }
+             */
         }
+        window.clear();
+        display();
+        window.display();
     }
+    save();
+
+
 }
+
 
 bool Game::turn_play(Player &player_to_play, Player &opponent) {
     int score_change{0};
-    getBoard().display(player_to_play.getColor());
     score_change = player_to_play.play_turn(board);
-    if (score_change == QUIT) { return false; }
-    getBoard().display(player_to_play.getColor());
     player_to_play.setScore(player_to_play.getScore() + score_change + 1);
     opponent.setScore(opponent.getScore() - score_change);
     incr_number_of_turn();
@@ -157,6 +164,30 @@ void Game::game_menu_display() const {
     std::cout << "3.Play against medium AI." << std::endl;
     std::cout << "4.Load previous game" << std::endl;
 }
+
+Game::Game() {
+    window.create(sf::VideoMode(window_width, window_height), "JChess");
+    players.push_back(std::make_unique<Player>(Player(e_color::BLACK)));
+    players.push_back(std::make_unique<Player>(Player(e_color::WHITE)));
+}
+
+void Game::display() {
+    window.draw(board.getSprite_board());
+    for (int i{1}; i < ROW - 2; ++i)
+        for (int j{1}; j < COL - 2; ++j) {
+            if (getBoard().getBoard(i, j).getColor() != e_color::NONE) {
+                board.set_sprite_position(i, j);
+                window.draw(board.getBoard(i, j).getPawn_sprite());
+            }
+
+
+        }
+}
+
+
+
+
+
 
 
 

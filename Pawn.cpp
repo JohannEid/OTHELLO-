@@ -23,3 +23,10 @@ void Tile::init_tile(const int &ind_lhs, const int &ind_rhs) {
     }
 
 }
+
+Tile::Tile(e_color color):color(color) {
+    if(Tile::color == e_color::BLACK){assert(pawn_texture.loadFromFile("sprites/chinese_flag.png"));}
+    else{assert(pawn_texture.loadFromFile("sprites/chinese_flag.png"));}
+    pawn_sprite.setTexture(pawn_texture);
+
+}

@@ -11,6 +11,10 @@
 #include <list>
 #include <fstream>
 
+const int window_width = 722;
+const int window_height = 722;
+const int square_size = 90;
+
 
 enum class e_color {
     WHITE, BLACK, NONE
@@ -23,7 +27,8 @@ enum class e_min_max {
 
 inline void clearconsole() {
     for (int i{0}; i < 20; ++i)
-        std::cout << std::endl; }
+        std::cout << std::endl;
+}
 
 enum keys {
     left = 0, right = 1, up = 2, down = 3, tab = 4
@@ -44,8 +49,8 @@ constexpr e_color opposite_color(const e_color &color) {
     return (color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
 }
 
-constexpr e_color min_max_color(const e_min_max &min_max,  e_color color) {
-    return (min_max == e_min_max::MAX)? color:opposite_color(color);
+constexpr e_color min_max_color(const e_min_max &min_max, e_color color) {
+    return (min_max == e_min_max::MAX) ? color : opposite_color(color);
 }
 
 
