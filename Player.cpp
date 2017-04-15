@@ -14,7 +14,7 @@ int Player::play_turn(Board &board_to_play) {
                                                       getColor());
     board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
-    return flip_coordinates.size();
+    return (int) flip_coordinates.size();
 }
 
 bool Player::is_allowed(const Board &board) const {
@@ -151,6 +151,7 @@ void Ai_easy::choose_play(Board &board_to_play) {
 void Ai_medium::choose_play(Board &board_to_play) {
     Tree tree = create_tree(board_to_play);
     min_max(tree);
+    std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
 
 }
@@ -182,7 +183,7 @@ Tree Ai_medium::create_tree(Board &board_to_play) {
 
     Board simulation = board_to_play;
     Tree tree(std::make_shared<Node>(
-            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation, getColor())), 5);
+            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation, getColor())), 3);
     std::queue<std::shared_ptr<Node>> queue;
     queue.push(tree.getCurrent());
     while (!queue.empty()) {
@@ -196,8 +197,8 @@ Tree Ai_medium::create_tree(Board &board_to_play) {
 
 void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree) {
     std::shared_ptr<Node> prec = tree.getCurrent();
-    e_min_max min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
     std::shared_ptr<Node> new_node;
+    e_min_max min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
     int value{0};
     Board current_map = tree.getCurrent()->getSimulation();
     bool terminal{prec->getSimulation().getNumber_of_turn() == tree.getDepth() - 1};
@@ -211,6 +212,10 @@ void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree
         new_node = std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map, color));
         tree.getCurrent()->add_next_node(new_node);
         queue.push(new_node);
+        std::cout <<"the size of queue is"<<queue.size()<<std::endl;
+        std::cout << "Building tree ...."<<std::endl;
+        std::cout <<elem.first<<elem.second<<std::endl;
+        if(terminal){std::cout <<"this is terminal"<<std::endl;}
 
     }
     queue.pop();

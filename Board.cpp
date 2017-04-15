@@ -67,7 +67,7 @@ std::vector<std::pair<int, int>> Board::get_encirclement
 
 void Board::display(const e_color &color, const int &number_of_color_change) const {
     std::string s_color = (color == e_color::WHITE) ? "White" : "Black";
-   // clearconsole();
+    //clearconsole();
     std::cout << "Turn of " << s_color << std::endl;
     for (int i{0}; i < COL; ++i) {
         for (int j{0}; j < ROW; ++j) {
@@ -81,7 +81,6 @@ void Board::display(const e_color &color, const int &number_of_color_change) con
         }
         std::cout << std::endl;
     }
-
 }
 bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color) const {
     int checkx{0};
