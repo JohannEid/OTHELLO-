@@ -3,6 +3,7 @@
 //
 
 #include "Player.h"
+#include "Tree.h"
 
 
 int Player::play_turn(Board &board_to_play, sf::RenderWindow &window) {
@@ -164,12 +165,33 @@ void Ai_easy::choose_play(Board &board_to_play) {
 
 void Ai_medium::choose_play(Board &board_to_play) {
     Tree tree = create_tree(board_to_play);
-    min_max(tree);
+    tree.min_max_algorithm();
     std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
-
 }
 
+
+Tree Ai_medium::create_tree(Board &board_to_play) {
+
+    Tree tree(std::make_shared<Node>(
+            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, board_to_play, getColor())),
+              3, board_to_play, *this);
+
+    return tree;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void Ai_medium::min_max(Tree &tree) {
     while (tree.getBase()->getValue() == -1) {
         min_max_value(tree.getBase());
@@ -191,47 +213,5 @@ void Ai_medium::min_max_value(std::shared_ptr<Node> &state) {
         }
     }
 }
-
-
-Tree Ai_medium::create_tree(Board &board_to_play) {
-
-    Board simulation = board_to_play;
-    Tree tree(std::make_shared<Node>(
-            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation, getColor())), 3);
-    std::queue<std::shared_ptr<Node>> queue;
-    queue.push(tree.getCurrent());
-    while (!queue.empty()) {
-        if (queue.front()->isTerminal()) { break; }
-        else { tree.setCurrent(queue.front()); }
-        update_node(queue, tree);
-    }
-    return tree;
-}
-
-
-void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree) {
-    std::shared_ptr<Node> prec = tree.getCurrent();
-    std::shared_ptr<Node> new_node;
-    e_min_max min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
-    int value{0};
-    Board current_map = tree.getCurrent()->getSimulation();
-    bool terminal{prec->getSimulation().getNumber_of_turn() == tree.getDepth() - 1};
-    bool is_opponent{min_max == e_min_max::MAX};
-    e_color color = (is_opponent) ? opposite_color(getColor()) : getColor();
-    std::vector<std::pair<int, int>> possible = list_choices(current_map, is_opponent);
-
-
-    for (const auto &elem: possible) {
-        value = (terminal) ? value_fonction(elem, current_map, color) : -1;
-        new_node = std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map, color));
-        tree.getCurrent()->add_next_node(new_node);
-        queue.push(new_node);
-        std::cout << "the size of queue is" << queue.size() << std::endl;
-        std::cout << "Building tree ...." << std::endl;
-        std::cout << elem.first << elem.second << std::endl;
-        if (terminal) { std::cout << "this is terminal" << std::endl; }
-
-    }
-    queue.pop();
-}
+*/
 

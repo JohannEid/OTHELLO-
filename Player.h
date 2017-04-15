@@ -9,8 +9,7 @@
 #include "Pawn.h"
 #include "Board.h"
 #include "Node.h"
-#include "Tree.h"
-
+class Tree;
 class Player {
 private:
     e_color color;
@@ -99,7 +98,6 @@ private:
 
     Tree create_tree(Board &board_to_play);
 
-    void update_node(std::queue<std::shared_ptr<Node>> &node, Tree &tree);
 
 
 };

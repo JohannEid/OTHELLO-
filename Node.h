@@ -16,10 +16,9 @@ private:
     e_min_max min_max;
     int value, id_n;
     static int id;
-    bool terminal, visited;
-    std::shared_ptr<Node> prec;
+    bool terminal;
+    std::shared_ptr<Node> prec, min_max_next;
     std::vector<std::shared_ptr<Node>> next;
-    std::shared_ptr<Node> min_max_next;
 public:
 
 
@@ -41,11 +40,6 @@ public:
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
-    }
-
-
-    bool operator>(const std::shared_ptr<Node> &rhs) const {
-        return value > rhs->value;
     }
 
     void add_next_node(const std::shared_ptr<Node> &to_add) {
@@ -77,13 +71,6 @@ public:
     const std::shared_ptr<Node> &getPrec() const {
         return prec;
     }
-
-
-    void display() {
-        getSimulation().display();
-    };
-
-
     int getId_n() const {
         return id_n;
     }

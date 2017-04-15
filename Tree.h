@@ -6,6 +6,7 @@
 #define OTHELLO_TREE_H
 
 #include "Node.h"
+#include "Player.h"
 
 class Tree {
 private:
@@ -15,9 +16,14 @@ private:
 
 
 public:
-    Tree(const std::shared_ptr<Node> &base, int depth) : base(base), depth(depth) {}
+    Tree(const std::shared_ptr<Node> &base, int depth,const Board& board,
+     Ai& player);
 
+    void update_tree(std::queue<std::shared_ptr<Node>>& node, Ai& player);
 
+    void min_max_algorithm();
+
+    void min_max_value(std::shared_ptr<Node> &state);
 
      std::shared_ptr<Node> &getBase()  {
         return base;
@@ -41,6 +47,8 @@ public:
     void setCurrent(const std::shared_ptr<Node> &current) {
         Tree::current = current;
     }
+
+
     void display_tree();
 
 };
