@@ -43,6 +43,11 @@ private:
 
     e_color write_from_file(const char& c) const;
 
+    sf::Texture textures[2];
+
+    sf::Sprite sprite[2];
+
+
     void load_from_file();
 
 
@@ -72,9 +77,11 @@ public:
 
     int get_number_of_turns() const {return board.getNumber_of_turn();}
 
-
-
     void display(int index_player)  ;
+
+    void custom_cursor(const int& player_index);
+
+    void load_textures();
 
 
 

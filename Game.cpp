@@ -7,8 +7,10 @@
 
 void Game::game_loop(int index_player) {
     sf::Event event;
+    window.setMouseCursorVisible(false);
     int player_index = (index_player != 404) ? index_player : 0;
     int opponent_index;
+    sf::Sprite sprite;
     my_audio.playMusic();
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
@@ -25,6 +27,7 @@ void Game::game_loop(int index_player) {
 
 
         }
+        custom_cursor(player_index);
         window.clear();
         display(player_index);
         window.display();
@@ -168,28 +171,45 @@ void Game::game_menu_display() const {
 }
 
 Game::Game() {
+    load_textures();
     window.create(sf::VideoMode(window_width, window_height), "JChess");
     my_audio.createAudio("sounds/satie_je_te_veux.wav", "sounds/redneck_roll_dice.wav");
     players.push_back(std::make_unique<Player>(Player(e_color::BLACK)));
     players.push_back(std::make_unique<Player>(Player(e_color::WHITE)));
 }
 
-void Game::display(int index_player)  {
+void Game::display(int index_player) {
     players[index_player]->show_targets(board);
     window.draw(board.getSprite_board());
+    window.draw(sprite[index_player]);
     for (int i{1}; i < ROW - 2; ++i)
         for (int j{1}; j < COL - 2; ++j) {
             if (getBoard().getBoard(i, j).getColor() != e_color::NONE) {
                 board.set_sprite_position(i, j);
                 window.draw(board.getBoard(i, j).getPawn_sprite());
-            }
-            else if ( getBoard().getBoard(i, j).isTarget()){
+            } else if (getBoard().getBoard(i, j).isTarget()) {
                 board.set_sprite_position_target(i, j);
                 window.draw(board.getBoard(i, j).getTarget_sprite());
             }
 
 
         }
+}
+
+void Game::custom_cursor(const int &player_index)  {
+    sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
+
+    sprite[player_index].setPosition(mouse_pos.x, mouse_pos.y);
+
+}
+
+void Game::load_textures() {
+    assert(textures[0].loadFromFile("sprites/chinese_flag.png"));
+    assert(textures[1].loadFromFile("sprites/usa_flag.png"));
+    sprite[0].setTexture(textures[0]);
+    sprite[1].setTexture(textures[1]);
+
+
 }
 
 
