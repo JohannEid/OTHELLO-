@@ -65,7 +65,7 @@ public:
         return sprite_board;
     }
     void set_sprite_position(const int&i,const int& j){
-        othellier[i][j].setSpritePosition(i*square_size,j*square_size);
+        othellier[i][j].setSpritePosition((i -1)*square_size,(j-1)*square_size);
     }
 };
 

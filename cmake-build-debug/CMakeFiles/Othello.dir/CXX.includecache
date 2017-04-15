@@ -35,6 +35,10 @@ rlutil.h
 /home/johann/Work/Othello/rlutil.h
 SFML/Graphics.hpp
 -
+list
+-
+fstream
+-
 
 /home/johann/Work/Othello/Node.cpp
 Node.h

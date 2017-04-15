@@ -14,6 +14,7 @@
 const int window_width = 722;
 const int window_height = 722;
 const int square_size = 90;
+const int ERROR = 1008;
 
 
 enum class e_color {

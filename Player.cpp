@@ -5,10 +5,9 @@
 #include "Player.h"
 
 
-int Player::play_turn(Board &board_to_play) {
+int Player::play_turn(Board &board_to_play, sf::RenderWindow &window) {
+    std::cout << "called" << std::endl;
     std::vector<std::pair<int, int>> flip_coordinates;
-    show_targets(board_to_play);
-    if (!player_input(board_to_play)) { return 404; };
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
                                                       getColor());
@@ -108,6 +107,24 @@ void Player::display_player_score(const Board &board) const {
     std::cout << "Opponent score is :" << opponent_score << std::endl;
     std::cout << "Number of turn is : " << board.getNumber_of_turn() << std::endl;
     std::cin.ignore(256, '\n');
+}
+
+int Player::moveSelection(sf::RenderWindow &window, Board &board) {
+    show_targets(board);
+    {
+        sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
+        int x{mouse_pos.x / square_size + 1};
+        int y{mouse_pos.y / square_size + 1};
+        std::cout << x << y << std::endl;
+        if (is_in_board(x, y)) {
+            if (board.getBoard(x, y).isTarget()) {
+                board.setBase(std::make_pair(x, y));
+            }
+            return 1;
+        }
+        return ERROR;
+
+    }
 }
 
 
@@ -212,10 +229,10 @@ void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree
         new_node = std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map, color));
         tree.getCurrent()->add_next_node(new_node);
         queue.push(new_node);
-        std::cout <<"the size of queue is"<<queue.size()<<std::endl;
-        std::cout << "Building tree ...."<<std::endl;
-        std::cout <<elem.first<<elem.second<<std::endl;
-        if(terminal){std::cout <<"this is terminal"<<std::endl;}
+        std::cout << "the size of queue is" << queue.size() << std::endl;
+        std::cout << "Building tree ...." << std::endl;
+        std::cout << elem.first << elem.second << std::endl;
+        if (terminal) { std::cout << "this is terminal" << std::endl; }
 
     }
     queue.pop();

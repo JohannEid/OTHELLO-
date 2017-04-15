@@ -17,7 +17,7 @@ private:
 public:
     Tile() {}
 
-    Tile(e_color color);
+    Tile(e_color color) { setColor(color); }
 
     void init_tile(const int &ind_lhs, const int &ind_rhs);
 
@@ -33,10 +33,7 @@ public:
         return color;
     }
 
-    void setColor(e_color color) {
-        (color != e_color::NONE) ? setWidget('O') : setWidget('\0');
-        Tile::color = color;
-    }
+    void setColor(e_color color);
 
     bool isTarget() const {
         return target;
@@ -49,7 +46,8 @@ public:
     const sf::Sprite &getPawn_sprite() const {
         return pawn_sprite;
     }
-    void setSpritePosition(const int& x, const int& y ){    pawn_sprite.setPosition(x,y); }
+
+    void setSpritePosition(const int &x, const int &y) { pawn_sprite.setPosition(x, y); }
 };
 
 

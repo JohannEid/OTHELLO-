@@ -29,10 +29,11 @@ private:
     void display_player_score(const Board &board) const;
 
 
+
 public:
     Player(e_color color) : color(color) {}
 
-    virtual int play_turn(Board &board_to_play);
+    virtual int play_turn(Board &board_to_play,sf::RenderWindow& window);
 
     bool is_allowed(const Board &board) const;
 
@@ -47,6 +48,8 @@ public:
     void setScore(int score) {
         Player::score = score;
     }
+    int moveSelection(sf::RenderWindow &window,Board& board);
+
 };
 
 class Ai : public Player {

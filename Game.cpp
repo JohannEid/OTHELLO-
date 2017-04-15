@@ -7,36 +7,39 @@
 
 void Game::game_loop(int index_player) {
     sf::Event event;
+    int player_index = (index_player != 404) ? index_player : 0;
+    int opponent_index;
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
-            /*
-            int i = (index_player != 404) ? index_player : 0;
-            index_player = 0;
-            for (; i < getPlayers().size(); ++i) {
-
-                if (players[i]->is_allowed(board)) {
-                    turn_play(*players[i], (i == 0) ? *players[1] : *players[0]);
-                }
-
+            else if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
+                     && players[player_index]->moveSelection(window, board) != ERROR) {
+                opponent_index = (player_index == 1) ? 0 : 1;
+                turn_play(*players[player_index], *players[opponent_index]);
+                player_index = opponent_index;
 
             }
-             */
+
+
         }
         window.clear();
         display();
         window.display();
-    }
-    save();
 
+    }
+
+    save();
 
 }
 
 
+
+
+
 bool Game::turn_play(Player &player_to_play, Player &opponent) {
     int score_change{0};
-    score_change = player_to_play.play_turn(board);
+    score_change = player_to_play.play_turn(board, window);
     player_to_play.setScore(player_to_play.getScore() + score_change + 1);
     opponent.setScore(opponent.getScore() - score_change);
     incr_number_of_turn();
@@ -183,6 +186,7 @@ void Game::display() {
 
         }
 }
+
 
 
 
