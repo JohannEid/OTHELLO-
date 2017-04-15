@@ -34,8 +34,7 @@ enum class e_min_max {
 
 inline void clearconsole() {
     for (int i{0}; i < 20; ++i)
-        std::cout << std::endl;
-}
+        std::cout << std::endl; }
 
 enum keys {
     left = 0, right = 1, up = 2, down = 3, tab = 4
@@ -48,7 +47,7 @@ const std::list<std::pair<int, int>> check_coordinates{std::make_pair(1, 0), std
                                                        std::make_pair(1, 1), std::make_pair(-1, -1)};
 
 constexpr bool is_in_board(const int &coordx, const int &coordy) {
-    return coordx <= ROW - 1 && coordx >= 1 && coordy <= COL - 1 && coordy >= 1;
+    return coordx <= ROW - 2 && coordx >= 1 && coordy <= COL - 2 && coordy >= 1;
 }
 
 

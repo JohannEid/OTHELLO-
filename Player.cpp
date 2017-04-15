@@ -14,7 +14,7 @@ int Player::play_turn(Board &board_to_play) {
                                                       getColor());
     board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
-    return flip_coordinates.size();
+    return (int) flip_coordinates.size();
 }
 
 bool Player::is_allowed(const Board &board) const {
@@ -77,7 +77,8 @@ void Player::handle_mvt(Board &board, const std::vector<bool> &key_states) {
     if (is_in_board(new_position.first, new_position.second)) {
         board.setBase(new_position);
     } else {
-        std::cout << "Can't change position" << std::endl; }
+        std::cout << "Can't change position" << std::endl;
+    }
     board.display(getColor());
 }
 
@@ -123,11 +124,11 @@ std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_
 }
 
 int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play, const e_color &color) const {
-    return (int) board_to_play.get_encirclement(positon.first, positon.second, color).size();
+    return (color != getColor()) ? -(int) board_to_play.get_encirclement(positon.first, positon.second, color).size() :
+           (int) board_to_play.get_encirclement(positon.first, positon.second, color).size();
 }
 
-
-int Ai_easy::play_turn(Board &board_to_play) {
+int Ai::play_turn(Board &board_to_play) {
     std::vector<std::pair<int, int>> flip_coordinates;
     choose_play(board_to_play);
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
@@ -136,8 +137,8 @@ int Ai_easy::play_turn(Board &board_to_play) {
     board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
     return (int) flip_coordinates.size();
-
 }
+
 
 void Ai_easy::choose_play(Board &board_to_play) {
     std::vector<std::pair<int, int>> choices{list_choices(board_to_play)};
@@ -147,22 +148,34 @@ void Ai_easy::choose_play(Board &board_to_play) {
 
 }
 
-int Ai_medium::play_turn(Board &board_to_play) {
-    choose_play(board_to_play);
-
-
-}
-
-
 void Ai_medium::choose_play(Board &board_to_play) {
     Tree tree = create_tree(board_to_play);
     min_max(tree);
+    std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
+    board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
 
 }
 
 void Ai_medium::min_max(Tree &tree) {
-    min_max_value(tree.getBase());
+    while (tree.getBase()->getValue() == -1) {
+        min_max_value(tree.getBase());
+    }
+}
 
+void Ai_medium::min_max_value(std::shared_ptr<Node> &state) {
+    std::vector<std::shared_ptr<Node>> next;
+    std::vector<std::shared_ptr<Node>>::iterator min_max_score;
+    if (state->getValue() != -1) {
+        next = state->getPrec()->getNext();
+        if (state->getPrec()->getMin_max() == e_min_max::MAX) {
+            min_max_score = std::max_element(next.begin(), next.end(), Node::Order_node());
+        } else { min_max_score = std::min_element(next.begin(), next.end(), Node::Order_node()); }
+        state->getPrec()->setMin_max_next(next[std::distance(next.begin(), min_max_score)]);
+    } else {
+        for (auto elem: state->getNext()) {
+            min_max_value(elem);
+        }
+    }
 }
 
 
@@ -170,7 +183,7 @@ Tree Ai_medium::create_tree(Board &board_to_play) {
 
     Board simulation = board_to_play;
     Tree tree(std::make_shared<Node>(
-            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation, getColor())), 5);
+            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, simulation, getColor())), 3);
     std::queue<std::shared_ptr<Node>> queue;
     queue.push(tree.getCurrent());
     while (!queue.empty()) {
@@ -184,8 +197,8 @@ Tree Ai_medium::create_tree(Board &board_to_play) {
 
 void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree) {
     std::shared_ptr<Node> prec = tree.getCurrent();
-    e_min_max min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
     std::shared_ptr<Node> new_node;
+    e_min_max min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
     int value{0};
     Board current_map = tree.getCurrent()->getSimulation();
     bool terminal{prec->getSimulation().getNumber_of_turn() == tree.getDepth() - 1};
@@ -199,23 +212,12 @@ void Ai_medium::update_node(std::queue<std::shared_ptr<Node>> &queue, Tree &tree
         new_node = std::make_shared<Node>(Node(elem, min_max, value, terminal, prec, current_map, color));
         tree.getCurrent()->add_next_node(new_node);
         queue.push(new_node);
+        std::cout <<"the size of queue is"<<queue.size()<<std::endl;
+        std::cout << "Building tree ...."<<std::endl;
+        std::cout <<elem.first<<elem.second<<std::endl;
+        if(terminal){std::cout <<"this is terminal"<<std::endl;}
 
     }
     queue.pop();
 }
 
-void Ai_medium::min_max_value(std::shared_ptr<Node> &state) {
-    std::shared_ptr<Node> prec;
-    std::vector<std::shared_ptr<Node>> next;
-    if (state->getValue() != -1) {
-        prec = state->getPrec();
-        next = {state->getPrec()->getNext()};
-        //std::sort(next.begin(), next.end(), std::greater<Node>());
-        prec->setValue(next[0]->getValue());
-        std::cout << next[0]->getValue() << std::endl;
-    } else {
-        for (auto elem: state->getNext()) {
-            min_max_value(elem);
-        }
-    }
-}
