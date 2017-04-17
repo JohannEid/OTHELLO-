@@ -71,7 +71,6 @@ public:
 
     virtual std::vector<std::pair<int, int>> list_choices(Board &board_to_play, bool is_oppenent = false) const;
 
-    virtual int value_fonction(const std::pair<int, int> &positon, Board &board_to_play, const e_color &color) const;
 
 
 };

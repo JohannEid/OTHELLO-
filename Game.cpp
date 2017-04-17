@@ -6,7 +6,7 @@
 
 
 void Game::game_loop(int index_player) {
-    players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
+    players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK)));
     sf::Event event;
     window.setMouseCursorVisible(false);
     int player_index = (index_player != 404) ? index_player : 0;

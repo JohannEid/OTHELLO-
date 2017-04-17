@@ -128,8 +128,7 @@ int Player::moveSelection(sf::RenderWindow &window, Board &board) {
 
 std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_opponent) const {
     std::vector<std::pair<int, int>> choices;
-    e_color opposite_color = (getColor() == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
-    e_color color = (is_opponent) ? opposite_color : getColor();
+    e_color color = (is_opponent) ? opposite_color(getColor()) : getColor();
     for (int i{1}; i < ROW - 2; ++i) {
         for (int j{1}; j < COL - 2; ++j) {
             if (board_to_play.is_playable(i, j, color)) { choices.push_back(std::make_pair(i, j)); }
@@ -138,10 +137,6 @@ std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_
     return choices;
 }
 
-int Ai::value_fonction(const std::pair<int, int> &positon, Board &board_to_play, const e_color &color) const {
-    return (color != getColor()) ? -(int) board_to_play.get_encirclement(positon.first, positon.second, color).size() :
-           (int) board_to_play.get_encirclement(positon.first, positon.second, color).size();
-}
 
 int Ai::play_turn(Board &board_to_play,sf::RenderWindow& window) {
     std::vector<std::pair<int, int>> flip_coordinates;
