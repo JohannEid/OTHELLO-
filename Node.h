@@ -27,9 +27,13 @@ public:
             action_position), min_max(min_max), value(value),
                                                                                         terminal(terminal), prec(prec),
                                                                                         simulation(board),
-                                                                                        id_n(Node::id ++) {
+                                                                                        id_n(Node::id++) {
         if (action_position != std::make_pair(0, 0))simulate_play(color);
     }
+
+    Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,  e_color color,
+         const int& depth);
+
 
     struct Order_node {
         bool operator()(const std::shared_ptr<Node> &lhs, const std::shared_ptr<Node> &rhs) const {
@@ -37,6 +41,7 @@ public:
         }
     };
 
+    int value_fonction(const std::pair<int, int> &positon, Board &board_to_play, const e_color color) const;
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
@@ -71,6 +76,7 @@ public:
     const std::shared_ptr<Node> &getPrec() const {
         return prec;
     }
+
     int getId_n() const {
         return id_n;
     }
