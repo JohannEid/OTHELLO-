@@ -30,10 +30,10 @@ Node::Node(const std::pair<int, int> &action_position, const std::shared_ptr<Nod
            const int &depth) : action_position(action_position), prec(prec) {
     min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
     simulation = prec->getSimulation();
-    bool is_opponent = min_max == e_min_max::MIN;
+    bool is_opponent = min_max == e_min_max::MAX;
     color = (is_opponent) ? opposite_color(color) : color;
     terminal = simulation.getNumber_of_turn() - 1 == depth - 1;
-    simulate_play(opposite_color(color));
+    simulate_play(color);
    // value = (is_opponent) ? -value : value;
     std::cout << "Value:" << value << std::endl;
 }

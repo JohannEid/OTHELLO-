@@ -11,6 +11,9 @@
 #include <SFML/Audio.hpp>
 #include <list>
 #include <fstream>
+#include <queue>
+#include <assert.h>
+#include <iomanip>
 
 const int window_width = 722;
 const int window_height = 722;
