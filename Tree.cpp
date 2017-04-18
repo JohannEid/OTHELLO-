@@ -88,7 +88,7 @@ queue.pop();
 void Tree::min_max_value(std::shared_ptr<Node> &state) {
     std::vector<std::shared_ptr<Node>> next;
     std::vector<std::shared_ptr<Node>>::iterator min_max_score;
-    if (state->getValue() != -1) {
+    if (state->getValue() != INFINITE) {
         next = state->getPrec()->getNext();
         if (state->getPrec()->getMin_max() == e_min_max::MAX) {
             min_max_score = std::max_element(next.begin(), next.end(), Node::Order_node());
@@ -102,7 +102,7 @@ void Tree::min_max_value(std::shared_ptr<Node> &state) {
 }
 
 void Tree::min_max_algorithm() {
-    while (getBase()->getValue() == -1) {
+    while (getBase()->getValue() == INFINITE) {
         min_max_value(getBase());
     }
 }
