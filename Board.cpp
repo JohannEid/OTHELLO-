@@ -89,8 +89,8 @@ void Board::display(const e_color &color, const int &number_of_color_change) con
 }
 
 bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color) const {
-    int checkx{0};
-    int checky{0};
+return get_encirclement(coordx,coordy,play_color).size() >= 1;
+    /*
     bool is_playable;
     e_color opposite_color = (play_color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
     if (getBoard(coordx, coordy).getColor() == opposite_color) { return false; }
@@ -114,6 +114,7 @@ bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color
         if (is_playable) { return true; }
     }
     return false;
+     */
 }
 
 
