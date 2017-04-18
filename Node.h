@@ -28,7 +28,7 @@ public:
                                                                                         terminal(terminal), prec(prec),
                                                                                         simulation(board),
                                                                                         id_n(Node::id++) {
-        if (action_position != std::make_pair(0, 0))simulate_play(color);
+
     }
 
     Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,  e_color color,

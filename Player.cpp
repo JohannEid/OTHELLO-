@@ -146,8 +146,7 @@ int Ai::play_turn(Board &board_to_play, sf::RenderWindow &window) {
                                                       getColor());
     board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
-    return (int) flip_coordinates.size();
-}
+    return (int) flip_coordinates.size(); }
 
 
 void Ai_easy::choose_play(Board &board_to_play) {
@@ -162,7 +161,7 @@ void Ai_easy::choose_play(Board &board_to_play) {
 void Ai_medium::choose_play(Board &board_to_play) {
     board_to_play.setNumber_of_turn(0);
     Tree tree(std::make_shared<Node>(
-            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, board_to_play, getColor())),
+            Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_to_play, getColor())),
               3, board_to_play, *this);
     tree.min_max_algorithm();
     std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
