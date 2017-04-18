@@ -163,7 +163,7 @@ void Ai_medium::choose_play(Board &board_to_play) {
     board_to_play.setNumber_of_turn(0);
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, board_to_play, getColor())),
-              2, board_to_play, *this);
+              3, board_to_play, *this);
     tree.min_max_algorithm();
     std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());

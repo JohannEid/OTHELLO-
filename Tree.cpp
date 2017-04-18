@@ -49,8 +49,7 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai) {
     std::shared_ptr<Node> new_node;
 
 
-    if (!node->isTerminal())
-    {
+    if (!node->isTerminal()) {
         for (const auto &elem : ai.list_choices(current_map, is_opponent)) {
             new_node = std::make_shared<Node>(Node(elem, node, ai.getColor(), getDepth()));
             node->add_next_node(new_node);
