@@ -41,7 +41,7 @@ public:
         }
     };
 
-    int value_fonction(const std::pair<int, int> &positon, Board &board_to_play, const e_color color) const;
+    int value_fonction(const std::pair<int, int> &positon,const Board &board_to_play, const e_color color, int flip_number) ;
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;

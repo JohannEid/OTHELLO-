@@ -7,7 +7,7 @@
 
 
 int Player::play_turn(Board &board_to_play, sf::RenderWindow &window) {
-    std::cout <<"called"<<std::endl;
+    std::cout << "called" << std::endl;
     std::vector<std::pair<int, int>> flip_coordinates;
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
@@ -138,7 +138,7 @@ std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_
 }
 
 
-int Ai::play_turn(Board &board_to_play,sf::RenderWindow& window) {
+int Ai::play_turn(Board &board_to_play, sf::RenderWindow &window) {
     std::vector<std::pair<int, int>> flip_coordinates;
     choose_play(board_to_play);
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
@@ -160,32 +160,21 @@ void Ai_easy::choose_play(Board &board_to_play) {
 }
 
 void Ai_medium::choose_play(Board &board_to_play) {
-    Tree tree = create_tree(board_to_play);
+    board_to_play.setNumber_of_turn(0);
+    Tree tree(std::make_shared<Node>(
+            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, board_to_play, getColor())),
+              2, board_to_play, *this);
     tree.min_max_algorithm();
     std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
 }
 
-
+/*
 Tree Ai_medium::create_tree(Board &board_to_play) {
-
-    Tree tree(std::make_shared<Node>(
-            Node(std::make_pair(0, 0), e_min_max::MAX, -1, false, nullptr, board_to_play, getColor())),
-              3, board_to_play, *this);
 
     return tree;
 }
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 /*
 void Ai_medium::min_max(Tree &tree) {

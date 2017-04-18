@@ -55,7 +55,9 @@ std::vector<std::pair<int, int>> Board::get_encirclement
                 } else {
                     temp.push_back(std::make_pair(coordx, coordy));
                 }
-            } else { break; }
+            } else {
+                keep = false;
+                break; }
         }
         if (keep) {
             post_temp.insert(post_temp.end(), temp.begin(), temp.end());
@@ -115,3 +117,20 @@ bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color
 }
 
 
+void Board::display_ (const e_color &color, const int &number_of_color_change) const {
+    std::string s_color = (color == e_color::WHITE) ? "White" : "Black";
+    //clearconsole();
+    std::cout << "Turn of " << s_color << std::endl;
+    for (int i{0}; i < COL; ++i) {
+        for (int j{0}; j < ROW; ++j) {
+            (i == getBase().first && j == getBase().second) ? rlutil::setColor(rlutil::BLUE) :
+            (othellier[i][j].getColor() == e_color::BLACK) ? rlutil::setColor(rlutil::BLACK) :
+            (othellier[i][j].getColor() == e_color::WHITE) ? rlutil::setColor(rlutil::WHITE) :
+            (othellier[i][j].isTarget()) ? rlutil::setColor(rlutil::RED) :
+            rlutil::setColor(rlutil::YELLOW);
+
+            std::cout << getBoard(i, j).getWidget();
+        }
+        std::cout << std::endl;
+    }
+}

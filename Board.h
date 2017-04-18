@@ -70,7 +70,9 @@ public:
     void set_sprite_position_target(const int&i,const int& j){
         othellier[i][j].setSpritePosition_target((i -1)*square_size,(j-1)*square_size);
     }
-};
+    void display_ (const e_color &color, const int &number_of_color_change) const ;
+
+    };
 
 
 #endif //OTHELLO_BOARD_H

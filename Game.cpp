@@ -13,7 +13,7 @@ void Game::game_loop(int index_player) {
     int opponent_index;
     sf::Sprite sprite;
     my_audio.playMusic();
-    while (window.isOpen()) {
+    while (window.isOpen() && !is_end()) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();

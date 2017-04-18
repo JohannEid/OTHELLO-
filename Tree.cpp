@@ -41,12 +41,11 @@ Tree::Tree(const std::shared_ptr<Node> &base, int depth, const Board &board, Ai 
         update_tree(queue, ai);
     }
      */
-
 }
 
 void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai) {
     Board current_map = node->getSimulation();
-    bool is_opponent = node->getMin_max() == e_min_max::MAX;
+    bool is_opponent = node->getMin_max() == e_min_max::MIN;
     std::shared_ptr<Node> new_node;
 
 
@@ -58,7 +57,6 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai) {
             update_tree(new_node, ai);
         }
     }
-
 }
 
 /*
