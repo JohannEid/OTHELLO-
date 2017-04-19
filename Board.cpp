@@ -67,8 +67,8 @@ std::vector<std::pair<int, int>> Board::get_encirclement
 }
 
 bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color) const {
-    if(getBoard(coordx,coordy).getColor() ==opposite_color(play_color)){return false;}
-return get_encirclement(coordx,coordy,play_color).size() >= 1;
+    if(getBoard(coordx,coordy).getColor() != e_color ::NONE){return false;}
+   else {return get_encirclement(coordx,coordy,play_color).size() >= 1;}
 
 }
 

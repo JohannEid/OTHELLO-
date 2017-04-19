@@ -20,12 +20,13 @@ bool Player::is_allowed(const Board &board) const {
 
     for (int i{1}; i < ROW - 1; ++i) {
         for (int j{1}; j < COL - 1; ++j) {
-            if (board.is_playable(i, j, getColor())) { return true; }
+            if (board.getBoard(i,j).isTarget()) {
+                std::cout <<"coordx"<<i<<"coordy"<<j<<std::endl;
+                return true; }
         }
     }
+    std::cout << "returned false" << std::endl;
     return false;
-
-
 }
 
 
@@ -55,13 +56,13 @@ int Player::moveSelection(sf::RenderWindow &window, Board &board) {
     int x{(mouse_pos.x - SHIFTX) / square_size + 1};
     int y{(mouse_pos.y - SHIFY) / square_size + 1};
 
-    if (board.getBoard(x, y).isTarget() && board.getBoard(x,y).getColor() == e_color::NONE) {
-        board.setBase(std::make_pair(x, y));
-        return 1;
-
-    } else { return ERROR; }
-
-
+    if (is_in_board(x, y)) {
+        if (board.getBoard(x, y).isTarget() && board.getBoard(x, y).getColor() == e_color::NONE) {
+            board.setBase(std::make_pair(x, y));
+            return 1;
+        } else { return ERROR; }
+    }
+    else { return ERROR; }
 }
 
 
@@ -102,7 +103,7 @@ void Ai_easy::choose_play(Board &board_to_play) {
 void Ai_easy::display_choice(const std::vector<std::pair<int, int>> &choices) const {
     std::cout << "Choices are as follow:" << std::endl;
     for (const auto &elem: choices) {
-        std::cout << "Coordinate X:" << elem.first << "Y:"<<elem.second << std::endl;
+        std::cout << "Coordinate X:" << elem.first << "Y:" << elem.second << std::endl;
 
     }
 

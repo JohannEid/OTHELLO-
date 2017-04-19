@@ -8,7 +8,7 @@
 void Game::game_loop() {
     sf::Sprite sprite;
     my_audio.playMusic();
-    while (window.isOpen() && !is_end()) {
+    while (window.isOpen()) {
         while (window.pollEvent(event)) {
             if (state == 0) {
                 game_menu();
@@ -119,7 +119,6 @@ void Game::load_from_file() {
 }
 
 void Game::game_menu() {
-    int save_starter{404};
     sf::Vector2i mouse_pos_ = sf::Mouse::getPosition(window);
     sf::Vector2f mouse_pos = window.mapPixelToCoords(mouse_pos_);
 
@@ -195,23 +194,24 @@ void Game::load_textures() {
 }
 
 void Game::game_play() {
-    int   opponent_index = (player_index == 1) ? 0 : 1;
+    int opponent_index = (player_index == 1) ? 0 : 1;
 
-    if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
-        && players[player_index]->moveSelection(window, board) != ERROR ) {
+    if (is_end()) {
+
+        getchar();
+        window.close();
+    } else if (!getPlayers()[player_index]->is_allowed(getBoard())) {
+        player_index = opponent_index;
+    } else if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
+               && players[player_index]->moveSelection(window, board) != ERROR) {
         my_audio.playSoundEffet();
         turn_play(*players[player_index], *players[opponent_index]);
         player_index = opponent_index;
     } else if (players[player_index]->getName() == "Ai") {
-        opponent_index = (player_index == 1) ? 0 : 1;
         turn_play(*players[player_index], *players[opponent_index]);
         player_index = opponent_index;
     }
 
-     if (!players[player_index]->is_allowed(board)){
-        std::cout <<"yoyoyo"<<std::endl;
-        player_index = opponent_index;
-    }
 
 }
 
