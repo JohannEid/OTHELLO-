@@ -161,8 +161,8 @@ void Game::display(int index_player) {
         players[index_player]->show_targets(board);
         window.draw(board.getSprite_board());
         window.draw(sprite[index_player]);
-        for (int i{1}; i < ROW - 2; ++i)
-            for (int j{1}; j < COL - 2; ++j) {
+        for (int i{1}; i < ROW - 1; ++i)
+            for (int j{1}; j < COL - 1; ++j) {
                 if (getBoard().getBoard(i, j).getColor() != e_color::NONE) {
                     board.set_sprite_position(i, j);
                     window.draw(board.getBoard(i, j).getPawn_sprite());
@@ -195,18 +195,24 @@ void Game::load_textures() {
 }
 
 void Game::game_play() {
-    int opponent_index;
+    int   opponent_index = (player_index == 1) ? 0 : 1;
+
     if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
-        && players[player_index]->moveSelection(window, board) != ERROR && state == 1) {
+        && players[player_index]->moveSelection(window, board) != ERROR ) {
         my_audio.playSoundEffet();
-        opponent_index = (player_index == 1) ? 0 : 1;
         turn_play(*players[player_index], *players[opponent_index]);
         player_index = opponent_index;
-    } else if (players[player_index]->getName() == "Ai" && state == 1) {
+    } else if (players[player_index]->getName() == "Ai") {
         opponent_index = (player_index == 1) ? 0 : 1;
         turn_play(*players[player_index], *players[opponent_index]);
         player_index = opponent_index;
     }
+
+     if (!players[player_index]->is_allowed(board)){
+        std::cout <<"yoyoyo"<<std::endl;
+        player_index = opponent_index;
+    }
+
 }
 
 

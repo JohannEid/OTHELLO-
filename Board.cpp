@@ -33,7 +33,6 @@ std::vector<std::pair<int, int>> Board::get_encirclement
     int coordy{0};
     bool keep{false};
     e_color temp_color{color};
-    e_color opposite_color = (temp_color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
 
 
     for (const auto &elem: check_coordinates) {
@@ -68,6 +67,7 @@ std::vector<std::pair<int, int>> Board::get_encirclement
 }
 
 bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color) const {
+    if(getBoard(coordx,coordy).getColor() ==opposite_color(play_color)){return false;}
 return get_encirclement(coordx,coordy,play_color).size() >= 1;
 
 }

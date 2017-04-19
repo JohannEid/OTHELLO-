@@ -18,14 +18,6 @@ private:
     e_color color;
     int score = 2;
 
-    bool player_input(Board &board);
-
-    void handle_mvt(Board &board, const std::vector<bool> &key_states);
-
-    std::pair<int, int> handle_key_states(const std::vector<bool> &key_states);
-
-    void update_key_state(Board &board, std::vector<bool> &key_states, const keys &key);
-
     void display_player_score(const Board &board) const;
 
 
@@ -79,6 +71,8 @@ class Ai_easy : public Ai {
 private:
 
     void choose_play(Board &board_to_play);
+
+    void display_choice(const std::vector<std::pair<int, int>>& choices) const;
 
 public:
     Ai_easy(e_color color) : Ai(color) {}

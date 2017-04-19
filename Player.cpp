@@ -17,12 +17,15 @@ int Player::play_turn(Board &board_to_play, sf::RenderWindow &window) {
 }
 
 bool Player::is_allowed(const Board &board) const {
-    for (int i{1}; i < ROW - 2; ++i) {
-        for (int j{1}; j < COL - 2; ++j) {
+
+    for (int i{1}; i < ROW - 1; ++i) {
+        for (int j{1}; j < COL - 1; ++j) {
             if (board.is_playable(i, j, getColor())) { return true; }
         }
     }
     return false;
+
+
 }
 
 
@@ -49,10 +52,10 @@ int Player::moveSelection(sf::RenderWindow &window, Board &board) {
     show_targets(board);
 
     sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-    int x{(mouse_pos.x - SHIFTX) / square_size +1} ;
-    int y{(mouse_pos.y - SHIFY) / square_size  +1};
+    int x{(mouse_pos.x - SHIFTX) / square_size + 1};
+    int y{(mouse_pos.y - SHIFY) / square_size + 1};
 
-    if (board.getBoard(x, y).isTarget()) {
+    if (board.getBoard(x, y).isTarget() && board.getBoard(x,y).getColor() == e_color::NONE) {
         board.setBase(std::make_pair(x, y));
         return 1;
 
@@ -65,8 +68,8 @@ int Player::moveSelection(sf::RenderWindow &window, Board &board) {
 std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_opponent) const {
     std::vector<std::pair<int, int>> choices;
     e_color color = (is_opponent) ? opposite_color(getColor()) : getColor();
-    for (int i{1}; i < ROW - 2; ++i) {
-        for (int j{1}; j < COL - 2; ++j) {
+    for (int i{1}; i < ROW - 1; ++i) {
+        for (int j{1}; j < COL - 1; ++j) {
             if (board_to_play.is_playable(i, j, color)) { choices.push_back(std::make_pair(i, j)); }
         }
     }
@@ -89,9 +92,19 @@ int Ai::play_turn(Board &board_to_play, sf::RenderWindow &window) {
 void Ai_easy::choose_play(Board &board_to_play) {
 
     std::vector<std::pair<int, int>> choices{list_choices(board_to_play)};
+    display_choice(choices);
     int rand_index{rand() % (int) choices.size()};
 
     board_to_play.setBase(choices[rand_index]);
+
+}
+
+void Ai_easy::display_choice(const std::vector<std::pair<int, int>> &choices) const {
+    std::cout << "Choices are as follow:" << std::endl;
+    for (const auto &elem: choices) {
+        std::cout << "Coordinate X:" << elem.first << "Y:"<<elem.second << std::endl;
+
+    }
 
 }
 
@@ -101,9 +114,10 @@ void Ai_medium::choose_play(Board &board_to_play) {
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_to_play, getColor())),
               3, board_to_play, *this);
     tree.min_max_algorithm();
+    //tree.display_tree(tree.getBase());
     std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
-    std::cout <<"x:"<<tree.getBase()->getMin_max_next()->getAction_position().first<<std::endl;
-    std::cout <<"y:"<<tree.getBase()->getMin_max_next()->getAction_position().second<<std::endl;
+    std::cout << "x:" << tree.getBase()->getMin_max_next()->getAction_position().first << std::endl;
+    std::cout << "y:" << tree.getBase()->getMin_max_next()->getAction_position().second << std::endl;
 
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
 }

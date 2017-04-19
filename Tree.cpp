@@ -5,7 +5,7 @@
 #include "Tree.h"
 
 
-void Tree::display_tree() {
+void Tree::display_tree(const std::shared_ptr<Node> &node) {
     std::queue<std::shared_ptr<Node>> queue;
     std::vector<std::shared_ptr<Node>> next_nodes;
     int turn{0};
@@ -21,12 +21,15 @@ void Tree::display_tree() {
             }
             indentation = 100 / (int) next_nodes.size();
             std::cout << std::setw(indentation) << ' ';
-            std::cout << elem->getId_n();
+            std::cout << elem->getValue();
             queue.push(elem);
         }
+        std::cout << "                                                                                  ";
         queue.pop();
+
     }
 }
+
 
 Tree::Tree(const std::shared_ptr<Node> &base, int depth, const Board &board, Ai &ai) :
         base(base), depth(depth) {
@@ -36,7 +39,7 @@ Tree::Tree(const std::shared_ptr<Node> &base, int depth, const Board &board, Ai 
 void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai) {
     Board current_map = node->getSimulation();
     bool is_opponent = node->getMin_max() == e_min_max::MIN;
-    e_color color = (node->getMin_max() == e_min_max ::MAX)?ai.getColor():opposite_color(ai.getColor());
+    e_color color = (node->getMin_max() == e_min_max::MAX) ? ai.getColor() : opposite_color(ai.getColor());
     std::shared_ptr<Node> new_node;
 
 
