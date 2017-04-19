@@ -55,8 +55,6 @@ public:
 
     void setSpritePosition_target(const int &x, const int &y) { target_sprite.setPosition(x, y); }
 
-
-    void load_sprites();
 };
 
 

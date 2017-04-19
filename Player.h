@@ -87,22 +87,18 @@ public:
 };
 
 class Ai_medium : public Ai {
+private:
 
+    void choose_play(Board &board_to_play);
 
 public:
 
     Ai_medium(e_color color) : Ai(color) {}
 
-    void choose_play(Board &board_to_play);
-
-    void min_max_value(std::shared_ptr<Node> &node);
 
 
-private:
 
-    void min_max(Tree &tree);
 
-    Tree create_tree(Board &board_to_play);
 
 
 

@@ -43,10 +43,10 @@ RM = /home/johann/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/171.4073.32/bin
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/johann/Work/Othello
+CMAKE_SOURCE_DIR = /home/johann/Work/Othellov2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/johann/Work/Othello/cmake-build-debug
+CMAKE_BINARY_DIR = /home/johann/Work/Othellov2/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Othello.dir/depend.make
@@ -57,42 +57,18 @@ include CMakeFiles/Othello.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Othello.dir/flags.make
 
-CMakeFiles/Othello.dir/main.cpp.o: CMakeFiles/Othello.dir/flags.make
-CMakeFiles/Othello.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Othello.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/main.cpp.o -c /home/johann/Work/Othello/main.cpp
-
-CMakeFiles/Othello.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othello/main.cpp > CMakeFiles/Othello.dir/main.cpp.i
-
-CMakeFiles/Othello.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othello/main.cpp -o CMakeFiles/Othello.dir/main.cpp.s
-
-CMakeFiles/Othello.dir/main.cpp.o.requires:
-
-.PHONY : CMakeFiles/Othello.dir/main.cpp.o.requires
-
-CMakeFiles/Othello.dir/main.cpp.o.provides: CMakeFiles/Othello.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Othello.dir/build.make CMakeFiles/Othello.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/Othello.dir/main.cpp.o.provides
-
-CMakeFiles/Othello.dir/main.cpp.o.provides.build: CMakeFiles/Othello.dir/main.cpp.o
-
-
 CMakeFiles/Othello.dir/Board.cpp.o: CMakeFiles/Othello.dir/flags.make
 CMakeFiles/Othello.dir/Board.cpp.o: ../Board.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Othello.dir/Board.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Board.cpp.o -c /home/johann/Work/Othello/Board.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Othello.dir/Board.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Board.cpp.o -c /home/johann/Work/Othellov2/Board.cpp
 
 CMakeFiles/Othello.dir/Board.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/Board.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othello/Board.cpp > CMakeFiles/Othello.dir/Board.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othellov2/Board.cpp > CMakeFiles/Othello.dir/Board.cpp.i
 
 CMakeFiles/Othello.dir/Board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/Board.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othello/Board.cpp -o CMakeFiles/Othello.dir/Board.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othellov2/Board.cpp -o CMakeFiles/Othello.dir/Board.cpp.s
 
 CMakeFiles/Othello.dir/Board.cpp.o.requires:
 
@@ -107,16 +83,16 @@ CMakeFiles/Othello.dir/Board.cpp.o.provides.build: CMakeFiles/Othello.dir/Board.
 
 CMakeFiles/Othello.dir/Pawn.cpp.o: CMakeFiles/Othello.dir/flags.make
 CMakeFiles/Othello.dir/Pawn.cpp.o: ../Pawn.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Othello.dir/Pawn.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Pawn.cpp.o -c /home/johann/Work/Othello/Pawn.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Othello.dir/Pawn.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Pawn.cpp.o -c /home/johann/Work/Othellov2/Pawn.cpp
 
 CMakeFiles/Othello.dir/Pawn.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/Pawn.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othello/Pawn.cpp > CMakeFiles/Othello.dir/Pawn.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othellov2/Pawn.cpp > CMakeFiles/Othello.dir/Pawn.cpp.i
 
 CMakeFiles/Othello.dir/Pawn.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/Pawn.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othello/Pawn.cpp -o CMakeFiles/Othello.dir/Pawn.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othellov2/Pawn.cpp -o CMakeFiles/Othello.dir/Pawn.cpp.s
 
 CMakeFiles/Othello.dir/Pawn.cpp.o.requires:
 
@@ -131,16 +107,16 @@ CMakeFiles/Othello.dir/Pawn.cpp.o.provides.build: CMakeFiles/Othello.dir/Pawn.cp
 
 CMakeFiles/Othello.dir/Player.cpp.o: CMakeFiles/Othello.dir/flags.make
 CMakeFiles/Othello.dir/Player.cpp.o: ../Player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Othello.dir/Player.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Player.cpp.o -c /home/johann/Work/Othello/Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Othello.dir/Player.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Player.cpp.o -c /home/johann/Work/Othellov2/Player.cpp
 
 CMakeFiles/Othello.dir/Player.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/Player.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othello/Player.cpp > CMakeFiles/Othello.dir/Player.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othellov2/Player.cpp > CMakeFiles/Othello.dir/Player.cpp.i
 
 CMakeFiles/Othello.dir/Player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/Player.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othello/Player.cpp -o CMakeFiles/Othello.dir/Player.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othellov2/Player.cpp -o CMakeFiles/Othello.dir/Player.cpp.s
 
 CMakeFiles/Othello.dir/Player.cpp.o.requires:
 
@@ -155,16 +131,16 @@ CMakeFiles/Othello.dir/Player.cpp.o.provides.build: CMakeFiles/Othello.dir/Playe
 
 CMakeFiles/Othello.dir/Game.cpp.o: CMakeFiles/Othello.dir/flags.make
 CMakeFiles/Othello.dir/Game.cpp.o: ../Game.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Othello.dir/Game.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Game.cpp.o -c /home/johann/Work/Othello/Game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Othello.dir/Game.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Game.cpp.o -c /home/johann/Work/Othellov2/Game.cpp
 
 CMakeFiles/Othello.dir/Game.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/Game.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othello/Game.cpp > CMakeFiles/Othello.dir/Game.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othellov2/Game.cpp > CMakeFiles/Othello.dir/Game.cpp.i
 
 CMakeFiles/Othello.dir/Game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/Game.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othello/Game.cpp -o CMakeFiles/Othello.dir/Game.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othellov2/Game.cpp -o CMakeFiles/Othello.dir/Game.cpp.s
 
 CMakeFiles/Othello.dir/Game.cpp.o.requires:
 
@@ -179,16 +155,16 @@ CMakeFiles/Othello.dir/Game.cpp.o.provides.build: CMakeFiles/Othello.dir/Game.cp
 
 CMakeFiles/Othello.dir/Node.cpp.o: CMakeFiles/Othello.dir/flags.make
 CMakeFiles/Othello.dir/Node.cpp.o: ../Node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Othello.dir/Node.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Node.cpp.o -c /home/johann/Work/Othello/Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Othello.dir/Node.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Node.cpp.o -c /home/johann/Work/Othellov2/Node.cpp
 
 CMakeFiles/Othello.dir/Node.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/Node.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othello/Node.cpp > CMakeFiles/Othello.dir/Node.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othellov2/Node.cpp > CMakeFiles/Othello.dir/Node.cpp.i
 
 CMakeFiles/Othello.dir/Node.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/Node.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othello/Node.cpp -o CMakeFiles/Othello.dir/Node.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othellov2/Node.cpp -o CMakeFiles/Othello.dir/Node.cpp.s
 
 CMakeFiles/Othello.dir/Node.cpp.o.requires:
 
@@ -203,16 +179,16 @@ CMakeFiles/Othello.dir/Node.cpp.o.provides.build: CMakeFiles/Othello.dir/Node.cp
 
 CMakeFiles/Othello.dir/Tree.cpp.o: CMakeFiles/Othello.dir/flags.make
 CMakeFiles/Othello.dir/Tree.cpp.o: ../Tree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Othello.dir/Tree.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Tree.cpp.o -c /home/johann/Work/Othello/Tree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Othello.dir/Tree.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/Tree.cpp.o -c /home/johann/Work/Othellov2/Tree.cpp
 
 CMakeFiles/Othello.dir/Tree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/Tree.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othello/Tree.cpp > CMakeFiles/Othello.dir/Tree.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othellov2/Tree.cpp > CMakeFiles/Othello.dir/Tree.cpp.i
 
 CMakeFiles/Othello.dir/Tree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/Tree.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othello/Tree.cpp -o CMakeFiles/Othello.dir/Tree.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othellov2/Tree.cpp -o CMakeFiles/Othello.dir/Tree.cpp.s
 
 CMakeFiles/Othello.dir/Tree.cpp.o.requires:
 
@@ -225,26 +201,50 @@ CMakeFiles/Othello.dir/Tree.cpp.o.provides: CMakeFiles/Othello.dir/Tree.cpp.o.re
 CMakeFiles/Othello.dir/Tree.cpp.o.provides.build: CMakeFiles/Othello.dir/Tree.cpp.o
 
 
+CMakeFiles/Othello.dir/main.cpp.o: CMakeFiles/Othello.dir/flags.make
+CMakeFiles/Othello.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Othello.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Othello.dir/main.cpp.o -c /home/johann/Work/Othellov2/main.cpp
+
+CMakeFiles/Othello.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Othello.dir/main.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/johann/Work/Othellov2/main.cpp > CMakeFiles/Othello.dir/main.cpp.i
+
+CMakeFiles/Othello.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Othello.dir/main.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/johann/Work/Othellov2/main.cpp -o CMakeFiles/Othello.dir/main.cpp.s
+
+CMakeFiles/Othello.dir/main.cpp.o.requires:
+
+.PHONY : CMakeFiles/Othello.dir/main.cpp.o.requires
+
+CMakeFiles/Othello.dir/main.cpp.o.provides: CMakeFiles/Othello.dir/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Othello.dir/build.make CMakeFiles/Othello.dir/main.cpp.o.provides.build
+.PHONY : CMakeFiles/Othello.dir/main.cpp.o.provides
+
+CMakeFiles/Othello.dir/main.cpp.o.provides.build: CMakeFiles/Othello.dir/main.cpp.o
+
+
 # Object files for target Othello
 Othello_OBJECTS = \
-"CMakeFiles/Othello.dir/main.cpp.o" \
 "CMakeFiles/Othello.dir/Board.cpp.o" \
 "CMakeFiles/Othello.dir/Pawn.cpp.o" \
 "CMakeFiles/Othello.dir/Player.cpp.o" \
 "CMakeFiles/Othello.dir/Game.cpp.o" \
 "CMakeFiles/Othello.dir/Node.cpp.o" \
-"CMakeFiles/Othello.dir/Tree.cpp.o"
+"CMakeFiles/Othello.dir/Tree.cpp.o" \
+"CMakeFiles/Othello.dir/main.cpp.o"
 
 # External object files for target Othello
 Othello_EXTERNAL_OBJECTS =
 
-Othello: CMakeFiles/Othello.dir/main.cpp.o
 Othello: CMakeFiles/Othello.dir/Board.cpp.o
 Othello: CMakeFiles/Othello.dir/Pawn.cpp.o
 Othello: CMakeFiles/Othello.dir/Player.cpp.o
 Othello: CMakeFiles/Othello.dir/Game.cpp.o
 Othello: CMakeFiles/Othello.dir/Node.cpp.o
 Othello: CMakeFiles/Othello.dir/Tree.cpp.o
+Othello: CMakeFiles/Othello.dir/main.cpp.o
 Othello: CMakeFiles/Othello.dir/build.make
 Othello: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 Othello: /usr/lib/x86_64-linux-gnu/libsfml-window.so
@@ -252,7 +252,7 @@ Othello: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 Othello: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 Othello: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
 Othello: CMakeFiles/Othello.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/johann/Work/Othello/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Othello"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Othello"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Othello.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -260,13 +260,13 @@ CMakeFiles/Othello.dir/build: Othello
 
 .PHONY : CMakeFiles/Othello.dir/build
 
-CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/main.cpp.o.requires
 CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/Board.cpp.o.requires
 CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/Pawn.cpp.o.requires
 CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/Player.cpp.o.requires
 CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/Game.cpp.o.requires
 CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/Node.cpp.o.requires
 CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/Tree.cpp.o.requires
+CMakeFiles/Othello.dir/requires: CMakeFiles/Othello.dir/main.cpp.o.requires
 
 .PHONY : CMakeFiles/Othello.dir/requires
 
@@ -275,6 +275,6 @@ CMakeFiles/Othello.dir/clean:
 .PHONY : CMakeFiles/Othello.dir/clean
 
 CMakeFiles/Othello.dir/depend:
-	cd /home/johann/Work/Othello/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/johann/Work/Othello /home/johann/Work/Othello /home/johann/Work/Othello/cmake-build-debug /home/johann/Work/Othello/cmake-build-debug /home/johann/Work/Othello/cmake-build-debug/CMakeFiles/Othello.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/johann/Work/Othellov2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/johann/Work/Othellov2 /home/johann/Work/Othellov2 /home/johann/Work/Othellov2/cmake-build-debug /home/johann/Work/Othellov2/cmake-build-debug /home/johann/Work/Othellov2/cmake-build-debug/CMakeFiles/Othello.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Othello.dir/depend
 

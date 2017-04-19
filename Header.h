@@ -17,7 +17,7 @@
 
 const int window_width = 960;
 const int window_height = 928;
-const int square_size = 90;
+const int square_size = 84;
 const int ERROR = 1008;
 const int INFINITE = 0;
 
@@ -84,5 +84,8 @@ const int SAVExl = 272;
 const int SAVExr = 714;
 const int SAVEyl = 811;
 const int SAVEyr = 827;
+
+const int SHIFTX = 135;
+const int SHIFY  = 120;
 
 #endif //OTHELLO_HEADER_H

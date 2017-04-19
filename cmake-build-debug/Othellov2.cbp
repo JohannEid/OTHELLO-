@@ -2,10 +2,10 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="Othello"/>
+		<Option title="Othellov2"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\cmake_modules\;"/>
+		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/johann/Work/Othellov2/cmake-build-debug"/>
@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Othello">
-				<Option output="/home/johann/Work/Othellov2/cmake-build-debug/Othello" prefix_auto="0" extension_auto="0"/>
+			<Target title="Othellov2">
+				<Option output="/home/johann/Work/Othellov2/cmake-build-debug/Othellov2" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/johann/Work/Othellov2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -54,14 +54,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Othello"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Othellov2"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Othello/fast">
-				<Option output="/home/johann/Work/Othellov2/cmake-build-debug/Othello" prefix_auto="0" extension_auto="0"/>
+			<Target title="Othellov2/fast">
+				<Option output="/home/johann/Work/Othellov2/cmake-build-debug/Othellov2" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/johann/Work/Othellov2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -77,60 +77,18 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Othello/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Othellov2/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/johann/Work/Othellov2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/johann/Work/Othellov2/Board.cpp">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Board.h">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Game.cpp">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Game.h">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Header.h">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Node.cpp">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Node.h">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Pawn.cpp">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Pawn.h">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Player.cpp">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Player.h">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Tree.cpp">
-			<Option target="Othello"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/Tree.h">
-			<Option target="Othello"/>
-		</Unit>
 		<Unit filename="/home/johann/Work/Othellov2/main.cpp">
-			<Option target="Othello"/>
+			<Option target="Othellov2"/>
 		</Unit>
 		<Unit filename="/home/johann/Work/Othellov2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
-		</Unit>
-		<Unit filename="/home/johann/Work/Othellov2/cmake_modules/FindSFML.cmake">
-			<Option virtualFolder="CMake Files\cmake_modules\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

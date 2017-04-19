@@ -51,15 +51,18 @@ private:
 
     int state = 0;
 
+    int player_index;
+
 
 public:
 
     Game();
 
-    void game_loop(int index_player = 404);
+    void game_loop();
 
     void game_menu();
 
+    void game_play();
 
     bool turn_play(Player &player_to_play, Player &opponent);
 

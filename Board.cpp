@@ -6,7 +6,7 @@
 #include "Player.h"
 
 Board::Board() {
-    assert (texture_board.loadFromFile("sprites/othello board.gif"));
+    assert (texture_board.loadFromFile("sprites/board_v3.png"));
     sprite_board.setTexture(texture_board);
     othellier.resize(COL, std::vector<Tile>(ROW, Tile()));
     for (int i{0}; i < COL; ++i) {
@@ -68,53 +68,9 @@ std::vector<std::pair<int, int>> Board::get_encirclement
     return post_temp;
 }
 
-void Board::display(const e_color &color, const int &number_of_color_change) const {
-    /*
-    std::string s_color = (color == e_color::WHITE) ? "White" : "Black";
-    //clearconsole();
-    std::cout << "Turn of " << s_color << std::endl;
-    for (int i{0}; i < COL; ++i) {
-        for (int j{0}; j < ROW; ++j) {
-            (i == getBase().first && j == getBase().second) ? rlutil::setColor(rlutil::BLUE) :
-            (othellier[i][j].getColor() == e_color::BLACK) ? rlutil::setColor(rlutil::BLACK) :
-            (othellier[i][j].getColor() == e_color::WHITE) ? rlutil::setColor(rlutil::WHITE) :
-            (othellier[i][j].isTarget()) ? rlutil::setColor(rlutil::RED) :
-            rlutil::setColor(rlutil::YELLOW);
-
-            std::cout << getBoard(i, j).getWidget();
-        }
-        std::cout << std::endl;
-    }
-     */
-}
-
 bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color) const {
 return get_encirclement(coordx,coordy,play_color).size() >= 1;
-    /*
-    bool is_playable;
-    e_color opposite_color = (play_color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
-    if (getBoard(coordx, coordy).getColor() == opposite_color) { return false; }
-    for (const auto &elem : check_coordinates) {
-        checkx = coordx + elem.first;
-        checky = coordy + elem.second;
-        is_playable = true;
-        if (getBoard(checkx, checky).getColor() != opposite_color) { is_playable= false;
-            continue; }
 
-        do {
-
-            if (is_in_board(checkx + elem.first, checky + elem.second)) {
-                checkx += elem.first;
-                checky += elem.second;
-            } else {
-                is_playable = false;
-                break;
-            }
-        } while (getBoard(checkx, checky).getColor() != play_color);
-        if (is_playable) { return true; }
-    }
-    return false;
-     */
 }
 
 

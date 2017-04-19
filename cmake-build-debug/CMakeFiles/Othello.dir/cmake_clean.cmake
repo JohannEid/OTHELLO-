@@ -1,11 +1,11 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Othello.dir/main.cpp.o"
   "CMakeFiles/Othello.dir/Board.cpp.o"
   "CMakeFiles/Othello.dir/Pawn.cpp.o"
   "CMakeFiles/Othello.dir/Player.cpp.o"
   "CMakeFiles/Othello.dir/Game.cpp.o"
   "CMakeFiles/Othello.dir/Node.cpp.o"
   "CMakeFiles/Othello.dir/Tree.cpp.o"
+  "CMakeFiles/Othello.dir/main.cpp.o"
   "Othello.pdb"
   "Othello"
 )

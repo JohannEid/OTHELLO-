@@ -6,35 +6,35 @@
 
 #IncludeRegexTransform: 
 
-/home/johann/Work/Othello/Board.cpp
+/home/johann/Work/Othellov2/Board.cpp
 Board.h
-/home/johann/Work/Othello/Board.h
+/home/johann/Work/Othellov2/Board.h
 Player.h
-/home/johann/Work/Othello/Player.h
+/home/johann/Work/Othellov2/Player.h
 
-/home/johann/Work/Othello/Board.h
+/home/johann/Work/Othellov2/Board.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/home/johann/Work/Othellov2/Header.h
 Pawn.h
-/home/johann/Work/Othello/Pawn.h
+/home/johann/Work/Othellov2/Pawn.h
 
-/home/johann/Work/Othello/Game.cpp
+/home/johann/Work/Othellov2/Game.cpp
 Game.h
-/home/johann/Work/Othello/Game.h
+/home/johann/Work/Othellov2/Game.h
 
-/home/johann/Work/Othello/Game.h
+/home/johann/Work/Othellov2/Game.h
 Player.h
-/home/johann/Work/Othello/Player.h
+/home/johann/Work/Othellov2/Player.h
 Board.h
-/home/johann/Work/Othello/Board.h
+/home/johann/Work/Othellov2/Board.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/home/johann/Work/Othellov2/Header.h
 
-/home/johann/Work/Othello/Header.h
+/home/johann/Work/Othellov2/Header.h
 bits/stdtr1c++.h
-/home/johann/Work/Othello/bits/stdtr1c++.h
+/home/johann/Work/Othellov2/bits/stdtr1c++.h
 rlutil.h
-/home/johann/Work/Othello/rlutil.h
+/home/johann/Work/Othellov2/rlutil.h
 SFML/Graphics.hpp
 -
 SFML/Audio.hpp
@@ -43,60 +43,66 @@ list
 -
 fstream
 -
+queue
+-
+assert.h
+-
+iomanip
+-
 
-/home/johann/Work/Othello/Node.cpp
+/home/johann/Work/Othellov2/Node.cpp
 Node.h
-/home/johann/Work/Othello/Node.h
+/home/johann/Work/Othellov2/Node.h
 
-/home/johann/Work/Othello/Node.h
+/home/johann/Work/Othellov2/Node.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/home/johann/Work/Othellov2/Header.h
 Board.h
-/home/johann/Work/Othello/Board.h
+/home/johann/Work/Othellov2/Board.h
 
-/home/johann/Work/Othello/Pawn.cpp
+/home/johann/Work/Othellov2/Pawn.cpp
 Pawn.h
-/home/johann/Work/Othello/Pawn.h
+/home/johann/Work/Othellov2/Pawn.h
 
-/home/johann/Work/Othello/Pawn.h
+/home/johann/Work/Othellov2/Pawn.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/home/johann/Work/Othellov2/Header.h
 
-/home/johann/Work/Othello/Player.cpp
+/home/johann/Work/Othellov2/Player.cpp
 Player.h
-/home/johann/Work/Othello/Player.h
+/home/johann/Work/Othellov2/Player.h
 Tree.h
-/home/johann/Work/Othello/Tree.h
+/home/johann/Work/Othellov2/Tree.h
 
-/home/johann/Work/Othello/Player.h
+/home/johann/Work/Othellov2/Player.h
 Pawn.h
-/home/johann/Work/Othello/Pawn.h
+/home/johann/Work/Othellov2/Pawn.h
 Board.h
-/home/johann/Work/Othello/Board.h
+/home/johann/Work/Othellov2/Board.h
 Node.h
-/home/johann/Work/Othello/Node.h
+/home/johann/Work/Othellov2/Node.h
 
-/home/johann/Work/Othello/Tree.cpp
+/home/johann/Work/Othellov2/Tree.cpp
 Tree.h
-/home/johann/Work/Othello/Tree.h
+/home/johann/Work/Othellov2/Tree.h
 
-/home/johann/Work/Othello/Tree.h
+/home/johann/Work/Othellov2/Tree.h
 Node.h
-/home/johann/Work/Othello/Node.h
+/home/johann/Work/Othellov2/Node.h
 Player.h
-/home/johann/Work/Othello/Player.h
+/home/johann/Work/Othellov2/Player.h
 
-/home/johann/Work/Othello/main.cpp
+/home/johann/Work/Othellov2/main.cpp
 iostream
 -
 Board.h
-/home/johann/Work/Othello/Board.h
+/home/johann/Work/Othellov2/Board.h
 Header.h
-/home/johann/Work/Othello/Header.h
+/home/johann/Work/Othellov2/Header.h
 Game.h
-/home/johann/Work/Othello/Game.h
+/home/johann/Work/Othellov2/Game.h
 
-/home/johann/Work/Othello/rlutil.h
+/home/johann/Work/Othellov2/rlutil.h
 iostream
 -
 string

@@ -1,4 +1,4 @@
-# Install script for directory: /home/johann/Work/Othello
+# Install script for directory: /home/johann/Work/Othellov2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/johann/Work/Othello/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/johann/Work/Othellov2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

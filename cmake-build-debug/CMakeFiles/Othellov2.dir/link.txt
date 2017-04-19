@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/Othellov2.dir/main.cpp.o  -o Othellov2 

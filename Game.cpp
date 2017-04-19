@@ -5,28 +5,18 @@
 #include "Game.h"
 
 
-void Game::game_loop(int index_player) {
-    int player_index = (index_player != 404) ? index_player : 0;
-    int opponent_index;
+void Game::game_loop() {
     sf::Sprite sprite;
     my_audio.playMusic();
     while (window.isOpen() && !is_end()) {
         while (window.pollEvent(event)) {
-            game_menu();
+            if (state == 0) {
+                game_menu();
+            } else if (state == 1) {
+                game_play();
+            }
             if (event.type == sf::Event::Closed)
                 window.close();
-            else if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
-                     && players[player_index]->moveSelection(window, board) != ERROR && state == 1) {
-                my_audio.playSoundEffet();
-                opponent_index = (player_index == 1) ? 0 : 1;
-                turn_play(*players[player_index], *players[opponent_index]);
-                player_index = opponent_index;
-            } else if (players[player_index]->getName() == "Ai" && state == 1) {
-                opponent_index = (player_index == 1) ? 0 : 1;
-                turn_play(*players[player_index], *players[opponent_index]);
-                player_index = opponent_index;
-            }
-
 
         }
         if (state == 1) { window.setMouseCursorVisible(false); }
@@ -129,15 +119,9 @@ void Game::load_from_file() {
 }
 
 void Game::game_menu() {
-    std::string ichoice{" "};
-    int choice{0};
     int save_starter{404};
     sf::Vector2i mouse_pos_ = sf::Mouse::getPosition(window);
     sf::Vector2f mouse_pos = window.mapPixelToCoords(mouse_pos_);
-    std::cout<<"x:"<<mouse_pos.x<<std::endl;
-    std::cout<<"y:"<<mouse_pos.y<<std::endl;
-
-
 
     if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left) {
 
@@ -154,42 +138,12 @@ void Game::game_menu() {
         } else if ((mouse_pos.x >= SAVExl && mouse_pos.x <= SAVExr) &&
                    (mouse_pos.y >= SAVEyl && mouse_pos.y <= SAVEyr)) {
             load_from_file();
-            save_starter = (get_number_of_turns() % 2 == 0) ? 0 : 1;
+            player_index = (get_number_of_turns() % 2 == 0) ? 0 : 1;
             state = 1;
         }
     }
 
 }
-
-/*
-    while (true) {
-        try {
-
-            std::cin >> ichoice;
-            choice = std::stoi(ichoice);
-            if (choice == 1) {
-                break;
-            } else if () {
-                players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
-                break;
-            } else if (choice == 3) {
-                players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK)));
-                break;
-            } else if (choice == 4) {
-                load_from_file();
-                save_starter = (get_number_of_turns() % 2 == 0) ? 0 : 1;
-                break;
-            } else {
-                throw std::domain_error("Wrong entry");
-            }
-        }
-        catch (std::exception const &e) {
-            std::cerr << "Erreur" << e.what() << std::endl;
-        }
-    }
-    (save_starter != QUIT) ? game_loop(save_starter) : game_loop();
-
-}*/
 
 
 Game::Game() {
@@ -237,6 +191,21 @@ void Game::load_textures() {
     sprite[0].setTexture(textures[0]);
     sprite[1].setTexture(textures[1]);
     sprite[2].setTexture(textures[2]);
+}
+
+void Game::game_play() {
+    int opponent_index;
+    if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
+        && players[player_index]->moveSelection(window, board) != ERROR && state == 1) {
+        my_audio.playSoundEffet();
+        opponent_index = (player_index == 1) ? 0 : 1;
+        turn_play(*players[player_index], *players[opponent_index]);
+        player_index = opponent_index;
+    } else if (players[player_index]->getName() == "Ai" && state == 1) {
+        opponent_index = (player_index == 1) ? 0 : 1;
+        turn_play(*players[player_index], *players[opponent_index]);
+        player_index = opponent_index;
+    }
 }
 
 
