@@ -61,7 +61,7 @@ public:
 
     virtual void choose_play(Board &board_to_play) {}
 
-    virtual std::vector<std::pair<int, int>> list_choices(Board &board_to_play, bool is_oppenent = false) const;
+    virtual std::vector<std::pair<int, int>> list_choices(const Board &board_to_play, bool is_oppenent = false) const;
 
 
 

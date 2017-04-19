@@ -66,7 +66,7 @@ int Player::moveSelection(sf::RenderWindow &window, Board &board) {
 }
 
 
-std::vector<std::pair<int, int>> Ai::list_choices(Board &board_to_play, bool is_opponent) const {
+std::vector<std::pair<int, int>> Ai::list_choices(const Board &board_to_play, bool is_opponent) const {
     std::vector<std::pair<int, int>> choices;
     e_color color = (is_opponent) ? opposite_color(getColor()) : getColor();
     for (int i{1}; i < ROW - 1; ++i) {

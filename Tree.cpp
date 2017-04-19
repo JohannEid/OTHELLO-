@@ -37,14 +37,13 @@ Tree::Tree(const std::shared_ptr<Node> &base, int depth, const Board &board, Ai 
 }
 
 void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai) {
-    Board current_map = node->getSimulation();
     bool is_opponent = node->getMin_max() == e_min_max::MIN;
     e_color color = (node->getMin_max() == e_min_max::MAX) ? ai.getColor() : opposite_color(ai.getColor());
     std::shared_ptr<Node> new_node;
 
 
     if (!node->isTerminal()) {
-        for (const auto &elem : ai.list_choices(current_map, is_opponent)) {
+        for (const auto &elem : ai.list_choices(node->getSimulation(), is_opponent)) {
             new_node = std::make_shared<Node>(Node(elem, node, color, getDepth()));
             node->add_next_node(new_node);
             update_tree(new_node, ai);
