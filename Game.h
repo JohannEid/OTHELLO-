@@ -27,62 +27,63 @@ public:
 
 class Game {
 private:
-    std::vector<std::unique_ptr<Player>> players ;
+    std::vector<std::unique_ptr<Player>> players;
 
     Board board;
 
-    sf::RenderWindow window ;
+    sf::RenderWindow window;
 
     Audio my_audio;
 
-    void save() const ;
+    sf::Event event;
 
-    char write_in_file(const int& coordx,const int& coordy) const;
+    void save() const;
 
-    void game_menu_display() const;
+    char write_in_file(const int &coordx, const int &coordy) const;
 
-    e_color write_from_file(const char& c) const;
+    e_color write_from_file(const char &c) const;
 
-    sf::Texture textures[2];
+    sf::Texture textures[3];
 
-    sf::Sprite sprite[2];
-
+    sf::Sprite sprite[3];
 
     void load_from_file();
+
+    int state = 0;
 
 
 public:
 
     Game();
-    void game_loop( int index_player = 404);
+
+    void game_loop(int index_player = 404);
 
     void game_menu();
 
 
-    bool turn_play(Player &player_to_play, Player& opponent);
+    bool turn_play(Player &player_to_play, Player &opponent);
 
-    bool is_end() const {return (!getPlayers()[0]->is_allowed(board) && !getPlayers()[1]->is_allowed(board));}
+    bool is_end() const { return (!getPlayers()[0]->is_allowed(board) && !getPlayers()[1]->is_allowed(board)); }
 
     const Board &getBoard() const {
         return board;
     }
 
     const std::vector<std::unique_ptr<Player>> &getPlayers() const {
-        return  players;
+        return players;
     }
 
-    void incr_number_of_turn(){board.incrNumberOfTurns();}
+    void incr_number_of_turn() { board.incrNumberOfTurns(); }
 
-    void set_number_of_turns(int number_of_turn){board.setNumber_of_turn(number_of_turn);}
+    void set_number_of_turns(int number_of_turn) { board.setNumber_of_turn(number_of_turn); }
 
-    int get_number_of_turns() const {return board.getNumber_of_turn();}
+    int get_number_of_turns() const { return board.getNumber_of_turn(); }
 
-    void display(int index_player)  ;
+    void display(int index_player);
 
-    void custom_cursor(const int& player_index);
+    void custom_cursor(const int &player_index);
 
     void load_textures();
-
 
 
 };

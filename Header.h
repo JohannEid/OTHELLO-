@@ -15,8 +15,8 @@
 #include <assert.h>
 #include <iomanip>
 
-const int window_width = 722;
-const int window_height = 722;
+const int window_width = 960;
+const int window_height = 928;
 const int square_size = 90;
 const int ERROR = 1008;
 const int INFINITE = 0;
@@ -60,5 +60,29 @@ constexpr e_color min_max_color(const e_min_max &min_max, e_color color) {
     return (min_max == e_min_max::MAX) ? color : opposite_color(color);
 }
 
+const int HvHxl = 350;
+const int HvHxr = 635;
+const int HvHyl = 458;
+const int HvHyr = 477;
+
+const int AIexl = 351;
+const int AIexr = 649;
+const int AIeyl = 544;
+const int AIeyr = 566;
+
+const int AImxl = 323;
+const int AImxr = 665;
+const int AImyl = 635;
+const int AImyr = 652;
+
+const int AIhxl = 340;
+const int AIhxr = 642;
+const int AIhyl = 723;
+const int AIhyr = 732;
+
+const int SAVExl = 272;
+const int SAVExr = 714;
+const int SAVEyl = 811;
+const int SAVEyr = 827;
 
 #endif //OTHELLO_HEADER_H

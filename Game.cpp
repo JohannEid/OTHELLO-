@@ -6,24 +6,22 @@
 
 
 void Game::game_loop(int index_player) {
-    players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK)));
-    sf::Event event;
-    window.setMouseCursorVisible(false);
     int player_index = (index_player != 404) ? index_player : 0;
     int opponent_index;
     sf::Sprite sprite;
     my_audio.playMusic();
     while (window.isOpen() && !is_end()) {
         while (window.pollEvent(event)) {
+            game_menu();
             if (event.type == sf::Event::Closed)
                 window.close();
             else if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left
-                     && players[player_index]->moveSelection(window, board) != ERROR) {
+                     && players[player_index]->moveSelection(window, board) != ERROR && state == 1) {
                 my_audio.playSoundEffet();
                 opponent_index = (player_index == 1) ? 0 : 1;
                 turn_play(*players[player_index], *players[opponent_index]);
                 player_index = opponent_index;
-            } else if (players[player_index]->getName() == "Ai") {
+            } else if (players[player_index]->getName() == "Ai" && state == 1) {
                 opponent_index = (player_index == 1) ? 0 : 1;
                 turn_play(*players[player_index], *players[opponent_index]);
                 player_index = opponent_index;
@@ -31,6 +29,7 @@ void Game::game_loop(int index_player) {
 
 
         }
+        if (state == 1) { window.setMouseCursorVisible(false); }
         custom_cursor(player_index);
         window.clear();
         display(player_index);
@@ -133,18 +132,44 @@ void Game::game_menu() {
     std::string ichoice{" "};
     int choice{0};
     int save_starter{404};
+    sf::Vector2i mouse_pos_ = sf::Mouse::getPosition(window);
+    sf::Vector2f mouse_pos = window.mapPixelToCoords(mouse_pos_);
+    std::cout<<"x:"<<mouse_pos.x<<std::endl;
+    std::cout<<"y:"<<mouse_pos.y<<std::endl;
 
 
+
+    if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left) {
+
+        if ((mouse_pos.x >= HvHxl && mouse_pos.x <= HvHxr) && (mouse_pos.y >= HvHyl && mouse_pos.y <= HvHyr)) {
+            state = 1;
+        } else if ((mouse_pos.x >= AIexl && mouse_pos.x <= AIexr) && (mouse_pos.y >= AIeyl && mouse_pos.y <= AIeyr)) {
+            players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
+            state = 1;
+        } else if ((mouse_pos.x >= AImxl && mouse_pos.x <= AImxr) && (mouse_pos.y >= AImyl && mouse_pos.y <= AImyr)) {
+            players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK)));
+            state = 1;
+        } else if ((mouse_pos.x >= AIhxl && mouse_pos.x <= AIhxr) && (mouse_pos.y >= AIhyl && mouse_pos.y <= AIhyr)) {
+            state = 1;
+        } else if ((mouse_pos.x >= SAVExl && mouse_pos.x <= SAVExr) &&
+                   (mouse_pos.y >= SAVEyl && mouse_pos.y <= SAVEyr)) {
+            load_from_file();
+            save_starter = (get_number_of_turns() % 2 == 0) ? 0 : 1;
+            state = 1;
+        }
+    }
+
+}
+
+/*
     while (true) {
         try {
 
-
-            game_menu_display();
             std::cin >> ichoice;
             choice = std::stoi(ichoice);
             if (choice == 1) {
                 break;
-            } else if (choice == 2) {
+            } else if () {
                 players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
                 break;
             } else if (choice == 3) {
@@ -164,15 +189,8 @@ void Game::game_menu() {
     }
     (save_starter != QUIT) ? game_loop(save_starter) : game_loop();
 
-}
+}*/
 
-void Game::game_menu_display() const {
-    std::cout << "Welcome to othello" << std::endl;
-    std::cout << "1.Start a new game between humans" << std::endl;
-    std::cout << "2.Play against easy AI." << std::endl;
-    std::cout << "3.Play against medium AI." << std::endl;
-    std::cout << "4.Load previous game" << std::endl;
-}
 
 Game::Game() {
     load_textures();
@@ -183,52 +201,54 @@ Game::Game() {
 }
 
 void Game::display(int index_player) {
-    players[index_player]->show_targets(board);
-    window.draw(board.getSprite_board());
-    window.draw(sprite[index_player]);
-    for (int i{1}; i < ROW - 2; ++i)
-        for (int j{1}; j < COL - 2; ++j) {
-            if (getBoard().getBoard(i, j).getColor() != e_color::NONE) {
-                board.set_sprite_position(i, j);
-                window.draw(board.getBoard(i, j).getPawn_sprite());
-            } else if (getBoard().getBoard(i, j).isTarget()) {
-                board.set_sprite_position_target(i, j);
-                window.draw(board.getBoard(i, j).getTarget_sprite());
+    if (state == 0) {
+        window.draw(sprite[2]);
+    } else if (state == 1) {
+        players[index_player]->show_targets(board);
+        window.draw(board.getSprite_board());
+        window.draw(sprite[index_player]);
+        for (int i{1}; i < ROW - 2; ++i)
+            for (int j{1}; j < COL - 2; ++j) {
+                if (getBoard().getBoard(i, j).getColor() != e_color::NONE) {
+                    board.set_sprite_position(i, j);
+                    window.draw(board.getBoard(i, j).getPawn_sprite());
+                } else if (getBoard().getBoard(i, j).isTarget()) {
+                    board.set_sprite_position_target(i, j);
+                    window.draw(board.getBoard(i, j).getTarget_sprite());
+                }
+
+
             }
 
+    }
 
-        }
 }
 
 void Game::custom_cursor(const int &player_index) {
     sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
 
     sprite[player_index].setPosition(mouse_pos.x, mouse_pos.y);
-
 }
 
 void Game::load_textures() {
     assert(textures[0].loadFromFile("sprites/chinese_flag.png"));
     assert(textures[1].loadFromFile("sprites/usa_flag.png"));
+    assert(textures[2].loadFromFile("sprites/menu_screen_v3.png"));
     sprite[0].setTexture(textures[0]);
     sprite[1].setTexture(textures[1]);
-
-
+    sprite[2].setTexture(textures[2]);
 }
 
 
 void Audio::createAudio(const std::string &background_music_file, const std::string &buffer_roll_dice_file) {
-
     assert(background_music.openFromFile(background_music_file));
     assert(buffer_roll_dice.loadFromFile(buffer_roll_dice_file));
     sound_roll_dice.setBuffer(buffer_roll_dice);
-
 }
 
 void Audio::playMusic() {
     background_music.play();
     background_music.setLoop(true);
-
 }
 
 void Audio::playSoundEffet() {
