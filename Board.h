@@ -63,11 +63,13 @@ public:
     }
 
     void set_sprite_position(const int &i, const int &j) {
-        othellier[i][j].setSpritePosition((i - 1) * square_size + SHIFTX, (j - 1) * square_size + SHIFY);
+        othellier[i][j].setSpritePosition((i - 1) * square_size + SHIFTX + (i - 1) * 5,
+                                          (j - 1) * square_size + SHIFY + (j - 1) * 3);
     }
 
     void set_sprite_position_target(const int &i, const int &j) {
-        othellier[i][j].setSpritePosition_target((i - 1) * square_size  + SHIFTX , (j - 1) * square_size + SHIFY);
+        othellier[i][j].setSpritePosition_target((i - 1) * square_size + SHIFTX + (i - 1) * 5,
+                                                 (j - 1) * square_size + SHIFY + (j - 1) * 3);
     }
 
 

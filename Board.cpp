@@ -24,7 +24,6 @@ void Board::change_color(const std::vector<std::pair<int, int>> &coord_to_change
     }
 }
 
-
 std::vector<std::pair<int, int>> Board::get_encirclement
         (const int &initial_posx, const int &initial_posy, const e_color &color) const {
 

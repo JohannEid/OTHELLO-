@@ -155,7 +155,6 @@ Game::Game() {
 }
 
 void Game::display(int index_player) {
-    sf::Vector2f targetSize(square_size -2, square_size -2);
     if (state == 0) {
         window.draw(sprite[2]);
     } else if (state == 1) {
