@@ -7,7 +7,6 @@
 
 
 int Player::play_turn(Board &board_to_play, sf::RenderWindow &window) {
-    std::cout << "called" << std::endl;
     std::vector<std::pair<int, int>> flip_coordinates;
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
@@ -103,6 +102,9 @@ void Ai_medium::choose_play(Board &board_to_play) {
               3, board_to_play, *this);
     tree.min_max_algorithm();
     std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
+    std::cout <<"x:"<<tree.getBase()->getMin_max_next()->getAction_position().first<<std::endl;
+    std::cout <<"y:"<<tree.getBase()->getMin_max_next()->getAction_position().second<<std::endl;
+
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
 }
 

@@ -70,6 +70,7 @@ public:
         othellier[i][j].setSpritePosition_target((i - 1) * square_size  + SHIFTX , (j - 1) * square_size + SHIFY);
     }
 
+
     void display_(const e_color &color, const int &number_of_color_change) const;
 
 };

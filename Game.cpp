@@ -155,6 +155,7 @@ Game::Game() {
 }
 
 void Game::display(int index_player) {
+    sf::Vector2f targetSize(square_size -2, square_size -2);
     if (state == 0) {
         window.draw(sprite[2]);
     } else if (state == 1) {
@@ -188,9 +189,10 @@ void Game::load_textures() {
     assert(textures[0].loadFromFile("sprites/chinese_flag.png"));
     assert(textures[1].loadFromFile("sprites/usa_flag.png"));
     assert(textures[2].loadFromFile("sprites/menu_screen_v3.png"));
-    sprite[0].setTexture(textures[0]);
-    sprite[1].setTexture(textures[1]);
-    sprite[2].setTexture(textures[2]);
+    for (int i{0}; i < 3; ++i) {
+        sprite[i].setTexture(textures[i]);
+    }
+
 }
 
 void Game::game_play() {
