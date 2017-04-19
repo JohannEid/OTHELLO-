@@ -85,7 +85,7 @@ const int SAVExr = 714;
 const int SAVEyl = 811;
 const int SAVEyr = 827;
 
-const int SHIFTX = 135;
-const int SHIFY  = 120;
+const int SHIFTX = 150;
+const int SHIFY  = 125;
 
 #endif //OTHELLO_HEADER_H
