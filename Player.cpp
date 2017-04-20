@@ -21,11 +21,9 @@ bool Player::is_allowed(const Board &board) const {
     for (int i{1}; i < ROW - 1; ++i) {
         for (int j{1}; j < COL - 1; ++j) {
             if (board.getBoard(i,j).isTarget()) {
-                std::cout <<"coordx"<<i<<"coordy"<<j<<std::endl;
                 return true; }
         }
     }
-    std::cout << "returned false" << std::endl;
     return false;
 }
 
@@ -114,13 +112,15 @@ void Ai_medium::choose_play(Board &board_to_play) {
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_to_play, getColor())),
               3, board_to_play, *this);
+    /*
     tree.min_max_algorithm();
-    //tree.display_tree(tree.getBase());
+    tree.display_tree(tree.getBase());
     std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
     std::cout << "x:" << tree.getBase()->getMin_max_next()->getAction_position().first << std::endl;
     std::cout << "y:" << tree.getBase()->getMin_max_next()->getAction_position().second << std::endl;
 
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
+     */
 }
 
 

@@ -17,15 +17,16 @@ private:
 
 
 public:
-    Tree(const std::shared_ptr<Node> &base, int depth, const Board &board,
+    Tree(const std::shared_ptr<Node> &base, int depth, Board &board,
          Ai &player);
 
-    void update_tree(std::shared_ptr<Node> &node, Ai &player);
+    void update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board);
 
     void min_max_algorithm();
 
     void min_max_value(std::shared_ptr<Node> &state);
 
+    void reverse_action(Board& board, Board_reverse& board_reverse,const e_color& color);
 
 
     std::shared_ptr<Node> &getBase() {
@@ -53,7 +54,7 @@ public:
     }
 
 
-    void display_tree(const std::shared_ptr<Node> &node) ;
+    void display_tree(const std::shared_ptr<Node> &node);
 };
 
 
