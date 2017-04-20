@@ -30,28 +30,31 @@ void Tree::display_tree(const std::shared_ptr<Node> &node) {
     }
 }
 
-
-Tree::Tree(const std::shared_ptr<Node> &base, int depth,  Board &board, Ai &ai) :
+Tree::Tree(const std::shared_ptr<Node> &base, int depth, Board &board, Ai &ai) :
         base(base), depth(depth) {
-    update_tree(Tree::base, ai,board);
+    update_tree(Tree::base, ai, board);
 }
 
-void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board& board) {
-     ;
+void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
+
     bool is_opponent = node->getMin_max() == e_min_max::MIN;
     e_color color = (node->getMin_max() == e_min_max::MAX) ? ai.getColor() : opposite_color(ai.getColor());
     e_color player_col = ai.getColor();
     std::shared_ptr<Node> new_node;
-    Board_reverse board_reverse = node ->simulate_play(player_col,board,getDepth());
+    Board_reverse board_reverse = node->simulate_play(player_col, board, getDepth());
+
     int value{board_reverse.value};
 
+    if(node->isTerminal()){
+        reverse_action(board,board_reverse,player_col);
+    }
 
     if (!node->isTerminal()) {
         for (const auto &elem : ai.list_choices(board, is_opponent)) {
-            new_node = std::make_shared<Node>(Node(elem,node,value));
+            new_node = std::make_shared<Node>(Node(elem, node, value));
             node->add_next_node(new_node);
-            reverse_action(board,board_reverse,player_col);
-            update_tree(new_node, ai,board);
+            reverse_action(board, board_reverse, player_col);
+            update_tree(new_node, ai, board);
         }
     }
 }
@@ -78,36 +81,11 @@ void Tree::min_max_algorithm() {
     }
 }
 
-void Tree::reverse_action(Board &board, Board_reverse& board_reverse,const e_color& color) {
-    //std::cout<<"Num to none" <<board_reverse.color_to_none.size()<<std::endl;
-    for(const auto& elem:board_reverse.color_to_none ){
-        std::cout << elem.first<<elem.second<<std::endl;
-    }
-    board.change_color(board_reverse.switch_player_to_opponent,opposite_color(color));
-    board.change_color(board_reverse.switch_opponent_to_player,color);
-    board.change_color(board_reverse.color_to_none,e_color::NONE);
+void Tree::reverse_action(Board &board, Board_reverse &board_reverse, const e_color &color) {
+
+    board.change_color(board_reverse.switch_player_to_opponent, opposite_color(color));
+    board.change_color(board_reverse.switch_opponent_to_player, color);
+    board.change_color(board_reverse.color_to_none, e_color::NONE);
 }
 
-
-/*
-Tree::Tree(const std::shared_ptr<Node> &base, int depth, const Board &board, Ai &ai) :
-        base(base), depth(depth) {
-    update_tree(Tree::base, ai);
-}
-
-void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai) {
-    bool is_opponent = node->getMin_max() == e_min_max::MIN;
-    e_color color = (node->getMin_max() == e_min_max::MAX) ? ai.getColor() : opposite_color(ai.getColor());
-    std::shared_ptr<Node> new_node;
-
-
-    if (!node->isTerminal()) {
-        for (const auto &elem : ai.list_choices(node->getSimulation(), is_opponent)) {
-            new_node = std::make_shared<Node>(Node(elem, node, color, getDepth()));
-            node->add_next_node(new_node);
-            update_tree(new_node, ai);
-        }
-    }
-}
- */
 
