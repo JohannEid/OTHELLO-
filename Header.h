@@ -57,8 +57,8 @@ constexpr e_color opposite_color(const e_color &color) {
     return (color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
 }
 
-constexpr e_color min_max_color(const e_min_max &min_max, e_color color) {
-    return (min_max == e_min_max::MAX) ? color : opposite_color(color);
+inline bool is_found(const std::vector<std::pair<int, int>> vector, const std::pair<int, int> item)  {
+    return  ( std::find(vector.begin(), vector.end(), item) != vector.end());
 }
 
 const int HvHxl = 350;

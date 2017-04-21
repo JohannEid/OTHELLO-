@@ -113,7 +113,7 @@ void Ai_medium::choose_play(Board &board_to_play) {
 
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_temp, getColor())),
-              3, board_to_play, *this);
+              5, board_temp, *this);
     tree.negaMax_algorithm();
     choose_base(board_to_play, tree.getBase());
 

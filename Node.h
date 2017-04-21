@@ -10,8 +10,8 @@
 
 struct Board_reverse {
     std::vector<std::pair<int, int>> color_to_none;
-    std::vector<std::pair<int, int>> switch_opponent_to_player;
-    std::vector<std::pair<int, int>> switch_player_to_opponent;
+    std::vector<std::pair<int, int>> mitoma;
+    std::vector<std::pair<int, int>> matomi;
     int value;
 };
 
@@ -19,7 +19,6 @@ struct Board_reverse {
 class Node {
 private:
     std::pair<int, int> action_position;
-    Board simulation;
     e_min_max min_max;
     int value;
     bool terminal;
@@ -32,8 +31,8 @@ public:
     Node(const std::pair<int, int> &action_position, e_min_max min_max, int value, bool terminal,
          const std::shared_ptr<Node> &prec, const Board &board, const e_color &color) : action_position(
             action_position), min_max(min_max), value(value),
-                                                                                        terminal(terminal), prec(prec),
-                                                                                        simulation(board) {}
+                                                                                        terminal(terminal), prec(prec)
+                                                                                        {}
 
     Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,
          const int &value);
@@ -57,10 +56,6 @@ public:
 
     const std::vector<std::shared_ptr<Node>> &getNext() const {
         return next;
-    }
-
-    const Board &getSimulation() const {
-        return simulation;
     }
 
     Board_reverse simulate_play(e_color &color, Board &board, const int &depth);

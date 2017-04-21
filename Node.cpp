@@ -11,8 +11,6 @@ Board_reverse Node::simulate_play(e_color &color, Board &board, const int &depth
     Board_reverse board_reverse;
     std::vector<std::pair<int, int>> flip_coordinates;
     e_color new_color = color;
-    int player_score{0};
-    int opponent_score{0};
     bool terminal = getLast_moves().size() == depth - 1;
     for (int i{0}; i < getLast_moves().size(); ++i) {
 
@@ -23,23 +21,31 @@ Board_reverse Node::simulate_play(e_color &color, Board &board, const int &depth
         board.set_color(getLast_moves()[i].first, getLast_moves()[i].second, new_color);
         board.change_color(flip_coordinates, new_color);
         board_reverse.color_to_none.push_back(getLast_moves()[i]);
+
         if (new_color == opposite_color(color)) {
-            board_reverse.switch_opponent_to_player.insert(board_reverse.switch_opponent_to_player.end(),
-                                                           flip_coordinates.begin(),
-                                                           flip_coordinates.end());
-
+            for (int i{0}; i < flip_coordinates.size(); ++i) {
+                if (board_reverse.mitoma.empty() || board_reverse.matomi.empty()) {
+                    board_reverse.mitoma.push_back(flip_coordinates[i]);
+                } else if (!is_found(board_reverse.mitoma, flip_coordinates[i]) &&
+                           !is_found(board_reverse.matomi, flip_coordinates[i])) {
+                    board_reverse.mitoma.push_back(flip_coordinates[i]);
+                }
+            }
         } else if (new_color == color) {
-            board_reverse.switch_player_to_opponent.insert(board_reverse.switch_player_to_opponent.end(),
-                                                           flip_coordinates.begin(),
-                                                           flip_coordinates.end());
+            for (int i{0}; i < flip_coordinates.size(); ++i) {
+                if (board_reverse.mitoma.empty() || board_reverse.matomi.empty()) {
+                    board_reverse.matomi.push_back(flip_coordinates[i]);
+                } else if (!is_found(board_reverse.mitoma, flip_coordinates[i]) &&
+                           !is_found(board_reverse.matomi, flip_coordinates[i])) {
+                    board_reverse.matomi.push_back(flip_coordinates[i]);
+                }
+            }
         }
-        board.setNumber_of_turn(simulation.getNumber_of_turn() + 1);
-
     }
-    board_reverse.value = (terminal)?heuristic_value(board_reverse,board):INFINITE;
+    board_reverse.value = (terminal) ? heuristic_value(board_reverse, board) : INFINITE;
     return board_reverse;
-}
 
+}
 
 
 Node::Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,
@@ -56,9 +62,9 @@ int Node::heuristic_value(Board_reverse &board_reverse, Board &board) {
     int corners_captured{0};
     std::pair<int, int> corner = list_corner(board, e_color::BLACK);
 
-    int max_score{(int) board_reverse.switch_player_to_opponent.size() + (int) board_reverse.color_to_none.size() / 2 +
+    int max_score{(int) board_reverse.matomi.size() + (int) board_reverse.color_to_none.size() / 2 +
                   (int) board_reverse.color_to_none.size() % 2};
-    int min_score{(int) board_reverse.switch_opponent_to_player.size() + (int) board_reverse.color_to_none.size() / 2};
+    int min_score{(int) board_reverse.mitoma.size() + (int) board_reverse.color_to_none.size() / 2};
     int max_mobility{list_mobility(board, e_color::BLACK)};
     int min_mobility{list_mobility(board, e_color::WHITE)};
     int max_corner{corner.first};
@@ -68,7 +74,8 @@ int Node::heuristic_value(Board_reverse &board_reverse, Board &board) {
     coin_parity = 100 * (max_score - min_score) / (max_score + min_score);
     mobility_value = (max_mobility + min_mobility != 0) ? 100 * (max_mobility - min_mobility) /
                                                           (max_mobility + min_mobility) : 0;
-    corners_captured = (max_corner + min_corner != 0) ? 100 * (max_corner - min_corner) / (max_corner + min_corner) : 0;
+    corners_captured = (max_corner + min_corner != 0) ? 100 * (max_corner - min_corner) / (max_corner + min_corner)
+                                                      : 0;
 
     return coin_parity + mobility_value + corners_captured;
 

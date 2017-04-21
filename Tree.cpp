@@ -6,6 +6,7 @@
 
 
 void Tree::display_tree(const std::shared_ptr<Node> &node) {
+    /*
     std::queue<std::shared_ptr<Node>> queue;
     std::vector<std::shared_ptr<Node>> next_nodes;
     int turn{0};
@@ -28,6 +29,7 @@ void Tree::display_tree(const std::shared_ptr<Node> &node) {
         queue.pop();
 
     }
+     */
 }
 
 Tree::Tree(const std::shared_ptr<Node> &base, int depth, Board &board, Ai &ai) :
@@ -47,6 +49,7 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
 
     if (node->isTerminal()) {
         reverse_action(board, board_reverse, player_col);
+        board.display_(e_color::WHITE,5);
     }
 
     if (!node->isTerminal()) {
@@ -54,14 +57,17 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
             new_node = std::make_shared<Node>(Node(elem, node, value));
             node->add_next_node(new_node);
             reverse_action(board, board_reverse, player_col);
+            board.display_(e_color::WHITE,5);
             update_tree(new_node, ai, board);
         }
     }
+    board.display_(e_color::WHITE,5);
+
 }
 
 void Tree::reverse_action(Board &board, Board_reverse &board_reverse, const e_color &color) {
-    board.change_color(board_reverse.switch_opponent_to_player, color);
-    board.change_color(board_reverse.switch_player_to_opponent, opposite_color(color));
+    board.change_color(board_reverse.mitoma, e_color::BLACK);
+    board.change_color(board_reverse.matomi, e_color::WHITE);
     board.change_color(board_reverse.color_to_none, e_color::NONE);
 }
 
