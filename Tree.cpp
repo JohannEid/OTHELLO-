@@ -45,8 +45,8 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
 
     int value{board_reverse.value};
 
-    if(node->isTerminal()){
-        reverse_action(board,board_reverse,player_col);
+    if (node->isTerminal()) {
+        reverse_action(board, board_reverse, player_col);
     }
 
     if (!node->isTerminal()) {
@@ -82,9 +82,8 @@ void Tree::min_max_algorithm() {
 }
 
 void Tree::reverse_action(Board &board, Board_reverse &board_reverse, const e_color &color) {
-
-    board.change_color(board_reverse.switch_player_to_opponent, opposite_color(color));
     board.change_color(board_reverse.switch_opponent_to_player, color);
+    board.change_color(board_reverse.switch_player_to_opponent, opposite_color(color));
     board.change_color(board_reverse.color_to_none, e_color::NONE);
 }
 
