@@ -59,6 +59,81 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
     }
 }
 
+void Tree::reverse_action(Board &board, Board_reverse &board_reverse, const e_color &color) {
+    board.change_color(board_reverse.switch_opponent_to_player, color);
+    board.change_color(board_reverse.switch_player_to_opponent, opposite_color(color));
+    board.change_color(board_reverse.color_to_none, e_color::NONE);
+}
+
+int Tree::min_max_max(std::shared_ptr<Node> &node) {
+    if (node->isTerminal()) return node->getValue();
+    int max{-INFINITE};
+    for (auto &elem : node->next) {
+        node->setValue(min_max_min(elem));
+        if (node->getValue() > max)
+            max = node->getValue();
+    }
+    return max;
+}
+
+int Tree::min_max_min(std::shared_ptr<Node> &node) {
+    if (node->isTerminal()) return node->getValue();
+    int min{INFINITE};
+    for (auto &elem : node->next) {
+        node->setValue(min_max_max(elem));
+        if (node->getValue() < min)
+            min = node->getValue();
+    }
+    return min;
+}
+
+
+void Tree::min_max_algorithm() {
+    min_max_max(base);
+}
+
+
+int Tree::alpha_beta_max(std::shared_ptr<Node> &node, int alpha, int beta) {
+    if (node->isTerminal()) { return node->getValue(); }
+    for (auto &elem : node->next) {
+        node->setValue(alpha_beta_min(elem, alpha, beta));
+        if (node->getValue() >= beta) { return beta; }
+        if (node->getValue() > alpha) { alpha = node->getValue(); }
+    }
+    return alpha;
+}
+
+int Tree::alpha_beta_min(std::shared_ptr<Node> &node, int alpha, int beta) {
+    if (node->isTerminal()) { return node->getValue(); }
+    for (auto &elem : node->next) {
+        node->setValue(alpha_beta_max(elem, alpha, beta));
+        if (node->getValue() <= alpha) { return alpha; }
+        if (node->getValue() < beta) { beta = node->getValue(); }
+
+    }
+    return beta;
+}
+
+void Tree::alpha_beta_search() {
+    alpha_beta_max(base, -INFINITE, INFINITE);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void Tree::min_max_value(std::shared_ptr<Node> &state) {
     std::vector<std::shared_ptr<Node>> next;
     std::vector<std::shared_ptr<Node>>::iterator min_max_score;
@@ -74,42 +149,4 @@ void Tree::min_max_value(std::shared_ptr<Node> &state) {
         }
     }
 }
-
-void Tree::min_max_algorithm() {
-    while (getBase()->getValue() == INFINITE) {
-        min_max_value(getBase());
-    }
-}
-
-void Tree::reverse_action(Board &board, Board_reverse &board_reverse, const e_color &color) {
-    board.change_color(board_reverse.switch_opponent_to_player, color);
-    board.change_color(board_reverse.switch_player_to_opponent, opposite_color(color));
-    board.change_color(board_reverse.color_to_none, e_color::NONE);
-}
-
-int Tree::alpha_beta_max(std::shared_ptr<Node>& node,int alpha, int beta) {
-    if(node->isTerminal()){ return node->getValue();}
-    for(auto& elem : node->next){
-        node->setValue(alpha_beta_min(elem,alpha,beta));
-        if(node->getValue() >=beta){return beta;}
-        if(node->getValue()>alpha){alpha = node->getValue();}
-    }
-return alpha;
-}
-
-int Tree::alpha_beta_min(std::shared_ptr<Node>& node,int alpha, int beta) {
-    if(node->isTerminal()){return node->getValue();}
-    for(auto& elem : node->next){
-        node->setValue(alpha_beta_max(elem,alpha,beta));
-        if(node->getValue() <=alpha){return alpha;}
-        if(node->getValue()<beta){beta = node->getValue();}
-
-    }
-    return beta;
-}
-
-void Tree::alpha_beta_search() {
-    alpha_beta_max(base,-INFINITE,INFINITE);
-}
-
-
+*/
