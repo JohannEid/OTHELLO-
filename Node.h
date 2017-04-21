@@ -13,6 +13,8 @@ struct Board_reverse {
     std::vector<std::pair<int, int>> mitoma;
     std::vector<std::pair<int, int>> matomi;
     int value;
+    int max_score;
+    int min_score;
 };
 
 

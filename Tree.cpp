@@ -48,20 +48,16 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
     int value{board_reverse.value};
 
     if (node->isTerminal()) {
-        reverse_action(board, board_reverse, player_col);
-        board.display_(e_color::WHITE,5);
-    }
+        reverse_action(board, board_reverse, player_col); }
 
     if (!node->isTerminal()) {
         for (const auto &elem : ai.list_choices(board, is_opponent)) {
             new_node = std::make_shared<Node>(Node(elem, node, value));
             node->add_next_node(new_node);
             reverse_action(board, board_reverse, player_col);
-            board.display_(e_color::WHITE,5);
             update_tree(new_node, ai, board);
         }
     }
-    board.display_(e_color::WHITE,5);
 
 }
 
@@ -137,35 +133,3 @@ int Tree::alpha_beta_min(std::shared_ptr<Node> &node, int alpha, int beta) {
 void Tree::alpha_beta_search() {
     alpha_beta_max(base, -INFINITE, INFINITE);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void Tree::min_max_value(std::shared_ptr<Node> &state) {
-    std::vector<std::shared_ptr<Node>> next;
-    std::vector<std::shared_ptr<Node>>::iterator min_max_score;
-    if (state->getValue() != INFINITE) {
-        next = state->getPrec()->getNext();
-        if (state->getPrec()->getMin_max() == e_min_max::MAX) {
-            min_max_score = std::max_element(next.begin(), next.end(), Node::Order_node());
-        } else { min_max_score = std::min_element(next.begin(), next.end(), Node::Order_node()); }
-        state->getPrec()->setMin_max_next(next[std::distance(next.begin(), min_max_score)]);
-    } else {
-        for (auto elem: state->getNext()) {
-            min_max_value(elem);
-        }
-    }
-}
-*/

@@ -9,8 +9,12 @@
 
 Board_reverse Node::simulate_play(e_color &color, Board &board, const int &depth) {
     Board_reverse board_reverse;
+    board_reverse.max_score = 2;
+    board_reverse.min_score = 2;
+    int score{0};
     std::vector<std::pair<int, int>> flip_coordinates;
     e_color new_color = color;
+
     bool terminal = getLast_moves().size() == depth - 1;
     for (int i{0}; i < getLast_moves().size(); ++i) {
 
@@ -21,6 +25,9 @@ Board_reverse Node::simulate_play(e_color &color, Board &board, const int &depth
         board.set_color(getLast_moves()[i].first, getLast_moves()[i].second, new_color);
         board.change_color(flip_coordinates, new_color);
         board_reverse.color_to_none.push_back(getLast_moves()[i]);
+        score = (int) flip_coordinates.size() + 1;
+        if (new_color == color) { board_reverse.max_score += score; }
+        else if (new_color == opposite_color(color)) { board_reverse.min_score += score; }
 
         if (new_color == opposite_color(color)) {
             for (int i{0}; i < flip_coordinates.size(); ++i) {
@@ -62,9 +69,8 @@ int Node::heuristic_value(Board_reverse &board_reverse, Board &board) {
     int corners_captured{0};
     std::pair<int, int> corner = list_corner(board, e_color::BLACK);
 
-    int max_score{(int) board_reverse.matomi.size() + (int) board_reverse.color_to_none.size() / 2 +
-                  (int) board_reverse.color_to_none.size() % 2};
-    int min_score{(int) board_reverse.mitoma.size() + (int) board_reverse.color_to_none.size() / 2};
+    int max_score{board_reverse.max_score};
+    int min_score{board_reverse.min_score};
     int max_mobility{list_mobility(board, e_color::BLACK)};
     int min_mobility{list_mobility(board, e_color::WHITE)};
     int max_corner{corner.first};

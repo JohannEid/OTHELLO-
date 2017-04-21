@@ -28,8 +28,6 @@ public:
 
     int min_max_max(std::shared_ptr<Node> &node);
 
-    //void min_max_value(std::shared_ptr<Node> &state);
-
     int negaMax(std::shared_ptr<Node>& node );
 
     void alpha_beta_search();
