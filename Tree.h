@@ -26,6 +26,12 @@ public:
 
     void min_max_value(std::shared_ptr<Node> &state);
 
+    void alpha_beta_search();
+
+    int alpha_beta_max(std::shared_ptr<Node>& node,int alpha,int beta);
+
+    int alpha_beta_min(std::shared_ptr<Node>& node,int alpha,int beta);
+
     void reverse_action(Board& board, Board_reverse& board_reverse,const e_color& color);
 
 

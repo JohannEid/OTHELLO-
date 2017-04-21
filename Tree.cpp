@@ -87,4 +87,29 @@ void Tree::reverse_action(Board &board, Board_reverse &board_reverse, const e_co
     board.change_color(board_reverse.color_to_none, e_color::NONE);
 }
 
+int Tree::alpha_beta_max(std::shared_ptr<Node>& node,int alpha, int beta) {
+    if(node->isTerminal()){ return node->getValue();}
+    for(auto& elem : node->next){
+        node->setValue(alpha_beta_min(elem,alpha,beta));
+        if(node->getValue() >=beta){return beta;}
+        if(node->getValue()>alpha){alpha = node->getValue();}
+    }
+return alpha;
+}
+
+int Tree::alpha_beta_min(std::shared_ptr<Node>& node,int alpha, int beta) {
+    if(node->isTerminal()){return node->getValue();}
+    for(auto& elem : node->next){
+        node->setValue(alpha_beta_max(elem,alpha,beta));
+        if(node->getValue() <=alpha){return alpha;}
+        if(node->getValue()<beta){beta = node->getValue();}
+
+    }
+    return beta;
+}
+
+void Tree::alpha_beta_search() {
+    alpha_beta_max(base,-INFINITE,INFINITE);
+}
+
 

@@ -8,10 +8,10 @@
 #include "Header.h"
 #include "Board.h"
 
-struct Board_reverse{
-    std::vector<std::pair<int,int>> color_to_none;
-    std::vector <std::pair<int,int>> switch_opponent_to_player;
-    std::vector <std::pair<int,int>> switch_player_to_opponent;
+struct Board_reverse {
+    std::vector<std::pair<int, int>> color_to_none;
+    std::vector<std::pair<int, int>> switch_opponent_to_player;
+    std::vector<std::pair<int, int>> switch_player_to_opponent;
     int value;
 };
 
@@ -21,28 +21,22 @@ private:
     std::pair<int, int> action_position;
     Board simulation;
     e_min_max min_max;
-    int value, id_n;
-    static int id;
+    int value;
     bool terminal;
     std::shared_ptr<Node> prec, min_max_next;
-    std::vector<std::shared_ptr<Node>> next;
-    std::vector<std::pair<int,int>> last_moves;
+    std::vector<std::pair<int, int>> last_moves;
 public:
 
+    std::vector<std::shared_ptr<Node>> next;
 
     Node(const std::pair<int, int> &action_position, e_min_max min_max, int value, bool terminal,
          const std::shared_ptr<Node> &prec, const Board &board, const e_color &color) : action_position(
             action_position), min_max(min_max), value(value),
                                                                                         terminal(terminal), prec(prec),
-                                                                                        simulation(board),
-                                                                                        id_n(Node::id++) {
-    }
-
-    Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,  e_color color,
-         const int& depth);
+                                                                                        simulation(board) {}
 
     Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,
-         const int& value);
+         const int &value);
 
 
     struct Order_node {
@@ -51,8 +45,8 @@ public:
         }
     };
 
-    int value_fonction(const std::vector<std::pair<int, int>> &positon,const Board &board_to_play, const e_color color,
-                       int flip_number,const int& depth) ;
+    int value_fonction(const std::vector<std::pair<int, int>> &positon, const Board &board_to_play, const e_color color,
+                       int flip_number, const int &depth);
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
@@ -70,7 +64,7 @@ public:
         return simulation;
     }
 
-    Board_reverse simulate_play( e_color &color, Board& board,const int& depth) ;
+    Board_reverse simulate_play(e_color &color, Board &board, const int &depth);
 
     e_min_max getMin_max() const {
         return min_max;
@@ -88,10 +82,6 @@ public:
         return prec;
     }
 
-    int getId_n() const {
-        return id_n;
-    }
-
     void setValue(int value) {
         Node::value = value;
     }
@@ -105,7 +95,7 @@ public:
         setValue(min_max_next->getValue());
     }
 
-    void add_moves(const std::pair<int,int>& move){
+    void add_moves(const std::pair<int, int> &move) {
         last_moves.push_back(move);
     }
 

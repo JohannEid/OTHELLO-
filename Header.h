@@ -14,12 +14,13 @@
 #include <queue>
 #include <assert.h>
 #include <iomanip>
+#include <limits>
 
 const int window_width = 960;
 const int window_height = 928;
 const int square_size = 84;
 const int ERROR = 1008;
-const int INFINITE = 0;
+const int INFINITE =std::numeric_limits<int>::max();
 
 
 enum class e_color {

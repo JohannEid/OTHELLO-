@@ -63,6 +63,8 @@ public:
 
     virtual std::vector<std::pair<int, int>> list_choices(const Board &board_to_play, bool is_oppenent = false) const;
 
+    void choose_base(Board& board_to_play,std::shared_ptr<Node>& base);
+
 
 
 };

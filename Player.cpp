@@ -78,19 +78,14 @@ std::vector<std::pair<int, int>> Ai::list_choices(const Board &board_to_play, bo
 
 int Ai::play_turn(Board &board_to_play, sf::RenderWindow &window) {
     std::vector<std::pair<int, int>> flip_coordinates;
-    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     choose_play(board_to_play);
-    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
                                                       getColor());
-    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
-    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     return (int) flip_coordinates.size();
 }
-
 
 void Ai_easy::choose_play(Board &board_to_play) {
 
@@ -119,10 +114,25 @@ void Ai_medium::choose_play(Board &board_to_play) {
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_temp, getColor())),
               3, board_to_play, *this);
-    tree.min_max_algorithm();
+    tree.alpha_beta_search();
+    choose_base(board_to_play, tree.getBase());
+
+    //tree.min_max_algorithm();
     //tree.display_tree(tree.getBase());
-    board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
 }
+
+void Ai::choose_base(Board &board_to_play, std::shared_ptr<Node> &base) {
+    std::vector<std::shared_ptr<Node>>::iterator max_score;
+    std::pair<int, int> action;
+
+    max_score = std::max_element(base->next.begin(), base->next.end(), Node::Order_node());
+
+    action = (base->next[std::distance(base->next.begin(), max_score)])->getAction_position();
+
+    board_to_play.setBase(action);
+
+}
+
 
 
 
