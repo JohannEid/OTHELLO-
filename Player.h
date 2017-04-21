@@ -9,7 +9,9 @@
 #include "Pawn.h"
 #include "Board.h"
 #include "Node.h"
+
 class Tree;
+
 class Player {
 protected:
     std::string name = "Player";
@@ -21,11 +23,10 @@ private:
     void display_player_score(const Board &board) const;
 
 
-
 public:
     Player(e_color color) : color(color) {}
 
-    virtual int play_turn(Board &board_to_play,sf::RenderWindow& window);
+    virtual int play_turn(Board &board_to_play, sf::RenderWindow &window);
 
     bool is_allowed(const Board &board) const;
 
@@ -40,7 +41,8 @@ public:
     void setScore(int score) {
         Player::score = score;
     }
-    int moveSelection(sf::RenderWindow &window,Board& board);
+
+    int moveSelection(sf::RenderWindow &window, Board &board);
 
     void show_targets(Board &to_play) const;
 
@@ -55,16 +57,15 @@ class Ai : public Player {
 
 public:
 
-    Ai(e_color color) : Player(color) {name = "Ai";}
+    Ai(e_color color) : Player(color) { name = "Ai"; }
 
-    int play_turn(Board &board_to_play,sf::RenderWindow& window);
+    int play_turn(Board &board_to_play, sf::RenderWindow &window);
 
     virtual void choose_play(Board &board_to_play) {}
 
     virtual std::vector<std::pair<int, int>> list_choices(const Board &board_to_play, bool is_oppenent = false) const;
 
-    void choose_base(Board& board_to_play,std::shared_ptr<Node>& base);
-
+    void choose_base(Board &board_to_play, std::shared_ptr<Node> &base);
 
 
 };
@@ -74,10 +75,10 @@ private:
 
     void choose_play(Board &board_to_play);
 
-    void display_choice(const std::vector<std::pair<int, int>>& choices) const;
+    void display_choice(const std::vector<std::pair<int, int>> &choices) const;
 
 public:
-    Ai_easy(e_color color) : Ai(color) {}
+    Ai_easy(e_color color) : Ai(color) { name = "eAi"; }
 
 
 };
@@ -89,15 +90,7 @@ private:
 
 public:
 
-    Ai_medium(e_color color) : Ai(color) {}
-
-
-
-
-
-
-
-
+    Ai_medium(e_color color) : Ai(color) { name = "mAi"; }
 };
 
 #endif //OTHELLO_PLAYER_H

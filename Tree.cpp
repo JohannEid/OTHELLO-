@@ -92,6 +92,20 @@ void Tree::min_max_algorithm() {
     min_max_max(base);
 }
 
+void Tree::negaMax_algorithm() {
+    negaMax(base);
+}
+
+int Tree::negaMax(std::shared_ptr<Node> &node) {
+    if (node->isTerminal()) return node->getValue();
+    int max = -INFINITE;
+    for (auto &elem : node->next) {
+        node->setValue(-negaMax(elem));
+        if (node->getValue() > max)
+            max = node->getValue();;
+    }
+    return max;
+}
 
 int Tree::alpha_beta_max(std::shared_ptr<Node> &node, int alpha, int beta) {
     if (node->isTerminal()) { return node->getValue(); }
@@ -117,7 +131,6 @@ int Tree::alpha_beta_min(std::shared_ptr<Node> &node, int alpha, int beta) {
 void Tree::alpha_beta_search() {
     alpha_beta_max(base, -INFINITE, INFINITE);
 }
-
 
 
 

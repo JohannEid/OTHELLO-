@@ -88,6 +88,8 @@ public:
 
     void load_textures();
 
+    void display_score();
+
 
 };
 

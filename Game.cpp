@@ -26,9 +26,8 @@ void Game::game_loop() {
         window.display();
 
     }
-
+    display_score();
     save();
-
 }
 
 
@@ -71,6 +70,9 @@ e_color Game::write_from_file(const char &c) const {
 
 void Game::save() const {
     std::ofstream save_file("save.txt");
+    int ai_number = (getPlayers()[0]->getName() == "eAi") ? 1 :
+                    (getPlayers()[0]->getName() == "mAi") ? 2 :
+                    0;
     assert(save_file.is_open());
     for (int i{1}; i < ROW - 1; ++i) {
         for (int j{1}; j < COL - 1; ++j) {
@@ -82,6 +84,7 @@ void Game::save() const {
     save_file << getBoard().getNumber_of_turn() << std::endl;
     save_file << getPlayers()[0]->getScore() << std::endl;
     save_file << getPlayers()[1]->getScore() << std::endl;
+    save_file << ai_number << std::endl;
     save_file.close();
 }
 
@@ -116,6 +119,8 @@ void Game::load_from_file() {
     set_number_of_turns(temp[0]);
     players[0]->setScore(temp[1]);
     players[1]->setScore(temp[2]);
+    if (temp[3] == 1) { players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK))); }
+    else if (temp[3] == 2) { players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK))); }
 }
 
 void Game::game_menu() {
@@ -206,12 +211,17 @@ void Game::game_play() {
         my_audio.playSoundEffet();
         turn_play(*players[player_index], *players[opponent_index]);
         player_index = opponent_index;
-    } else if (players[player_index]->getName() == "Ai") {
+    } else if (players[player_index]->getName() != "Player") {
         turn_play(*players[player_index], *players[opponent_index]);
         player_index = opponent_index;
     }
 
 
+}
+
+void Game::display_score() {
+    std::cout << "China has a score of:" << players[0]->getScore() << std::endl;
+    std::cout << "US has a score of:" << players[1]->getScore() << std::endl;
 }
 
 
@@ -228,8 +238,8 @@ void Audio::playMusic() {
 
 void Audio::playSoundEffet() {
     sound_roll_dice.play();
-
 }
+
 
 
 
