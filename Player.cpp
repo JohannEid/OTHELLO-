@@ -78,12 +78,16 @@ std::vector<std::pair<int, int>> Ai::list_choices(const Board &board_to_play, bo
 
 int Ai::play_turn(Board &board_to_play, sf::RenderWindow &window) {
     std::vector<std::pair<int, int>> flip_coordinates;
+    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     choose_play(board_to_play);
+    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     flip_coordinates = board_to_play.get_encirclement(board_to_play.getBase().first,
                                                       board_to_play.getBase().second,
                                                       getColor());
+    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     board_to_play.set_color(board_to_play.getBase().first, board_to_play.getBase().second, getColor());
     board_to_play.change_color(flip_coordinates, getColor());
+    if (board_to_play.getBoard(5, 5).getColor() == e_color::WHITE) { std::cout << "is white" << std::endl; }
     return (int) flip_coordinates.size();
 }
 
@@ -108,18 +112,16 @@ void Ai_easy::display_choice(const std::vector<std::pair<int, int>> &choices) co
 }
 
 void Ai_medium::choose_play(Board &board_to_play) {
+
+    Board board_temp = board_to_play;
     board_to_play.setNumber_of_turn(0);
+
     Tree tree(std::make_shared<Node>(
-            Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_to_play, getColor())),
+            Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_temp, getColor())),
               3, board_to_play, *this);
-
     tree.min_max_algorithm();
-    tree.display_tree(tree.getBase());
-    std::cout << "the best value for this turn is : " << tree.getBase()->getValue() << std::endl;
-    std::cout << tree.getBase()->getMin_max_next()->getAction_position().first
-              << tree.getBase()->getMin_max_next()->getAction_position().second << std::endl;
+    //tree.display_tree(tree.getBase());
     board_to_play.setBase(tree.getBase()->getMin_max_next()->getAction_position());
-
 }
 
 

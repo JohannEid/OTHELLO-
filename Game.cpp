@@ -197,7 +197,6 @@ void Game::game_play() {
     int opponent_index = (player_index == 1) ? 0 : 1;
 
     if (is_end()) {
-
         getchar();
         window.close();
     } else if (!getPlayers()[player_index]->is_allowed(getBoard())) {

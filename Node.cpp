@@ -13,8 +13,6 @@ Board_reverse Node::simulate_play(e_color &color, Board &board, const int &depth
     Board_reverse board_reverse;
     std::vector<std::pair<int, int>> flip_coordinates;
     e_color new_color = color;
-    std::cout << "Last moves::" << getLast_moves().size() << std::endl;
-
     for (int i{0}; i < getLast_moves().size(); ++i) {
 
         new_color = (i % 2 == 0) ? color : opposite_color(color);
@@ -52,7 +50,7 @@ Node::value_fonction(const std::vector<std::pair<int, int>> &positon, const Boar
 
 
 Node::Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,
-           const int &value) : value(value),prec(prec) {
+           const int &value) : value(value), prec(prec), action_position(action_position) {
     terminal = (value != INFINITE);
     min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
     last_moves = prec->getLast_moves();
