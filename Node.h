@@ -23,7 +23,7 @@ private:
     e_min_max min_max;
     int value;
     bool terminal;
-    std::shared_ptr<Node> prec, min_max_next;
+    std::shared_ptr<Node> prec;
     std::vector<std::pair<int, int>> last_moves;
 public:
 
@@ -45,8 +45,7 @@ public:
         }
     };
 
-    int value_fonction(const std::vector<std::pair<int, int>> &positon, const Board &board_to_play, const e_color color,
-                       int flip_number, const int &depth);
+    int heuristic_value(Board_reverse &board_reverse, Board &board);
 
     const std::pair<int, int> &getAction_position() const {
         return action_position;
@@ -86,15 +85,6 @@ public:
         Node::value = value;
     }
 
-    const std::shared_ptr<Node> &getMin_max_next() const {
-        return min_max_next;
-    }
-
-    void setMin_max_next(const std::shared_ptr<Node> &min_max_next) {
-        Node::min_max_next = min_max_next;
-        setValue(min_max_next->getValue());
-    }
-
     void add_moves(const std::pair<int, int> &move) {
         last_moves.push_back(move);
     }
@@ -102,6 +92,11 @@ public:
     const std::vector<std::pair<int, int>> &getLast_moves() const {
         return last_moves;
     }
+
+    int list_mobility(const Board &board_to_play, const e_color &color) const;
+
+    std::pair<int, int> list_corner(const Board &board_to_play, const e_color &color);
+
 
 };
 
