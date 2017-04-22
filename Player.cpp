@@ -113,12 +113,11 @@ void Ai_medium::choose_play(Board &board_to_play) {
 
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_temp, getColor())),
-              5, board_temp, *this);
-    tree.negaMax_algorithm();
+              4, board_temp, *this);
+    tree.alpha_beta_search();
+    //tree.display_tree(tree.getBase(),board_temp);
     choose_base(board_to_play, tree.getBase());
 
-    //tree.min_max_algorithm();
-    //tree.display_tree(tree.getBase());
 }
 
 void Ai::choose_base(Board &board_to_play, std::shared_ptr<Node> &base) {

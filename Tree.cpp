@@ -114,7 +114,7 @@ int Tree::alpha_beta_max(std::shared_ptr<Node> &node, int alpha, int beta) {
     if (node->isTerminal()) { return node->getValue(); }
     for (auto &elem : node->next) {
         node->setValue(alpha_beta_min(elem, alpha, beta));
-        if (node->getValue() >= beta) { std::cout <<"CUT OFF "<<std::endl;return beta; }
+        if (node->getValue() >= beta) { return beta; }
         if (node->getValue() > alpha) { alpha = node->getValue(); }
     }
     return alpha;
@@ -124,7 +124,7 @@ int Tree::alpha_beta_min(std::shared_ptr<Node> &node, int alpha, int beta) {
     if (node->isTerminal()) { return -node->getValue(); }
     for (auto &elem : node->next) {
         node->setValue(alpha_beta_max(elem, alpha, beta));
-        if (node->getValue() <= alpha) { std::cout <<"CUT OFF "<<std::endl; return alpha; }
+        if (node->getValue() <= alpha) {return alpha; }
         if (node->getValue() < beta) { beta = node->getValue(); }
 
     }

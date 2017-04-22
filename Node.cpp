@@ -55,7 +55,7 @@ Board_reverse Node::simulate_play(e_color &color, Board &board, const int &depth
 }
 
 
-Node::Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,
+Node::Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node>& prec,
            const int &value) : value(value), prec(prec), action_position(action_position) {
     terminal = (value != INFINITE);
     min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;

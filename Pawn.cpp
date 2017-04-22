@@ -18,6 +18,9 @@ void Tile::init_tile(const int &ind_lhs, const int &ind_rhs) {
         setColor(e_color::WHITE);
         setWidget('O');
     }
+    else{
+        setColor(e_color::NONE);
+    }
 
 }
 

@@ -36,7 +36,7 @@ public:
                                                                                         terminal(terminal), prec(prec)
                                                                                         {}
 
-    Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> prec,
+    Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node>& prec,
          const int &value);
 
 

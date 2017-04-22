@@ -18,8 +18,14 @@ void Game::game_loop() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
+
+            if (state == 1) { window.setMouseCursorVisible(false); }
+            if (state == 0) { window.setMouseCursorVisible(true); }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape && state == 1) {
+                board.reinitialise();
+                state = 0;
+            }
         }
-        if (state == 1) { window.setMouseCursorVisible(false); }
         custom_cursor(player_index);
         window.clear();
         display(player_index);
@@ -130,15 +136,19 @@ void Game::game_menu() {
     if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left) {
 
         if ((mouse_pos.x >= HvHxl && mouse_pos.x <= HvHxr) && (mouse_pos.y >= HvHyl && mouse_pos.y <= HvHyr)) {
+            players[0] = std::move(std::make_unique<Player>(Player(e_color::BLACK)));
+            players[1] = std::move(std::make_unique<Player>(Player(e_color::WHITE)));
             state = 1;
         } else if ((mouse_pos.x >= AIexl && mouse_pos.x <= AIexr) && (mouse_pos.y >= AIeyl && mouse_pos.y <= AIeyr)) {
             players[0] = std::move(std::make_unique<Ai_easy>(Ai_easy(e_color::BLACK)));
+            players[1] = std::move(std::make_unique<Player>(Player(e_color::WHITE)));
             state = 1;
         } else if ((mouse_pos.x >= AImxl && mouse_pos.x <= AImxr) && (mouse_pos.y >= AImyl && mouse_pos.y <= AImyr)) {
             players[0] = std::move(std::make_unique<Ai_medium>(Ai_medium(e_color::BLACK)));
+            players[1] = std::move(std::make_unique<Player>(Player(e_color::WHITE)));
             state = 1;
         } else if ((mouse_pos.x >= AIhxl && mouse_pos.x <= AIhxr) && (mouse_pos.y >= AIhyl && mouse_pos.y <= AIhyr)) {
-            state = 1;
+            window.close();
         } else if ((mouse_pos.x >= SAVExl && mouse_pos.x <= SAVExr) &&
                    (mouse_pos.y >= SAVEyl && mouse_pos.y <= SAVEyr)) {
             load_from_file();

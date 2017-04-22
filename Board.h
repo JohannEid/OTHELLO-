@@ -75,6 +75,8 @@ public:
 
     void display_(const e_color &color, const int &value,const int& indent) const;
 
+    void reinitialise();
+
  //   friend std::ostream& operator<< (std::ostream& stream, const Board& matrix);
 
 };

@@ -14,7 +14,6 @@ Board::Board() {
             othellier[i][j].init_tile(i, j);
         }
     }
-
 }
 
 void Board::change_color(const std::vector<std::pair<int, int>> &coord_to_change,
@@ -89,4 +88,13 @@ void Board::display_ (const e_color &color, const int &value,const int& indent) 
         std::cout << std::endl;
     }
     std::cout << "Value:" << value << std::endl;
+}
+
+void Board::reinitialise() {
+    for (int i{0}; i < COL; ++i) {
+        for (int j{0}; j < ROW; ++j) {
+            othellier[i][j].init_tile(i, j);
+        }
+    }
+
 }
