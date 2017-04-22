@@ -6,8 +6,6 @@
 #include "Player.h"
 
 Board::Board() {
-    assert (texture_board.loadFromFile("sprites/board_v3.png"));
-    sprite_board.setTexture(texture_board);
     othellier.resize(COL, std::vector<Tile>(ROW, Tile()));
     for (int i{0}; i < COL; ++i) {
         for (int j{0}; j < ROW; ++j) {
@@ -131,5 +129,14 @@ bool Board::is_stable() const  {
                 return true;
         }
         return  false;
+
+}
+
+void Board::set_sprite(const sf::Texture &texture, const int &coordx, const int &coordy) {
+    othellier[coordx][coordy].set_sprite(texture);
+}
+
+void Board::set_sprite_target(const sf::Texture &texture, const int &coordx, const int &coordy) {
+    othellier[coordx][coordy].set_sprite_target(texture);
 
 }

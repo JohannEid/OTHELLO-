@@ -117,7 +117,7 @@ void Ai_medium::choose_play(Board &board_to_play) {
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_temp, getColor())),
               3, board_temp, *this);
     tree.alpha_beta_search();
-    //tree.display_tree(tree.getBase(),board_temp);
+    tree.display_tree(tree.getBase(),board_temp);
     choose_base(board_to_play, tree.getBase());
 
 }

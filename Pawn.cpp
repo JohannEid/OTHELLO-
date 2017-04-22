@@ -4,6 +4,8 @@
 
 #include "Pawn.h"
 
+
+
 void Tile::init_tile(const int &ind_lhs, const int &ind_rhs) {
 
 
@@ -29,15 +31,10 @@ void Tile::setColor(e_color color) {
     //std::cout <<"called walla"<<std::endl;
     (color != e_color::NONE) ? setWidget('O') : setWidget('\0');
     Tile::color = color;
-    if (Tile::color == e_color::BLACK) { assert(pawn_texture.loadFromFile("sprites/chinese_flag.png")); }
-    else { assert(pawn_texture.loadFromFile("sprites/usa_flag.png")); }
-    pawn_sprite.setTexture(pawn_texture);
 
 }
 
 void Tile::setTarget(bool target) {
-    assert(target_texture.loadFromFile("sprites/target.png"));
-    target_sprite.setTexture(target_texture);
     Tile::target = target;
 
 }

@@ -91,6 +91,13 @@ public:
 
     bool is_stable() const;
 
+    void set_board_sprite(sf::Texture& texure){sprite_board.setTexture(texure);}
+
+    void set_sprite(const sf::Texture& texture,const int& coordx,const int& coordy);
+
+    void set_sprite_target(const sf::Texture& texture,const int& coordx,const int& coordy);
+
+
     //   friend std::ostream& operator<< (std::ostream& stream, const Board& matrix);
 
 };

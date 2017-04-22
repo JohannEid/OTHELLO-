@@ -55,6 +55,11 @@ public:
 
     void setSpritePosition_target(const int &x, const int &y) { target_sprite.setPosition(x, y); }
 
+    void set_sprite(const sf::Texture& texture){pawn_sprite.setTexture(texture);}
+
+    void set_sprite_target(const sf::Texture& texture){target_sprite.setTexture(texture);}
+
+
 };
 
 

@@ -162,11 +162,13 @@ void Game::game_menu() {
 
 
 Game::Game() {
+    texture_manager.load_texture();
     load_textures();
-    window.create(sf::VideoMode(window_width, window_height), "JChess");
+    window.create(sf::VideoMode(window_width, window_height), "Othello");
     my_audio.createAudio("sounds/satie_je_te_veux.wav", "sounds/redneck_roll_dice.wav");
     players.push_back(std::make_unique<Player>(Player(e_color::BLACK)));
     players.push_back(std::make_unique<Player>(Player(e_color::WHITE)));
+    board.set_board_sprite(texture_manager.texture[4]);
 }
 
 void Game::display(int index_player) {
@@ -179,9 +181,16 @@ void Game::display(int index_player) {
         for (int i{1}; i < ROW - 1; ++i)
             for (int j{1}; j < COL - 1; ++j) {
                 if (getBoard().getBoard(i, j).getColor() != e_color::NONE) {
+                    if (board.getBoard(i, j).getColor() == e_color::BLACK) {
+                        board.set_sprite(texture_manager.texture[0], i, j);
+
+                    } else if (board.getBoard(i, j).getColor() == e_color::WHITE) {
+                        board.set_sprite(texture_manager.texture[1], i, j);
+                    }
                     board.set_sprite_position(i, j);
                     window.draw(board.getBoard(i, j).getPawn_sprite());
                 } else if (getBoard().getBoard(i, j).isTarget()) {
+                    board.set_sprite_target(texture_manager.texture[2], i, j);
                     board.set_sprite_position_target(i, j);
                     window.draw(board.getBoard(i, j).getTarget_sprite());
                 }
@@ -200,12 +209,13 @@ void Game::custom_cursor(const int &player_index) {
 }
 
 void Game::load_textures() {
-    assert(textures[0].loadFromFile("sprites/chinese_flag.png"));
-    assert(textures[1].loadFromFile("sprites/usa_flag.png"));
-    assert(textures[2].loadFromFile("sprites/menu_screen_v3.png"));
-    for (int i{0}; i < 3; ++i) {
-        sprite[i].setTexture(textures[i]);
-    }
+
+        sprite[0].setTexture(texture_manager.texture[0]);
+        sprite[1].setTexture(texture_manager.texture[1]);
+    sprite[2].setTexture(texture_manager.texture[3]);
+
+
+
 
 }
 

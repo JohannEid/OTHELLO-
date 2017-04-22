@@ -53,6 +53,7 @@ private:
 
     int player_index;
 
+    Texture_manager texture_manager;
 
 public:
 

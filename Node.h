@@ -8,6 +8,8 @@
 #include "Header.h"
 #include "Board.h"
 
+
+
 struct Board_reverse {
     std::vector<std::pair<int, int>> color_to_none;
     std::vector<std::pair<int, int>> mitoma;
@@ -27,7 +29,7 @@ private:
     std::shared_ptr<Node> prec;
     std::vector<std::pair<int, int>> last_moves;
 
-    int heuristic_forumula(const int& max , const int& min );
+    int heuristic_forumula(const int &max, const int &min);
 
 public:
 
@@ -36,10 +38,10 @@ public:
     Node(const std::pair<int, int> &action_position, e_min_max min_max, int value, bool terminal,
          const std::shared_ptr<Node> &prec, const Board &board, const e_color &color) : action_position(
             action_position), min_max(min_max), value(value),
-                                                                                        terminal(terminal), prec(prec)
-                                                                                        {}
+                                                                                        terminal(terminal),
+                                                                                        prec(prec) {}
 
-    Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node>& prec,
+    Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> &prec,
          const int &value);
 
 
@@ -97,11 +99,11 @@ public:
 
     std::pair<int, int> list_corner(const Board &board_to_play, const e_color &color) const;
 
-    std::pair<int,int> evaluate_stability(const Board& board_to_play) const ;
+    std::pair<int, int> evaluate_stability(const Board &board_to_play) const;
 
-    int evaluate_stability_row(const int& coordx,const int& coordy,const Board& board) const;
+    int evaluate_stability_row(const int &coordx, const int &coordy, const Board &board) const;
 
-    int evaluate_stability_neigh(const int& coordx,const int& coordy,const Board& board) const;
+    int evaluate_stability_neigh(const int &coordx, const int &coordy, const Board &board) const;
 
 
 };

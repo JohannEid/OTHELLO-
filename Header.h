@@ -67,6 +67,20 @@ constexpr e_color opposite_color(const e_color &color) {
 inline bool is_found(const std::vector<std::pair<int, int>> vector, const std::pair<int, int> item) {
     return (std::find(vector.begin(), vector.end(), item) != vector.end());
 }
+struct Texture_manager {
+    sf::Texture texture[5];
+
+    void load_texture() {
+        assert(texture[0].loadFromFile("sprites/chinese_flag.png"));
+        assert(texture[1].loadFromFile("sprites/usa_flag.png"));
+        assert(texture[2].loadFromFile("sprites/target.png"));
+        assert(texture[3].loadFromFile("sprites/menu_screen_v3.png"));
+        assert(texture[4].loadFromFile("sprites/board_v3.png"));
+
+    }
+
+};
+
 
 const int HvHxl = 350;
 const int HvHxr = 635;
