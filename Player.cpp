@@ -55,6 +55,8 @@ int Player::moveSelection(sf::RenderWindow &window, Board &board) {
     int x{(mouse_pos.x - SHIFTX) / square_size + 1};
     int y{(mouse_pos.y - SHIFY) / square_size + 1};
 
+    std::cout <<x<<y<<std::endl;
+
     if (is_in_board(x, y)) {
         if (board.getBoard(x, y).isTarget() && board.getBoard(x, y).getColor() == e_color::NONE) {
             board.setBase(std::make_pair(x, y));
@@ -113,7 +115,7 @@ void Ai_medium::choose_play(Board &board_to_play) {
 
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_temp, getColor())),
-              4, board_temp, *this);
+              3, board_temp, *this);
     tree.alpha_beta_search();
     //tree.display_tree(tree.getBase(),board_temp);
     choose_base(board_to_play, tree.getBase());

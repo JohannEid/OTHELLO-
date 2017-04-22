@@ -54,7 +54,8 @@ std::vector<std::pair<int, int>> Board::get_encirclement
                 }
             } else {
                 keep = false;
-                break; }
+                break;
+            }
         }
         if (keep) {
             post_temp.insert(post_temp.end(), temp.begin(), temp.end());
@@ -66,12 +67,12 @@ std::vector<std::pair<int, int>> Board::get_encirclement
 }
 
 bool Board::is_playable(const int &coordx, const int &coordy, e_color play_color) const {
-    if(getBoard(coordx,coordy).getColor() != e_color ::NONE){return false;}
-   else {return get_encirclement(coordx,coordy,play_color).size() >= 1;}
+    if (getBoard(coordx, coordy).getColor() != e_color::NONE) { return false; }
+    else { return get_encirclement(coordx, coordy, play_color).size() >= 1; }
 
 }
 
-void Board::display_ (const e_color &color, const int &value,const int& indent) const {
+void Board::display_(const e_color &color, const int &value, const int &indent) const {
     std::string s_color = (color == e_color::WHITE) ? "White" : "Black";
     //clearconsole();
     std::cout << "Turn of " << s_color << std::endl;
@@ -91,10 +92,25 @@ void Board::display_ (const e_color &color, const int &value,const int& indent) 
 }
 
 void Board::reinitialise() {
+    white_pawn = {std::make_pair(4, 4), std::make_pair(5, 5)};
+    black_pawn = {std::make_pair(4, 5), std::make_pair(5, 4)};
     for (int i{0}; i < COL; ++i) {
         for (int j{0}; j < ROW; ++j) {
             othellier[i][j].init_tile(i, j);
         }
     }
 
+}
+
+void Board::set_color(const int &coordx, const int &coordy, const e_color &color) {
+    othellier[coordx][coordy].setColor(color);
+    if (color == e_color::WHITE) {
+        white_pawn.push_back(std::make_pair(coordx, coordy));
+        black_pawn.erase(std::remove(black_pawn.begin(), black_pawn.end(), std::make_pair(coordx, coordy)),
+                         black_pawn.end());
+    } else if (color == e_color::BLACK) {
+        black_pawn.push_back(std::make_pair(coordx, coordy));
+        white_pawn.erase(std::remove(white_pawn.begin(), white_pawn.end(), std::make_pair(coordx, coordy)),
+                         white_pawn.end());
+    }
 }

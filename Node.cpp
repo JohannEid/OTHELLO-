@@ -55,7 +55,7 @@ Board_reverse Node::simulate_play(e_color &color, Board &board, const int &depth
 }
 
 
-Node::Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node>& prec,
+Node::Node(const std::pair<int, int> &action_position, const std::shared_ptr<Node> &prec,
            const int &value) : value(value), prec(prec), action_position(action_position) {
     terminal = (value != INFINITE);
     min_max = (prec->getMin_max() == e_min_max::MAX) ? e_min_max::MIN : e_min_max::MAX;
@@ -109,6 +109,16 @@ std::pair<int, int> Node::list_corner(const Board &board_to_play, const e_color 
                  opposite_color(color)) { ++min_corner_number; }
     }
     return std::make_pair(max_corner_number, min_corner_number);
+}
+
+std::pair<int, int> Node::evaluate_stability(const Board &board) {
+    int max_stable{0};
+    int min_stable{0};
+    if (board.getBoard(1, 1).getColor() == e_color::NONE && board.getBoard(1, 8).getColor() == e_color::NONE &&
+        board.getBoard(8, 1).getColor() == e_color::NONE && board.getBoard(8, 8).getColor() == e_color::NONE) {
+        return std::make_pair(max_stable, min_stable);
+    }
+    //for(int i})
 }
 
 

@@ -94,6 +94,8 @@ public:
 
     std::pair<int, int> list_corner(const Board &board_to_play, const e_color &color);
 
+    std::pair<int,int> evaluate_stability(const Board& board_to_play);
+
 
 };
 

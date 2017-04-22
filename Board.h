@@ -18,6 +18,8 @@ private:
     std::pair<int, int> base = std::make_pair(1, 1);
     sf::Sprite sprite_board;
     sf::Texture texture_board;
+    std::vector<std::pair<int, int>> white_pawn = {std::make_pair(4, 4), std::make_pair(5, 5)};
+    std::vector<std::pair<int, int>> black_pawn = {std::make_pair(4, 5), std::make_pair(5, 4)};
 
 public:
     Board();
@@ -38,9 +40,7 @@ public:
         number_of_turn++;
     }
 
-    void set_color(const int &coordx, const int &coordy, const e_color &color) {
-        othellier[coordx][coordy].setColor(color);
-    }
+    void set_color(const int &coordx, const int &coordy, const e_color &color);
 
     void setTarget(const int &coordx, const int &coordy, const bool &is_target) {
         othellier[coordx][coordy].setTarget(is_target);
@@ -73,11 +73,19 @@ public:
     }
 
 
-    void display_(const e_color &color, const int &value,const int& indent) const;
+    void display_(const e_color &color, const int &value, const int &indent) const;
 
     void reinitialise();
 
- //   friend std::ostream& operator<< (std::ostream& stream, const Board& matrix);
+    const std::vector<std::pair<int, int>> &getWhite_pawn() const {
+        return white_pawn;
+    }
+
+    const std::vector<std::pair<int, int>> &getBlack_pawn() const {
+        return black_pawn;
+    }
+
+    //   friend std::ostream& operator<< (std::ostream& stream, const Board& matrix);
 
 };
 
