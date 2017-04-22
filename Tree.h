@@ -28,7 +28,7 @@ public:
 
     int min_max_max(std::shared_ptr<Node> &node);
 
-    int negaMax(std::shared_ptr<Node>& node );
+    int negaMax(std::shared_ptr<Node> &node);
 
     void alpha_beta_search();
 
@@ -66,7 +66,7 @@ public:
     }
 
 
-    void display_tree(const std::shared_ptr<Node> &node,Board& board);
+    void display_tree(const std::shared_ptr<Node> &node, Board &board);
 };
 
 

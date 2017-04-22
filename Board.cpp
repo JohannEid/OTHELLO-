@@ -92,8 +92,7 @@ void Board::display_(const e_color &color, const int &value, const int &indent) 
 }
 
 void Board::reinitialise() {
-    white_pawn = {std::make_pair(4, 4), std::make_pair(5, 5)};
-    black_pawn = {std::make_pair(4, 5), std::make_pair(5, 4)};
+    reintialise_pawn_track();
     for (int i{0}; i < COL; ++i) {
         for (int j{0}; j < ROW; ++j) {
             othellier[i][j].init_tile(i, j);
@@ -112,5 +111,16 @@ void Board::set_color(const int &coordx, const int &coordy, const e_color &color
         black_pawn.push_back(std::make_pair(coordx, coordy));
         white_pawn.erase(std::remove(white_pawn.begin(), white_pawn.end(), std::make_pair(coordx, coordy)),
                          white_pawn.end());
+    } else if (color == e_color::NONE) {
+        white_pawn.erase(std::remove(white_pawn.begin(), white_pawn.end(), std::make_pair(coordx, coordy)),
+                         white_pawn.end());
+        black_pawn.erase(std::remove(black_pawn.begin(), black_pawn.end(), std::make_pair(coordx, coordy)),
+                         black_pawn.end());
     }
+}
+
+void Board::reintialise_pawn_track(const std::vector<std::pair<int, int>> &black_pawn,
+                                   const std::vector<std::pair<int, int>> &white_pawn) {
+    Board::white_pawn = white_pawn;
+    Board::black_pawn = black_pawn;
 }

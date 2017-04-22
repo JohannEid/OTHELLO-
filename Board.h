@@ -77,6 +77,10 @@ public:
 
     void reinitialise();
 
+    void reintialise_pawn_track(
+            const std::vector<std::pair<int, int>> &black_pawn = {std::make_pair(4, 5), std::make_pair(5, 4)},
+            const std::vector<std::pair<int, int>> &white_pawn = {std::make_pair(4, 4), std::make_pair(5, 5)});
+
     const std::vector<std::pair<int, int>> &getWhite_pawn() const {
         return white_pawn;
     }

@@ -31,8 +31,6 @@ void Game::game_loop() {
         window.clear();
         display(player_index);
         window.display();
-        std::cout<<board.getBlack_pawn().size()<<board.getWhite_pawn().size()<<std::endl;
-
 
     }
     display_score();
@@ -234,7 +232,8 @@ void Game::game_play() {
 
 void Game::display_score() {
     std::cout << "China has a score of:" << players[0]->getScore() << std::endl;
-    std::cout << "US has a score of:" << players[1]->getScore() << std::endl; }
+    std::cout << "US has a score of:" << players[1]->getScore() << std::endl;
+}
 
 
 void Audio::createAudio(const std::string &background_music_file, const std::string &buffer_roll_dice_file) {

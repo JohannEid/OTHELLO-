@@ -24,7 +24,7 @@ void Tree::display_tree(const std::shared_ptr<Node> &node, Board &board) {
             player_color = (turn % 2 == 0) ? e_color::WHITE : e_color::BLACK;
             indentation = 100 / (int) queue.front()->getNext().size();
             board_reverse = elem->simulate_play(player_color, board, getDepth());
-            board.display_(player_color, elem->getValue(),indentation);
+            board.display_(player_color, elem->getValue(), indentation);
             reverse_action(board, board_reverse, player_color);
             queue.push(elem);
         }
@@ -32,6 +32,7 @@ void Tree::display_tree(const std::shared_ptr<Node> &node, Board &board) {
 
     }
 }
+
 Tree::Tree(const std::shared_ptr<Node> &base, int depth, Board &board, Ai &ai) :
         base(base), depth(depth) {
     update_tree(Tree::base, ai, board);
@@ -48,8 +49,7 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
     int value{board_reverse.value};
 
     if (node->isTerminal()) {
-        reverse_action(board, board_reverse, player_col);
-    }
+        reverse_action(board, board_reverse, player_col); }
 
     if (!node->isTerminal()) {
         for (const auto &elem : ai.list_choices(board, is_opponent)) {
@@ -124,7 +124,7 @@ int Tree::alpha_beta_min(std::shared_ptr<Node> &node, int alpha, int beta) {
     if (node->isTerminal()) { return -node->getValue(); }
     for (auto &elem : node->next) {
         node->setValue(alpha_beta_max(elem, alpha, beta));
-        if (node->getValue() <= alpha) {return alpha; }
+        if (node->getValue() <= alpha) { return alpha; }
         if (node->getValue() < beta) { beta = node->getValue(); }
 
     }
