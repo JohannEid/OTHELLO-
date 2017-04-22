@@ -20,7 +20,7 @@ const int window_width = 960;
 const int window_height = 928;
 const int square_size = 84;
 const int ERROR = 1008;
-const int INFINITE =std::numeric_limits<int>::max();
+const int INFINITE = std::numeric_limits<int>::max();
 
 
 enum class e_color {
@@ -48,6 +48,13 @@ const std::list<std::pair<int, int>> check_coordinates{std::make_pair(1, 0), std
                                                        std::make_pair(1, 1), std::make_pair(-1, -1),
                                                        std::make_pair(1, -1), std::make_pair(-1, 1)};
 
+const std::list<std::pair<int, int>> key_stability_positions{
+        std::make_pair(1, 1), std::make_pair(1, 2), std::make_pair(2, 1),
+        std::make_pair(1, 8), std::make_pair(2, 8), std::make_pair(1, 7),
+        std::make_pair(8, 1), std::make_pair(8, 2), std::make_pair(7, 1),
+        std::make_pair(8, 8), std::make_pair(8, 7), std::make_pair(7, 8),
+};
+
 constexpr bool is_in_board(const int &coordx, const int &coordy) {
     return coordx <= ROW - 2 && coordx >= 1 && coordy <= COL - 2 && coordy >= 1;
 }
@@ -57,8 +64,8 @@ constexpr e_color opposite_color(const e_color &color) {
     return (color == e_color::WHITE) ? e_color::BLACK : e_color::WHITE;
 }
 
-inline bool is_found(const std::vector<std::pair<int, int>> vector, const std::pair<int, int> item)  {
-    return  ( std::find(vector.begin(), vector.end(), item) != vector.end());
+inline bool is_found(const std::vector<std::pair<int, int>> vector, const std::pair<int, int> item) {
+    return (std::find(vector.begin(), vector.end(), item) != vector.end());
 }
 
 const int HvHxl = 350;
@@ -87,6 +94,6 @@ const int SAVEyl = 811;
 const int SAVEyr = 827;
 
 const int SHIFTX = 120;
-const int SHIFY  = 110;
+const int SHIFY = 110;
 
 #endif //OTHELLO_HEADER_H

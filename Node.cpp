@@ -67,7 +67,9 @@ int Node::heuristic_value(Board_reverse &board_reverse, Board &board) {
     int coin_parity{0};
     int mobility_value{0};
     int corners_captured{0};
+    int stability_value{0};
     std::pair<int, int> corner = list_corner(board, e_color::BLACK);
+    std::pair<int, int> stability = evaluate_stability(board);
 
     int max_score{board_reverse.max_score};
     int min_score{board_reverse.min_score};
@@ -75,15 +77,15 @@ int Node::heuristic_value(Board_reverse &board_reverse, Board &board) {
     int min_mobility{list_mobility(board, e_color::WHITE)};
     int max_corner{corner.first};
     int min_corner{corner.second};
+    int max_stable{stability.first};
+    int min_stable{stability.second};
 
 
     coin_parity = 100 * (max_score - min_score) / (max_score + min_score);
-    mobility_value = (max_mobility + min_mobility != 0) ? 100 * (max_mobility - min_mobility) /
-                                                          (max_mobility + min_mobility) : 0;
-    corners_captured = (max_corner + min_corner != 0) ? 100 * (max_corner - min_corner) / (max_corner + min_corner)
-                                                      : 0;
-
-    return coin_parity + mobility_value + corners_captured;
+    mobility_value = heuristic_forumula(max_mobility, min_mobility);
+    corners_captured = heuristic_forumula(max_corner, min_corner);
+    stability_value = heuristic_forumula(max_stable, min_stable);
+    return coin_parity + mobility_value + corners_captured + stability_value;
 
 
 }
@@ -98,7 +100,7 @@ int Node::list_mobility(const Board &board_to_play, const e_color &color) const 
     return mobility;
 }
 
-std::pair<int, int> Node::list_corner(const Board &board_to_play, const e_color &color) {
+std::pair<int, int> Node::list_corner(const Board &board_to_play, const e_color &color) const {
     int max_corner_number{0};
     int min_corner_number{0};
     std::vector<std::pair<int, int>> corners{std::make_pair(1, 1), std::make_pair(1, 8),
@@ -111,14 +113,62 @@ std::pair<int, int> Node::list_corner(const Board &board_to_play, const e_color 
     return std::make_pair(max_corner_number, min_corner_number);
 }
 
-std::pair<int, int> Node::evaluate_stability(const Board &board) {
+std::pair<int, int> Node::evaluate_stability(const Board &board) const {
     int max_stable{0};
     int min_stable{0};
-    if (board.getBoard(1, 1).getColor() == e_color::NONE && board.getBoard(1, 8).getColor() == e_color::NONE &&
-        board.getBoard(8, 1).getColor() == e_color::NONE && board.getBoard(8, 8).getColor() == e_color::NONE) {
+
+    if (!board.is_stable()) {
         return std::make_pair(max_stable, min_stable);
     }
-    //for(int i})
+
+    for (auto &elem : board.getBlack_pawn()) {
+        max_stable += evaluate_stability_row(elem.first, elem.second, board);
+    }
+    for (auto &elem : board.getWhite_pawn()) {
+        min_stable += evaluate_stability_row(elem.first, elem.second, board);
+    }
+    return std::make_pair(max_stable, min_stable);
+}
+
+int Node::evaluate_stability_row(const int &coordx, const int &coordy, const Board &board) const {
+    int checkx{0};
+    int checky{0};
+
+    for (const auto &elem : check_coordinates) {
+        checkx = coordx;
+        checky = coordy;
+        while (true) {
+            if (is_in_board(checkx += elem.first, checky += elem.second)) {
+                if (board.getBoard(checkx, checky).getColor() == e_color::NONE) {
+                    return evaluate_stability_neigh(coordx, coordy, board);
+                }
+
+            } else { break; }
+        }
+    }
+    return 1;
+}
+
+int Node::evaluate_stability_neigh(const int &coordx, const int &coordy, const Board &board) const {
+    e_color color = board.getBoard(coordx, coordy).getColor();
+    if ((board.getBoard(coordx + 1, coordy).getColor() == color ||
+         board.getBoard(coordx - 1, coordy).getColor() == color)
+        && (board.getBoard(coordx, coordy + 1).getColor() == color ||
+            board.getBoard(coordx, coordy - 1).getColor() == color)
+        && (board.getBoard(coordx + 1, coordy + 1).getColor() == color ||
+            board.getBoard(coordx - 1, coordy - 1).getColor() == color)
+        && (board.getBoard(coordx - 1, coordy + 1).getColor() == color ||
+            board.getBoard(coordx + 1, coordy - 1).getColor() == color)) {
+        return 1;
+    }
+    return 0;
+}
+
+int Node::heuristic_forumula(const int &max, const int &min) {
+    int value = (max + min != 0) ? 100 * (max - min) / (max + min)
+                                 : 0;
+    return value;
+
 }
 
 

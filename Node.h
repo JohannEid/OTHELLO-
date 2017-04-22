@@ -26,6 +26,9 @@ private:
     bool terminal;
     std::shared_ptr<Node> prec;
     std::vector<std::pair<int, int>> last_moves;
+
+    int heuristic_forumula(const int& max , const int& min );
+
 public:
 
     std::vector<std::shared_ptr<Node>> next;
@@ -92,9 +95,13 @@ public:
 
     int list_mobility(const Board &board_to_play, const e_color &color) const;
 
-    std::pair<int, int> list_corner(const Board &board_to_play, const e_color &color);
+    std::pair<int, int> list_corner(const Board &board_to_play, const e_color &color) const;
 
-    std::pair<int,int> evaluate_stability(const Board& board_to_play);
+    std::pair<int,int> evaluate_stability(const Board& board_to_play) const ;
+
+    int evaluate_stability_row(const int& coordx,const int& coordy,const Board& board) const;
+
+    int evaluate_stability_neigh(const int& coordx,const int& coordy,const Board& board) const;
 
 
 };

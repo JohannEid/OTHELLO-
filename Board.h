@@ -89,6 +89,8 @@ public:
         return black_pawn;
     }
 
+    bool is_stable() const;
+
     //   friend std::ostream& operator<< (std::ostream& stream, const Board& matrix);
 
 };

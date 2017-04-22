@@ -124,3 +124,12 @@ void Board::reintialise_pawn_track(const std::vector<std::pair<int, int>> &black
     Board::white_pawn = white_pawn;
     Board::black_pawn = black_pawn;
 }
+
+bool Board::is_stable() const  {
+    for(const auto& elem : key_stability_positions){
+            if (getBoard(elem.first,elem.second).getColor() != e_color ::NONE)
+                return true;
+        }
+        return  false;
+
+}
