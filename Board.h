@@ -73,7 +73,9 @@ public:
     }
 
 
-    void display_(const e_color &color, const int &number_of_color_change) const;
+    void display_(const e_color &color, const int &value,const int& indent) const;
+
+ //   friend std::ostream& operator<< (std::ostream& stream, const Board& matrix);
 
 };
 

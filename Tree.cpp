@@ -5,33 +5,33 @@
 #include "Tree.h"
 
 
-void Tree::display_tree(const std::shared_ptr<Node> &node) {
-    /*
+void Tree::display_tree(const std::shared_ptr<Node> &node, Board &board) {
+
     std::queue<std::shared_ptr<Node>> queue;
-    std::vector<std::shared_ptr<Node>> next_nodes;
     int turn{0};
     int indentation{0};
+    e_color player_color;
     queue.push(base);
+    Board_reverse board_reverse;
+
     while (!queue.empty()) {
-        next_nodes = queue.front()->getNext();
-        for (const auto &elem: next_nodes) {
-            if (turn < elem->getSimulation().getNumber_of_turn()) {
+        for (const auto &elem:  queue.front()->getNext()) {
+            if (turn < elem->getLast_moves().size()) {
                 std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl
                           << std::endl;
                 ++turn;
             }
-            indentation = 100 / (int) next_nodes.size();
-            std::cout << std::setw(indentation) << ' ';
-            std::cout << elem->getValue();
+            player_color = (turn % 2 == 0) ? e_color::WHITE : e_color::BLACK;
+            indentation = 100 / (int) queue.front()->getNext().size();
+            board_reverse = elem->simulate_play(player_color, board, getDepth());
+            board.display_(player_color, elem->getValue(),indentation);
+            reverse_action(board, board_reverse, player_color);
             queue.push(elem);
         }
-        std::cout << "                                                                                  ";
         queue.pop();
 
     }
-     */
 }
-
 Tree::Tree(const std::shared_ptr<Node> &base, int depth, Board &board, Ai &ai) :
         base(base), depth(depth) {
     update_tree(Tree::base, ai, board);
@@ -114,7 +114,7 @@ int Tree::alpha_beta_max(std::shared_ptr<Node> &node, int alpha, int beta) {
     if (node->isTerminal()) { return node->getValue(); }
     for (auto &elem : node->next) {
         node->setValue(alpha_beta_min(elem, alpha, beta));
-        if (node->getValue() >= beta) { return beta; }
+        if (node->getValue() >= beta) { std::cout <<"CUT OFF "<<std::endl;return beta; }
         if (node->getValue() > alpha) { alpha = node->getValue(); }
     }
     return alpha;
@@ -124,7 +124,7 @@ int Tree::alpha_beta_min(std::shared_ptr<Node> &node, int alpha, int beta) {
     if (node->isTerminal()) { return -node->getValue(); }
     for (auto &elem : node->next) {
         node->setValue(alpha_beta_max(elem, alpha, beta));
-        if (node->getValue() <= alpha) { return alpha; }
+        if (node->getValue() <= alpha) { std::cout <<"CUT OFF "<<std::endl; return alpha; }
         if (node->getValue() < beta) { beta = node->getValue(); }
 
     }

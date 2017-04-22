@@ -66,7 +66,7 @@ public:
     }
 
 
-    void display_tree(const std::shared_ptr<Node> &node);
+    void display_tree(const std::shared_ptr<Node> &node,Board& board);
 };
 
 
