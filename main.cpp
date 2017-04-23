@@ -8,6 +8,7 @@
 #include "Game.h"
 
 int main() {
+    srand (time(NULL));
 
     Game main_game;
     main_game.game_loop();

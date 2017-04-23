@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <limits>
 
+
 const int window_width = 960;
 const int window_height = 928;
 const int square_size = 84;
@@ -74,7 +75,7 @@ struct Texture_manager {
         assert(texture[0].loadFromFile("sprites/chinese_flag.png"));
         assert(texture[1].loadFromFile("sprites/usa_flag.png"));
         assert(texture[2].loadFromFile("sprites/target.png"));
-        assert(texture[3].loadFromFile("sprites/menu_screen_v3.png"));
+        assert(texture[3].loadFromFile("sprites/menu_v5.png"));
         assert(texture[4].loadFromFile("sprites/board_v3.png"));
 
     }
@@ -97,15 +98,17 @@ const int AImxr = 665;
 const int AImyl = 635;
 const int AImyr = 652;
 
-const int AIhxl = 340;
-const int AIhxr = 642;
-const int AIhyl = 723;
-const int AIhyr = 732;
 
-const int SAVExl = 272;
-const int SAVExr = 714;
-const int SAVEyl = 811;
-const int SAVEyr = 827;
+const int AIhxl = 272;
+const int AIhxr = 714;
+const int AIhyl = 811;
+const int AIhyr = 827;
+
+const int SAVExl = 340;
+const int SAVExr = 642;
+const int SAVEyl = 723;
+const int SAVEyr = 732;
+
 
 const int SHIFTX = 120;
 const int SHIFY = 110;

@@ -13,8 +13,9 @@ void Tree::display_tree(const std::shared_ptr<Node> &node, Board &board) {
     e_color player_color;
     queue.push(base);
     Board_reverse board_reverse;
-
+    int rand_color{rand() % 14};
     while (!queue.empty()) {
+        rand_color = rand()%10;
         for (const auto &elem:  queue.front()->getNext()) {
             if (turn < elem->getLast_moves().size()) {
                 std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl
@@ -22,9 +23,8 @@ void Tree::display_tree(const std::shared_ptr<Node> &node, Board &board) {
                 ++turn;
             }
             player_color = (turn % 2 == 0) ? e_color::WHITE : e_color::BLACK;
-            indentation = 100 / (int) queue.front()->getNext().size();
             board_reverse = elem->simulate_play(player_color, board, getDepth());
-            board.display_(player_color, elem->getValue(), indentation);
+            board.display_(player_color, elem->getValue(), rand_color);
             reverse_action(board, board_reverse, player_color);
             queue.push(elem);
         }
@@ -49,7 +49,8 @@ void Tree::update_tree(std::shared_ptr<Node> &node, Ai &ai, Board &board) {
     int value{board_reverse.value};
 
     if (node->isTerminal()) {
-        reverse_action(board, board_reverse, player_col); }
+        reverse_action(board, board_reverse, player_col);
+    }
 
     if (!node->isTerminal()) {
         for (const auto &elem : ai.list_choices(board, is_opponent)) {

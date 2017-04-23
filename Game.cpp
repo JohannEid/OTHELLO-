@@ -165,7 +165,7 @@ Game::Game() {
     texture_manager.load_texture();
     load_textures();
     window.create(sf::VideoMode(window_width, window_height), "Othello");
-    my_audio.createAudio("sounds/satie_je_te_veux.wav", "sounds/redneck_roll_dice.wav");
+    my_audio.createAudio("sounds/satie_je_te_veux.ogg", "sounds/redneck_roll_dice.wav");
     players.push_back(std::make_unique<Player>(Player(e_color::BLACK)));
     players.push_back(std::make_unique<Player>(Player(e_color::WHITE)));
     board.set_board_sprite(texture_manager.texture[4]);

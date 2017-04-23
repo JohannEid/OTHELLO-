@@ -74,6 +74,8 @@ public:
 
     void display_(const e_color &color, const int &value, const int &indent) const;
 
+    void match_int_to_color(const int &rand_color) const;
+
     void reinitialise();
 
     void reintialise_pawn_track(
