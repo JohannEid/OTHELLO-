@@ -17,7 +17,6 @@ private:
     int number_of_turn = 0;
     std::pair<int, int> base = std::make_pair(1, 1);
     sf::Sprite sprite_board;
-    sf::Texture texture_board;
     std::vector<std::pair<int, int>> white_pawn = {std::make_pair(4, 4), std::make_pair(5, 5)};
     std::vector<std::pair<int, int>> black_pawn = {std::make_pair(4, 5), std::make_pair(5, 4)};
 
@@ -96,6 +95,10 @@ public:
     void set_sprite(const sf::Texture& texture,const int& coordx,const int& coordy);
 
     void set_sprite_target(const sf::Texture& texture,const int& coordx,const int& coordy);
+
+    void set_sprite_changed(const int& coordx,const int& coordy, bool is_changed){
+        othellier[coordx][coordy].setIs_sprite_changed(is_changed);
+    }
 
 
     //   friend std::ostream& operator<< (std::ostream& stream, const Board& matrix);

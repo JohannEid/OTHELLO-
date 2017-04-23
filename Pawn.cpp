@@ -15,10 +15,12 @@ void Tile::init_tile(const int &ind_lhs, const int &ind_rhs) {
         setWidget(ind_lhs + '0' + 16);
     } else if ((ind_rhs == 5 && ind_lhs == 4) || (ind_rhs == 4 && ind_lhs == 5)) {
         setColor(e_color::BLACK);
-        setWidget('O');
+        setWidget('B');
+        is_sprite_changed = false;
     } else if ((ind_rhs == 4 && ind_lhs == 4) || (ind_rhs == 5 && ind_lhs == 5)) {
         setColor(e_color::WHITE);
-        setWidget('O');
+        setWidget('W');
+        is_sprite_changed = false;
     }
     else{
         setColor(e_color::NONE);
@@ -29,7 +31,10 @@ void Tile::init_tile(const int &ind_lhs, const int &ind_rhs) {
 void Tile::setColor(e_color color) {
 
     //std::cout <<"called walla"<<std::endl;
-    (color != e_color::NONE) ? setWidget('O') : setWidget('\0');
+    (color == e_color::BLACK) ? setWidget('B') :
+    (color == e_color::WHITE) ? setWidget('W') :
+    setWidget('\0');
+    is_sprite_changed = false;
     Tile::color = color;
 
 }

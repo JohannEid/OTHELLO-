@@ -12,10 +12,9 @@ private:
     e_color color = e_color::NONE;
     char widget = '\0';
     bool target = false;
-    sf::Texture pawn_texture;
-    sf::Texture target_texture;
     sf::Sprite pawn_sprite;
     sf::Sprite target_sprite;
+    bool is_sprite_changed;
 public:
     Tile() {}
 
@@ -49,6 +48,14 @@ public:
 
     const sf::Sprite &getTarget_sprite() const {
         return target_sprite;
+    }
+
+    bool isIs_sprite_changed() const {
+        return is_sprite_changed;
+    }
+
+    void setIs_sprite_changed(bool is_sprite_changed) {
+        Tile::is_sprite_changed = is_sprite_changed;
     }
 
     void setSpritePosition(const int &x, const int &y) { pawn_sprite.setPosition(x, y); }

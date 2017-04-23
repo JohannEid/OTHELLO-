@@ -181,11 +181,14 @@ void Game::display(int index_player) {
         for (int i{1}; i < ROW - 1; ++i)
             for (int j{1}; j < COL - 1; ++j) {
                 if (getBoard().getBoard(i, j).getColor() != e_color::NONE) {
-                    if (board.getBoard(i, j).getColor() == e_color::BLACK) {
+                    if (board.getBoard(i, j).getColor() == e_color::BLACK && !board.getBoard(i,j).isIs_sprite_changed()) {
                         board.set_sprite(texture_manager.texture[0], i, j);
+                        board.set_sprite_changed(i,j, true);
 
-                    } else if (board.getBoard(i, j).getColor() == e_color::WHITE) {
+                    } else if (board.getBoard(i, j).getColor() == e_color::WHITE&& !board.getBoard(i,j).isIs_sprite_changed()) {
                         board.set_sprite(texture_manager.texture[1], i, j);
+                        board.set_sprite_changed(i,j, true);
+
                     }
                     board.set_sprite_position(i, j);
                     window.draw(board.getBoard(i, j).getPawn_sprite());

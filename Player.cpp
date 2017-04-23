@@ -40,14 +40,6 @@ void Player::show_targets(Board &board_to_play) const {
 }
 
 
-void Player::display_player_score(const Board &board) const {
-    int opponent_score{board.getNumber_of_turn() + 4 - getScore()};
-    std::cout << "Player score is :" << getScore() << std::endl;
-    std::cout << "Opponent score is :" << opponent_score << std::endl;
-    std::cout << "Number of turn is : " << board.getNumber_of_turn() << std::endl;
-    std::cin.ignore(256, '\n');
-}
-
 int Player::moveSelection(sf::RenderWindow &window, Board &board) {
     show_targets(board);
 
@@ -115,7 +107,7 @@ void Ai_medium::choose_play(Board &board_to_play) {
 
     Tree tree(std::make_shared<Node>(
             Node(std::make_pair(0, 0), e_min_max::MAX, INFINITE, false, nullptr, board_temp, getColor())),
-              3, board_temp, *this);
+              5, board_temp, *this);
     tree.alpha_beta_search();
     tree.display_tree(tree.getBase(),board_temp);
     choose_base(board_to_play, tree.getBase());

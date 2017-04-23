@@ -20,9 +20,6 @@ private:
     e_color color;
     int score = 2;
 
-    void display_player_score(const Board &board) const;
-
-
 public:
     Player(e_color color) : color(color) {}
 
